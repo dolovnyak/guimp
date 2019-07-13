@@ -671,6 +671,23 @@ int		main()
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
 
+	SDL_DisplayMode DM;
+	SDL_GetCurrentDisplayMode(0, &DM);
+	if (DM.w - g_main.tool_win->size.x < g_main.main_win->size.x)
+	{
+		g_main.tool_win->pos = (t_vec2){0, (DM.h - g_main.tool_win->size.y) / 2};
+		SDL_SetWindowPosition(g_main.tool_win->sdl_window, g_main.tool_win->pos.x, g_main.tool_win->pos.y);
+		g_main.main_win->pos = (t_vec2){g_main.tool_win->size.x + 10, g_main.tool_win->pos.y};
+		SDL_SetWindowPosition(g_main.main_win->sdl_window, g_main.main_win->pos.x, g_main.main_win->pos.y);
+		int size_x = DM.w - g_main.tool_win->size.x;
+		g_main.main_win->size = (t_vec2){size_x, size_x / 2.13f};
+		SDL_SetWindowSize(g_main.main_win->sdl_window, g_main.main_win->size.x, g_main.main_win->size.y);
+		g_main.main_win->canvas->rect.w = g_main.main_win->size.x;
+		g_main.main_win->canvas->rect.h = g_main.main_win->size.y;
+		g_main.main_win->canvas->cut_rect = g_main.main_win->canvas->rect;
+		bfs_for_resize(g_main.main_win->canvas, &g_main);
+	}
+
 	// ui_set_pixel_color_to_texture(
 	// 		g_main.main_win->sdl_renderer,
 	// 		(t_texture *)g_main.layers.current_layer->sdl_textures->content,
