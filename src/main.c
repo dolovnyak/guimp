@@ -537,7 +537,6 @@ static void	ft_strjoin_free(char **to, char *what)
 
 static int text_test(t_ui_main *m, void *a)
 {
-	char	*tmp;
 	t_ui_el	*el;
 	t_ui_el	*dr;
 

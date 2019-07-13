@@ -17,7 +17,7 @@ int	ui_save_surface(SDL_Surface *sur)
 	char	*path;
 
 	path = NULL;
-	if (ui_open_file_dialog(&path) < 0)
+	if (ui_file_open_file_dialog(&path) < 0)
 		ui_sdl_deinit(228);
 	IMG_SaveJPG(sur, path, 0);
 	free(path);

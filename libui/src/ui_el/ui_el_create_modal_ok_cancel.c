@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libui.h"
+
 void    ui_el_create_modal_ok_cancel(void *a1, void *a2)
 {
 	t_ui_main   *m;
@@ -18,11 +20,8 @@ void    ui_el_create_modal_ok_cancel(void *a1, void *a2)
 
 	m = (t_ui_main *)a1;
 	el = (t_ui_el *)a2;
-	if (ui_main_find_window_by_id(m, modal_win->w_id))
+	if (ui_main_find_window_by_id(m, el->modal_win->w_id))
 		return ;
-	w = ui_win_create_modal_win(el->modal_win)
-	ui_event_add_listener(w->events->onClose, ui_main_close_window);
-	ui_event_add_listener(w->events->onKeyDown[SDL_SCANCODE_ESCAPE], ui_main_close_window);
-//	create_modal_ok_cancel(m, el, win_el);
+	w = ui_win_create_modal_win(el->modal_win);
 	ui_main_add_window(m, w);
 }

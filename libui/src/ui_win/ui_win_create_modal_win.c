@@ -32,5 +32,7 @@ t_ui_win	*ui_win_create_modal_win(t_ui_modal_win *modal_win)
 	ui_el_set_size(win_el, 0, (t_fvec2){1, 1});
 	ui_el_add_color_texture(win_el, (t_vec2){win_el->rect.w, win_el->rect.h},
 			ft_atoi_base("757575", 16), "default");
+	ui_event_add_listener(w->events->onClose, ui_main_event_close_window);
+	ui_event_add_listener(w->events->onKeyDown[SDL_SCANCODE_ESCAPE], ui_main_event_close_window);
 	return (w);
 }
