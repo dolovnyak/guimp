@@ -192,6 +192,8 @@ int								choose_line(t_ui_main *main, void *el_v);
 void							draw_line(t_guimp *g, t_vec2 start, t_vec2 end);
 
 int								choose_square(t_ui_main *main, void *el_v);
+void							draw_square(t_guimp *g, t_vec2 s, t_vec2 e);
+void							draw_empty_square(t_guimp *g, t_vec2 s, t_vec2 e);
 
 int								choose_rect(t_ui_main *main, void *el_v);
 void							draw_rect(t_guimp *g, t_vec2 s, t_vec2 e);

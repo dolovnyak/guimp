@@ -12,53 +12,37 @@
 
 #include "guimp.h"
 
+static void process_draw(t_guimp *g)
+{
+	if (g->draw_tool.tool == GM_TOOL_RECT)
+		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
+		 draw_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		 draw_empty_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+	else if (g->draw_tool.tool == GM_TOOL_SQUARE)
+		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
+		 draw_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		 draw_empty_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+	else if (g->draw_tool.tool == GM_TOOL_ELLIPSE)
+		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
+		 draw_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		 draw_empty_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+	else if (g->draw_tool.tool == GM_TOOL_LINE)
+		draw_line(g, g->draw_tool.prew_point, g->draw_tool.cur_point);
+	else if (g->draw_tool.tool == GM_TOOL_TEXT)
+		draw_text(g, g->draw_tool.prew_point, g->draw_tool.cur_point,
+				  ui_win_find_el_by_id(g->tool_win, 120610));
+}
 
 static void	process_tool_state_draw(t_guimp *g)
 {
 	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
-	if (g->draw_tool.tool == GM_TOOL_RECT)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}) :
-		 draw_empty_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}));
-	else if (g->draw_tool.tool == GM_TOOL_SQUARE)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.prew_point.y + abs(g->draw_tool.prew_point.x - g->draw_tool.cur_point.x)}) :
-		 draw_empty_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.prew_point.y + abs(g->draw_tool.prew_point.x - g->draw_tool.cur_point.x)}));
-	else if (g->draw_tool.tool == GM_TOOL_ELLIPSE)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_ellipse(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}) :
-		 draw_empty_ellipse(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}));
-	else if (g->draw_tool.tool == GM_TOOL_LINE)
-		draw_line(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y},
-					  (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y});
-	else if (g->draw_tool.tool == GM_TOOL_TEXT)
-		draw_text(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y},
-					  (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y},
-					  ui_win_find_el_by_id(g->tool_win, 120610));
+	process_draw(g);
 }
 
 static void	process_tool_state_end(t_guimp *g)
 {
 	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
-	if (g->draw_tool.tool == GM_TOOL_RECT)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}) :
-		 draw_empty_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}));
-	else if (g->draw_tool.tool == GM_TOOL_SQUARE)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.prew_point.y + abs(g->draw_tool.prew_point.x - g->draw_tool.cur_point.x)}) :
-		 draw_empty_rect(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.prew_point.y + abs(g->draw_tool.prew_point.x - g->draw_tool.cur_point.x)}));
-	else if (g->draw_tool.tool == GM_TOOL_ELLIPSE)
-		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_ellipse(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}) :
-		 draw_empty_ellipse(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y}, (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y}));
-	else if (g->draw_tool.tool == GM_TOOL_LINE)
-		draw_line(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y},
-					  (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y});
-	else if (g->draw_tool.tool == GM_TOOL_TEXT)
-		draw_text(g, (t_vec2){g->draw_tool.prew_point.x, g->draw_tool.prew_point.y},
-					  (t_vec2){g->draw_tool.cur_point.x, g->draw_tool.cur_point.y},
-					  ui_win_find_el_by_id(g->tool_win, 120610));
+	process_draw(g);
 	g->draw_tool.state = GM_TOOL_STATE_NONE;
 	SDL_SetRenderTarget(g->main_win->sdl_renderer, (t_texture *)(g->layers.current_layer->sdl_textures->content));
 	SDL_RenderCopy(g->main_win->sdl_renderer, g->layers.tmp_texture, NULL, NULL);
