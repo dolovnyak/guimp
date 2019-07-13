@@ -56,15 +56,16 @@ void	create_modal_ok(t_ui_main *m, t_ui_modal_win *modal_win, t_ui_el *p)
 
 	i = 0;
 	el = ui_el_init();
-	el->id = 2;
+	el->id = modal_win->w_id;
 	ui_el_add_child(p, el);
 	ui_el_set_pos(el, PIXEL, (t_fvec2){0.5 * modal_win->size.x - 100, modal_win->size.y - 90});
 	ui_el_set_size(el, PIXEL, (t_fvec2){200, 65});
 	ui_el_add_color_texture(el, (t_vec2){el->rect.w, el->rect.h},
 			ft_atoi_base("AAAAAA", 16), "default");
 	ui_el_setup_default(el);
+	ui_event_add_listener(el->events->onPointerLeftButtonPressed, ui_el_event_close_window);
 	el_text = ui_el_init();
-	el_text->id = 3;
+	el_text->id = modal_win->w_id + 1;
 	ui_el_add_child(el, el_text);
 	ui_el_set_pos(el_text, 0, (t_fvec2){0.3, 0});
 	ui_el_set_size(el_text, 0, (t_fvec2){0.4, 1});

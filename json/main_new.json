@@ -3766,9 +3766,6 @@
         {
           "id": 12060,
           "parent": 1206,
-          "params": [
-            "EL_IGNOR_RAYCAST"
-          ],
           "pos":
           {
             "x": 2,
@@ -3859,7 +3856,8 @@
             "color": "000000",
             "render_param": "TEXT_IS_BLENDED",
             "params": [
-              "TEXT_IS_REGULAR"
+              "TEXT_IS_REGULAR",
+              "TEXT_IS_INPUTTING"
             ],
             "string_len": 0,
             "font": "SansSerif"

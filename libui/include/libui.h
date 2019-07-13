@@ -502,6 +502,7 @@ int					ui_el_event_set_active_texture(t_ui_main *m, void *a);
 ///////////////////////////////////////////////////////////////////////
 
 int					ui_el_create_modal_ok(t_ui_main *m, void *a);				//TODO возможно фул переделать на мейн
+int					ui_el_event_close_window(t_ui_main *m, void *a);
 
 
 ///////////////////////////////////////////////////////////////////////

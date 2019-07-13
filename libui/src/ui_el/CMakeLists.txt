@@ -47,4 +47,5 @@ target_sources(ui PUBLIC
         ui_el_setup_menu_resizable.c
         ui_el_setup_radio.c
         ui_el_update_text.c
+        ui_el_event_close_window.c
         )

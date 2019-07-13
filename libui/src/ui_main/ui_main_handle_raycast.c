@@ -40,7 +40,8 @@ void	ui_main_handle_raycast(t_ui_main *m)
 		m->raycaster->selected = NULL;
 	}
 
-	if (cur != NULL)
+	cur = m->raycaster->selected;
+	if (cur)
 	{
 		if (cur->params & EL_IS_SCROLLABLE && m->params & (MAIN_SCROLL_DOWN | MAIN_SCROLL_UP))
 		{
@@ -73,5 +74,8 @@ void	ui_main_handle_raycast(t_ui_main *m)
 			m->params &= ~MAIN_RMB_RELEASED;
 		}
 	}
-	ui_main_handle_continious_event(m, cur);
+
+	cur = m->raycaster->selected;
+	if (cur)
+		ui_main_handle_continious_event(m, cur);
 }

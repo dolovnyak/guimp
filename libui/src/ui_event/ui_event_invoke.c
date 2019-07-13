@@ -17,27 +17,26 @@ void	ui_event_invoke(t_ui_event *e, t_ui_main *m, void *a)
 	t_list			*node;
 	pred_ptr_event	f;
 
+	if (!e)
+		return ;
 	node = e->events;
 	while (node)
 	{
-		if ((long)(node->next) < 20 && (long)(node->next) != 0)
-		{
-			node->next = node->next;
-		}
 		f = (pred_ptr_event)(*((long *)node->content));
 		if (!((*f)(m, a)))
 			return ;
 		t_ui_win *w = (t_ui_win*)a; //for test
 		(void)w;
+		node = node->next;
 /* 		if ((m->params & HUITA))
 		{
 			m->params &= ~HUITA;
 			return ;
 		}*/
-		if ((long)(node->next) < 20 && (long)(node->next) != 0)
-		{
-			node->next = node->next;
-		}
-		node = node->next;
+		//if ((long)(node->next) < 20 && (long)(node->next) != 0)
+		//{
+		//	node->next = node->next;
+		//}
+		//node = node->next;
 	}
 }
