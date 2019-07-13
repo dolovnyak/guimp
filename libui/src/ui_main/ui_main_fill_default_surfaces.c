@@ -30,6 +30,7 @@ static void add_icons(t_ui_main *m)
 	ui_main_add_surface_by_path(m, "images/rect_icon.png", "rect_icon");
 	ui_main_add_surface_by_path(m, "images/square_icon.png", "square_icon");
 	ui_main_add_surface_by_path(m, "images/circle_icon.png", "circle_icon");
+	ui_main_add_surface_by_path(m, "images/sticker_icon.png", "sticker_icon");
 }
 
 static void	add_brushes(t_ui_main *m)
@@ -39,6 +40,11 @@ static void	add_brushes(t_ui_main *m)
 	ui_main_add_surface_by_path(m, "images/brush_cloud.png", "brush_cloud");
 	ui_main_add_surface_by_path(m, "images/brush_star.png", "brush_star");
     ui_main_add_surface_by_path(m, "images/brush_boom.png", "brush_boom");
+}
+
+static void	add_stickers(t_ui_main *m)
+{
+	ui_main_add_surface_by_path(m, "images/sticker_frolov.png", "sticker_frolov");
 }
 
 void	ui_main_fill_default_surfaces(t_ui_main *m)
@@ -67,4 +73,5 @@ void	ui_main_fill_default_surfaces(t_ui_main *m)
 	ui_main_add_surface_by_path(m, "images/background.png", "background");
 	add_icons(m);
 	add_brushes(m);
+	add_stickers(m);
 }

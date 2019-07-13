@@ -667,6 +667,10 @@ int		main()
     cur_el->data = ui_el_get_texture_by_id(
             ui_win_find_el_by_id(g_main.main_win, 3), "brush_boom");
 
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1100);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
+
 	// ui_set_pixel_color_to_texture(
 	// 		g_main.main_win->sdl_renderer,
 	// 		(t_texture *)g_main.layers.current_layer->sdl_textures->content,

@@ -153,6 +153,10 @@
               "el_id": "brush_boom"
             },
             {
+              "main_id": "sticker_frolov",
+              "el_id": "sticker_frolov"
+            },
+            {
               "type": "empty",
               "width": 1920,
               "height": 1080,
@@ -1887,7 +1891,139 @@
           [
             {
               "type": "color",
+              "color": "757575",
+              "el_id": "default"
+            }
+          ]
+        },
+        {
+          "id": 10189,
+          "parent": 110,
+          "params":
+          [
+            "EL_IGNOR_RAYCAST"
+          ],
+          "pos":
+          {
+            "x": 12,
+            "y": 6,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "size":
+          {
+            "x": 100,
+            "y": 20,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "text_area":
+          {
+            "text": "STICKERS:",
+            "color": "000000",
+            "render_param": "TEXT_IS_BLENDED",
+            "params": [
+              "TEXT_IS_REGULAR"
+            ],
+            "string_len": 0,
+            "font": "SansSerif"
+          }
+        },
+        {
+          "id": 1100,
+          "parent": 110,
+          "pos":
+          {
+            "x": 12,
+            "y": 32,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "size":
+          {
+            "x": 60,
+            "y": 60,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "textures":
+          [
+            {
+              "type": "color",
+              "color": "AAAAAA",
+              "el_id": "default"
+            },
+            {
+              "type": "color",
               "color": "00BB00",
+              "el_id": "onFocus"
+            },
+            {
+              "type": "color",
+              "color": "00DD00",
+              "el_id": "onActive"
+            }
+          ],
+          "events":
+          [
+            {
+              "event_name": "onPointerLeftButtonPressed",
+              "func_name": "ui_el_event_children_set_default"
+            },
+            {
+              "event_name": "onPointerEnter",
+              "func_name": "testOnPtrEnter"
+            },
+            {
+              "event_name": "onPointerExit",
+              "func_name": "testOnPtrExit"
+            },
+            {
+              "event_name": "onPointerLeftButtonPressed",
+              "func_name": "choose_brush"
+            },
+            {
+              "event_name": "onPointerLeftButtonPressed",
+              "func_name": "set_brush_texture_from_el"
+            }
+          ]
+        },
+        {
+          "id": 11000,
+          "parent": 1100,
+          "params": [
+            "EL_IGNOR_RAYCAST"
+          ],
+          "pos":
+          {
+            "x": 6,
+            "y": 6,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "size":
+          {
+            "x": 48,
+            "y": 48,
+            "params":
+            [
+              "PIXEL"
+            ]
+          },
+          "textures":
+          [
+            {
+              "main_id": "sticker_frolov",
               "el_id": "default"
             }
           ]
@@ -1921,7 +2057,7 @@
           "textures":
           [
             {
-              "main_id": "frolushka_meme",
+              "main_id": "sticker_icon",
               "el_id": "default"
             }
           ]
