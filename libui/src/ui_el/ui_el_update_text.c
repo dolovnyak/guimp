@@ -80,6 +80,7 @@ int	ui_el_update_text(t_ui_el *el, const char *text)
 			el->text_area->text = ft_strsub(text, 0, el->text_area->string_len);
 		}
 	}
+	ui_el_remove_texture_by_id(el, "default");
 	if (get_surface_from_text(el))
 		ui_el_add_empty_texture(el, el->rect.w, el->rect.h, "default");
 	else

@@ -19,6 +19,7 @@ int			ui_el_add_texture_from_file(t_ui_el *el, const char *path,
 	SDL_Texture		*tmp;
 	int				hash;
 
+	SDL_Log("Added texture %s", tid);
 	hash = ft_strhash(tid);
 	tmp_lst = NULL;
 	tmp = NULL;
@@ -39,6 +40,7 @@ int			ui_el_add_empty_texture(t_ui_el *el, int w, int h, const char *tid)
 	SDL_Texture		*tmp;
 	int				hash;
 
+	SDL_Log("Added empty texture %s", tid);
 	hash = ft_strhash(tid);
 	tmp_lst = NULL;
 	tmp = NULL;
@@ -67,6 +69,7 @@ int			ui_el_add_white_texture(t_ui_el *el, int w, int h, const char *tid)
 	SDL_Texture		*tmp;
 	int				hash;
 
+	SDL_Log("Added white texture %s", tid);
 	hash = ft_strhash(tid);
 	tmp_lst = NULL;
 	tmp = NULL;
@@ -97,6 +100,7 @@ int			ui_el_add_gradient_texture(t_ui_el *el, t_vec2 wh, int color,
 	int				hash;
 	int				i;
 
+	SDL_Log("Added gradient texture %s", tid);
 	hash = ft_strhash(tid);
 	i = -1;
 	tmp_lst = NULL;
@@ -129,6 +133,7 @@ int			ui_el_add_color_texture(t_ui_el *el, t_vec2 wh, int color,
 	SDL_Texture		*tmp;
 	int				hash;
 
+	SDL_Log("Added color texture %s", tid);
 	hash = ft_strhash(tid);
 	tmp_lst = NULL;
 	tmp = NULL;

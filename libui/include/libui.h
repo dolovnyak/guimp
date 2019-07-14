@@ -584,6 +584,7 @@ void				ui_prefab_get_pixel_size(t_ui_el *p, t_ui_el *canvas,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
 
-int	ctid(t_list_texture *lst, int tid);
+int		ctid(t_list_texture *lst, int tid);
+void	ui_el_remove_texture_by_id(t_ui_el *el, const char *id);
 
 #endif

@@ -75,7 +75,8 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_event_default_pointer_exit.c \
 					ui_el_event_close_window.c \
 					ui_el_event_show_window.c \
-					ui_el_event_drag.c 
+					ui_el_event_drag.c \
+					ui_el_remove_texture_by_id.c
 
 SRC_UI_DRAW		=	ui_draw.c \
 					ui_draw_windows.c \
@@ -177,11 +178,6 @@ SRC_UI_JTOC		=	ui_jtoc_main_from_json.c \
 					ui_jtoc_el_pref_modal_win.c \
 					ui_jtoc_create_modal_ok.c \
 					ui_jtoc_utils.c
-
-SRC_UI_FILE		=	ui_file_open_file_dialog.c \
-					ui_file_save_file_dialog.c \
-					ui_file_parse_path.c \
-					ui_file_find_last_slash.c
 
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC_BFS:.c=.o)) \
 					$(addprefix $(OBJ_DIR)/,$(SRC_UI_CURSOR:.c=.o)) \

@@ -46,4 +46,5 @@ target_sources(ui PUBLIC
         ui_el_update_text.c
         ui_el_event_close_window.c
         ui_el_event_show_window.c
+        ui_el_remove_texture_by_id.c
         )

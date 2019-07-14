@@ -583,9 +583,9 @@
           {
             "win_id": 5,
             "type": "OK",
-            "title": "SAVE FILE",
+            "title": "ENTER THE PATH TO FILE",
             "text_area": {
-              "text": "Enter the path to file:",
+              "text": "/Users",
               "color": "FFFFFF",
               "bg_color": "FF0000",
               "render_param": "TEXT_IS_SHADED",
