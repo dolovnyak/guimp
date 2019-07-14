@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:09:45 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/12 18:09:09 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 00:25:04 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void process_draw(t_guimp *g)
 		draw_line(g, g->draw_tool.prew_point, g->draw_tool.cur_point);
 	else if (g->draw_tool.tool == GM_TOOL_TEXT)
 		draw_text(g, g->draw_tool.prew_point, g->draw_tool.cur_point,
-				  ui_win_find_el_by_id(g->tool_win, 120610));
+				  ui_win_find_el_by_id(g->tool_win, 121210));
 }
 
 static void	process_tool_state_draw(t_guimp *g)

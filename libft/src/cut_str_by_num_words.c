@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_str_by_num_words.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 01:35:42 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/10 15:28:18 by sbednar          ###   ########.fr       */
+/*   Updated: 2019/07/14 20:58:18 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char			*csbnw2(const char *s, size_t new_len_str, size_t num_words)
 	i = -1;
 	j = 0;
 	k = -1;
-	while (s[++i] && j < num_words)
+	while (s[++i] && (size_t)j < num_words)
 	{
 		if (s[i] != ' ')
 		{
