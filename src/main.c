@@ -671,6 +671,22 @@ int		main()
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
 
+//	t_ui_win *w = ui_main_find_window_by_id(g_main.ui_main, 4);
+//	t_ui_el *el = ui_el_init();
+//	el->id = 100;
+//	ui_el_add_child(w->canvas, el);
+//	ui_el_set_pos(el, PIXEL, (t_fvec2){10, 10});
+//	ui_el_set_size(el, PIXEL, (t_fvec2){100, 100});
+//	ui_el_setup_default(el);
+//	el->modal_win = w;
+//	ui_event_add_listener(el->events->onPointerLeftButtonPressed, ui_el_event_close_window);
+//	t_ui_text *t = ui_main_get_font_by_id(g_main.ui_main, "SansSerif");
+//	ui_el_set_text(el, t->font,
+//				   (t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){170, 170, 170, 0},
+//								   0, TEXT_IS_REGULAR | TEXT_IS_INPUTTING | t->params, TEXT_IS_SOLID});
+//	ui_el_update_text(el, "KEEEK");
+
+
 	//SDL_DisplayMode DM;
 	//SDL_GetCurrentDisplayMode(0, &DM);
 	//if (DM.w - g_main.tool_win->size.x < g_main.main_win->size.x)

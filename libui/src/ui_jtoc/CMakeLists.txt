@@ -10,4 +10,6 @@ target_sources(ui PUBLIC
         ui_jtoc_main_from_json.c
         ui_jtoc_utils.c
         ui_jtoc_win_from_json.c
+        ui_jtoc_create_modal_ok.c
+        ui_jtoc_create_modal_ok_cancel.c
         )

@@ -49,7 +49,7 @@ static void fill_modal_ok_cancel(t_ui_text *ui_text, t_ui_el *p, char **text, t_
 	i = 0;
 	h = 40;
 	y = 10;
-    create_ok_cancel_buttons(p, ui_text, w);
+    create_ok_cancel_button(p, ui_text, w);
 	while (text[i])
 	{
 		el = ui_el_init();

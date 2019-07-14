@@ -578,7 +578,25 @@
               "event_name": "onPointerLeftButtonPressed",
               "func_name": "ui_save_test"
             }
-          ]
+          ],
+          "modal_win":
+          {
+            "win_id": 5,
+            "type": "OK",
+            "title": "SAVE FILE",
+            "text_area": {
+              "text": "Enter the path to file:",
+              "color": "FFFFFF",
+              "bg_color": "FF0000",
+              "render_param": "TEXT_IS_SHADED",
+              "params":
+              [
+                "TEXT_IS_CENTERED"
+              ],
+              "string_len": 30,
+              "font": "SansSerif"
+            }
+          }
         },
         {
           "id": 10,
@@ -608,7 +626,25 @@
               "event_name": "onPointerLeftButtonPressed",
               "func_name": "ui_open_test"
             }
-          ]
+          ],
+          "modal_win":
+          {
+            "win_id": 4,
+            "type": "OK",
+            "title": "OPEN FILE",
+            "text_area": {
+              "text": "Enter the path to file:",
+              "color": "FFFFFF",
+              "bg_color": "FF0000",
+              "render_param": "TEXT_IS_SHADED",
+              "params":
+              [
+                "TEXT_IS_CENTERED"
+              ],
+              "string_len": 30,
+              "font": "SansSerif"
+            }
+          }
         },
         {
           "id": 11,
@@ -645,6 +681,10 @@
               "color": "FFFFFF",
               "bg_color": "FF0000",
               "render_param": "TEXT_IS_SHADED",
+              "params":
+              [
+                "TEXT_IS_CENTERED"
+              ],
               "string_len": 12,
               "font": "SansSerif"
             }

@@ -33,4 +33,6 @@ target_sources(ui PUBLIC
         ui_main_open_texture.c
         ui_main_save_texture.c
         ui_main_set_font_params.c
+        ui_main_run_program.c
+        ui_main_try_invoke_modal_windows.c
         )
