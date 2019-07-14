@@ -38,5 +38,6 @@ char			**get_strs(const char *s, size_t *nss,
 		if (!s[i])
 			break ;
 	}
+	free(num_words_in_strs);
 	return (strs);
 }

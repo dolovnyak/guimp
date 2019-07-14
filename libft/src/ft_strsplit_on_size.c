@@ -52,6 +52,8 @@ static size_t	*num_join_free(size_t *arr, size_t num, size_t size)
 	while (++i < size - 1)
 		arr[i] = tmp_arr[i];
 	arr[i] = num;
+	if (tmp_arr)
+		free(tmp_arr);
 	return (arr);
 }
 
@@ -66,18 +68,15 @@ static size_t	*get_nwiss(size_t *len_arr,
 	i = -1;
 	len = 0;
 	nwis = 0;
+	nwiss = NULL;
 	while (++i < num_word)
 		if ((len += len_arr[i] + 1) <= s_len + 1)
-		{
-			nwis++;
-			if (i + 1 == num_word)
-				nwiss = num_join_free(nwiss, nwis, ++(*num_strs));
-		}
+			((++nwis && i + 1 == num_word) ?
+				nwiss = num_join_free(nwiss, nwis, ++(*num_strs)) : 0);
 		else
 		{
-			(*num_strs)++;
 			len = 0;
-			if (nwis == 0)
+			if (++(*num_strs) && nwis == 0)
 				nwiss = num_join_free(nwiss, 1, *num_strs);
 			else if (--i || 1)
 			{
@@ -100,5 +99,6 @@ char			**ft_strsplit_on_size(const char *s, size_t sl, size_t *nss)
 	arr_lens = get_lens_arr(s, num_word);
 	*nss = 0;
 	nwiss = get_nwiss(arr_lens, num_word, sl, nss);
+	free(arr_lens);
 	return (get_strs(s, nss, nwiss));
 }

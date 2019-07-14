@@ -60,12 +60,13 @@ static void fill_modal_ok(t_ui_text *ui_text, t_ui_el *p, char **text, t_ui_win 
 		ui_el_set_size(el, PIXEL, (t_fvec2){p->rect.w - 150, h});
 		y += h + 5;
 		ui_el_set_text(el, ui_text->font,
-                    (t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){170, 170, 170, 0},
-                    0, TEXT_IS_REGULAR | ui_text->params, TEXT_IS_SOLID});
+	(t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){170, 170, 170, 0},
+	0, TEXT_IS_REGULAR | ui_text->params, TEXT_IS_SOLID});
 		ui_el_update_text(el, text[i]);
 		ui_el_setup_default(el);
-		i++;
+		free(text[i++]);
 	}
+	free(text);
 }
 
 void        ui_jtoc_create_modal_ok(t_ui_main *m, t_ui_win *w, t_ui_text *ui_text)
