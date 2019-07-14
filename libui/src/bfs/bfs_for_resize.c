@@ -14,8 +14,8 @@
 
 static void	bfs_resize_iter(const t_list *root, t_ui_main *m)
 {
-	QUEUE   *q;
-	void    *tmp;
+	t_queue	*q;
+	void	*tmp;
 
 	q = NULL;
 	q_push(&q, (t_list *)root);
@@ -29,7 +29,7 @@ static void	bfs_resize_iter(const t_list *root, t_ui_main *m)
 
 void		bfs_for_resize(const t_ui_el *root, t_ui_main *m)
 {
-	t_list *lst;
+	t_list	*lst;
 
 	lst = ft_lstnew(NULL, 0);
 	lst->content = CAST_X_TO_Y(root, void *);

@@ -12,13 +12,19 @@
 
 #include "libui.h"
 
+static void	ui_el_setup_default_scroll_menu_logs(t_ui_el *el)
+{
+	ui_event_add_listener(el->events->onScrollDown, ui_log_el_scroll_down);
+	ui_event_add_listener(el->events->onScrollUp, ui_log_el_scroll_up);
+}
+
 void	ui_el_setup_default_scroll_menu(t_ui_el *el)
 {
 	el->params |= EL_IS_SCROLLABLE;
 	ui_event_add_listener(el->events->onScrollUp, ui_el_event_scroll_menu_up);
-	ui_event_add_listener(el->events->onScrollDown, ui_el_event_scroll_menu_down);
-#ifdef DEBUG_STATUS
-	ui_event_add_listener(el->events->onScrollDown, ui_log_el_scroll_down);
-	ui_event_add_listener(el->events->onScrollUp, ui_log_el_scroll_up);
-#endif
+	ui_event_add_listener(el->events->onScrollDown,
+			ui_el_event_scroll_menu_down);
+# ifdef DEBUG_STATUS
+	ui_el_setup_default_scroll_menu_logs(el);
+# endif
 }

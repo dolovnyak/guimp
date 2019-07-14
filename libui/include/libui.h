@@ -45,7 +45,6 @@
 # define KEYS_COUNT			285
 
 # define CAST_X_TO_Y(x, y)	((y)x)
-# define QUEUE				t_list
 
 # define FPS				150 // NE TROGAY PLS
 
@@ -105,6 +104,7 @@
 
 typedef	void			(*func_ptr)(void *, void *);
 typedef	int				(*pred_ptr)(void *, void *);
+typedef	t_list			t_queue;
 typedef	SDL_Rect		t_rect;
 typedef	SDL_Texture		t_texture;
 typedef	t_list			t_list_texture;
@@ -185,8 +185,8 @@ typedef struct		s_ui_el
 	t_list			*children;
 	size_t			current_texture;
 	t_rect			rect;
-	t_rect			cut_rect;
-	t_frect			relative_rect;
+	t_rect			crect;
+	t_frect			rrect;
 	t_vec2			ptr_rel_pos;
 	Uint32			id;
 	Uint32			params;
@@ -389,8 +389,8 @@ int					ui_log_key_released(t_ui_main *m, void *a);
 #pragma endregion
 
 #pragma region		bfs functions
-void				q_push(QUEUE **q, t_list *el);
-void				*q_pop(QUEUE **q);
+void				q_push(t_queue **q, t_list *el);
+void				*q_pop(t_queue **q);
 
 void				bfs_iter(const t_list *root, const func_ptr f,
 		const void *arg);														////////// TODO
@@ -583,5 +583,8 @@ void				ui_prefab_get_pixel_size(t_ui_el *p, t_ui_el *canvas,
 		int type, t_fvec2 *size);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
+
+int		ctid(t_list_texture *lst, int tid);
+void	ui_el_remove_texture_by_id(t_ui_el *el, const char *id);
 
 #endif

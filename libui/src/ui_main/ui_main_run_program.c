@@ -14,10 +14,10 @@
 
 void	ui_main_run_program(t_ui_main *m)
 {
-	//TUT POKA CHTO HUITA
-    SDL_SetWindowModalFor(ui_main_find_window_by_id(m, 3)->sdl_window, ui_main_find_window_by_id(m, 0)->sdl_window); //TODO it's just check;
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "AAAAAAAAAAAAA",
-			"CUKA BLYAT NENAVIJUU EBANII SDL AAAAAAAAAAAAAAAAAA",
-			ui_main_find_window_by_id(m, 0)->sdl_window);
+//	//TUT POKA CHTO HUITA
+//    SDL_SetWindowModalFor(ui_main_find_window_by_id(m, 3)->sdl_window, ui_main_find_window_by_id(m, 0)->sdl_window); //TODO it's just check;
+//	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "AAAAAAAAAAAAA",
+//			"CUKA BLYAT NENAVIJUU EBANII SDL AAAAAAAAAAAAAAAAAA",
+//			ui_main_find_window_by_id(m, 0)->sdl_window);
 	ui_main_loop(m);
 }

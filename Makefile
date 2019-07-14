@@ -64,20 +64,6 @@ SRC_TOOLS		=	brush.c \
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o)) \
 					$(addprefix $(OBJ_DIR)/,$(SRC_TOOLS:.c=.o))
 
-##########################################################################################################
-
-SRC_DIR_TEST	=	./src/test
-
-OBJ_DIR_TEST	=	./obj_test
-
-SRC_TEST		=	main.c \
-					draw_func.c \
-					draw_main_canvas_event.c \
-
-OBJ_TEST		=	$(addprefix $(OBJ_DIR_TEST)/,$(SRC_TEST:.c=.o))
-
-##########################################################################################################
-
 INCS			=	-I$(INC_DIR) \
 					-I$(INC_FT) \
 					-I$(INC_UI) \
@@ -164,76 +150,6 @@ fclean:
 	@echo "$(TEXT_CG)$(TEXT_BL)$(TEXT_B)↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ success$(TEXT_R)"
 
 re: fclean all
-
-##########################################################################################################
-
-test: rm_test $(NAME_TEST)
-
-rm_test:
-	rm -f $(NAME_TEST)
-	rm -rf $(OBJ_DIR_TEST)
-
-$(NAME_TEST):
-	@echo "$(TEXT_CC)$(TEXT_B)↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ test$(TEXT_R)"
-	@touch $(TEMP)
-	@echo "$(TEXT_CR)$(TEXT_B)LIBFT:$(TEXT_R)"
-	@make -C $(FT_DIR) all
-	@echo "$(TEXT_CR)$(TEXT_B)LIBUI:$(TEXT_R)"
-	@make -C $(UI_DIR) all
-	@echo "$(TEXT_CR)$(TEXT_B)LIBJTOC:$(TEXT_R)"
-	@make -C $(JTOC_DIR) all
-	@echo "$(TEXT_CR)$(TEXT_B)$(NAME_TEST):$(TEXT_R)"
-	@make $(OBJ_DIR_TEST)
-	@make compile_test
-	@rm -f $(TEMP)
-	@echo "$(TEXT_CG)$(TEXT_BL)$(TEXT_B)↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ success$(TEXT_R)"
-
-compile_test: $(OBJ_TEST)
-	@if [ $(CAT_TEMP) ] ; \
-		then \
-		make build_test;\
-		fi;
-
-build_test:
-	$(CC) $(CFLAGS) $(OBJ_TEST) $(INCS) $(LIBS) $(FRAMEWORKS) -o $(NAME_TEST) # -fsanitize=address
-
-$(OBJ_DIR_TEST):
-	@mkdir $(OBJ_DIR_TEST)
-
-$(OBJ_DIR_TEST)/%.o: $(SRC_DIR_TEST)/%.c
-	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
-	@echo "1" > $(TEMP)
-
-clean_t:
-	@echo "$(TEXT_CC)$(TEXT_B)↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ clean$(TEXT_R)"
-	@echo "$(TEXT_CR)$(TEXT_B)LIBFT:$(TEXT_R)"
-	@make -C $(FT_DIR) clean
-	@echo "$(TEXT_CR)$(TEXT_B)LIBUI:$(TEXT_R)"
-	@make -C $(UI_DIR) clean
-	@echo "$(TEXT_CR)$(TEXT_B)LIBJTOC:$(TEXT_R)"
-	@make -C $(JTOC_DIR) clean
-	@echo "$(TEXT_CR)$(TEXT_B)GUIMP:$(TEXT_R)"
-	@rm -f $(TEMP)
-	rm -rf $(OBJ_DIR_TEST)
-	@echo "$(TEXT_CG)$(TEXT_BL)$(TEXT_B)↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ success$(TEXT_R)"
-
-fclean_t:
-	@echo "$(TEXT_CC)$(TEXT_B)↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ fclean$(TEXT_R)"
-	@echo "$(TEXT_CR)$(TEXT_B)LIBFT:$(TEXT_R)"
-	@make -C $(FT_DIR) fclean
-	@echo "$(TEXT_CR)$(TEXT_B)LIBUI:$(TEXT_R)"
-	@make -C $(UI_DIR) fclean
-	@echo "$(TEXT_CR)$(TEXT_B)LIBJTOC:$(TEXT_R)"
-	@make -C $(JTOC_DIR) fclean
-	@echo "$(TEXT_CR)$(TEXT_B)$(NAME):$(TEXT_R)"
-	@rm -f $(TEMP)
-	rm -rf $(OBJ_DIR_TEST)
-	rm -f $(NAME_TEST)
-	@echo "$(TEXT_CG)$(TEXT_BL)$(TEXT_B)↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ success$(TEXT_R)"
-
-re_t: fclean_t test
-
-##########################################################################################################
 
 norm:
 	@echo "$(TEXT_CC)$(TEXT_B)↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ norminette$(TEXT_R)"

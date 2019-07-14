@@ -33,7 +33,7 @@ int	ui_win_event_update_size(t_ui_main *m, void *a)
 		}
 		w->canvas->rect.w = w->size.x;
 		w->canvas->rect.h = w->size.y;
-		w->canvas->cut_rect = w->canvas->rect;
+		w->canvas->crect = w->canvas->rect;
 		bfs_for_resize(w->canvas, m);
 	}
 	return (1);

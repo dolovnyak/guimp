@@ -35,8 +35,8 @@ int	ui_el_add_texture_from_file_dialog_with_size(t_ui_el *el, int w, int h)
 	tmp_src = NULL;
 	tmp_lst = NULL;
 	tmp = NULL;
-	if (ui_file_open_file_dialog(&path) < 0 || !(tmp_lst = ft_lstnew(NULL, 0)) ||
-		!(tmp = SDL_CreateTexture(el->sdl_renderer, SDL_PIXELFORMAT_RGBA8888,
+	if (ui_file_open_file_dialog(&path) < 0 || !(tmp_lst = ft_lstnew(NULL, 0))
+	|| !(tmp = SDL_CreateTexture(el->sdl_renderer, SDL_PIXELFORMAT_RGBA8888,
 		SDL_TEXTUREACCESS_TARGET, w, h)) ||
 		ui_el_load_surface_from(el, path) < 0 ||
 		!(tmp_src = ui_el_create_texture(el)))
@@ -48,5 +48,5 @@ int	ui_el_add_texture_from_file_dialog_with_size(t_ui_el *el, int w, int h)
 	tmp_lst->content_size = ft_strhash("default");
 	tmp_lst->content = (void *)tmp;
 	ft_lstadd(&(el->sdl_textures), tmp_lst);
-	return(FUNCTION_SUCCESS);
+	return (FUNCTION_SUCCESS);
 }

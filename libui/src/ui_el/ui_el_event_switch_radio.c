@@ -14,7 +14,7 @@
 
 int	ui_el_event_switch_radio(t_ui_main *m, void *a)
 {
-	t_ui_el		*el;
+	t_ui_el	*el;
 
 	(void)m;
 	el = (t_ui_el *) a;

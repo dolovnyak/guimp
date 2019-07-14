@@ -14,5 +14,6 @@
 
 void	ui_el_setup_radio(t_ui_el *el)
 {
-	ui_event_add_listener(el->events->onPointerLeftButtonPressed, ui_el_event_switch_radio);
+	ui_event_add_listener(el->events->onPointerLeftButtonPressed,
+			ui_el_event_switch_radio);
 }

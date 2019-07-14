@@ -22,53 +22,61 @@ static void	get_texture_params(SDL_Texture *texture, t_rect *srect,
 	srect->h = *height;
 }
 
-static void	get_texture_x_and_width(t_ui_el *el, t_rect *srect, t_rect *tmp_rect, int width)
+static void	get_texture_x_and_width(t_ui_el *el, t_rect *srect,
+		t_rect *tmp_rect, int width)
 {
-	if (el->rect.x < el->parent->cut_rect.x &&
-			el->rect.x + el->rect.w > el->parent->cut_rect.x + el->parent->cut_rect.w)
+	if (el->rect.x < el->parent->crect.x && el->rect.x +
+			el->rect.w > el->parent->crect.x + el->parent->crect.w)
 	{
-		srect->x = roundf((float)(el->parent->cut_rect.x - el->rect.x) * ((float)width / (float)el->rect.w));
-		srect->w = roundf((float)el->parent->cut_rect.w * ((float)width / (float)el->rect.w));
-		tmp_rect->x = el->parent->cut_rect.x;
-		tmp_rect->w = el->parent->cut_rect.w;
+		srect->x = roundf((float)(el->parent->crect.x - el->rect.x) *
+				((float)width / (float)el->rect.w));
+		srect->w = roundf((float)el->parent->crect.w *
+				((float)width / (float)el->rect.w));
+		tmp_rect->x = el->parent->crect.x;
+		tmp_rect->w = el->parent->crect.w;
 	}
-	else if (el->rect.x < el->parent->cut_rect.x)
+	else if (el->rect.x < el->parent->crect.x)
 	{
-		tmp_rect->x = el->parent->cut_rect.x;
-		tmp_rect->w = el->rect.w - (el->parent->cut_rect.x - el->rect.x);
-		srect->x = roundf((float)(el->parent->cut_rect.x - el->rect.x) * ((float)width / (float)el->rect.w));
-		srect->w = roundf((float)tmp_rect->w * ((float)width / (float)el->rect.w));
+		tmp_rect->x = el->parent->crect.x;
+		tmp_rect->w = el->rect.w - (el->parent->crect.x - el->rect.x);
+		srect->x = roundf((float)(el->parent->crect.x - el->rect.x) *
+				((float)width / (float)el->rect.w));
+		srect->w = roundf((float)tmp_rect->w *
+				((float)width / (float)el->rect.w));
 	}
-	else if (el->rect.x + el->rect.w > el->parent->cut_rect.x + el->parent->cut_rect.w)
+	else if (el->rect.x + el->rect.w > el->parent->crect.x +
+	el->parent->crect.w)
 	{
 		srect->x = 0;
-		tmp_rect->w = el->parent->cut_rect.x + el->parent->cut_rect.w - el->rect.x;
-		srect->w = roundf((float)tmp_rect->w * ((float)width / (float)el->rect.w));
+		tmp_rect->w = el->parent->crect.x +
+				el->parent->crect.w - el->rect.x;
+		srect->w = roundf((float)tmp_rect->w *
+				((float)width / (float)el->rect.w));
 		tmp_rect->x = el->rect.x;
 	}
 }
 
 static void	get_texture_y_and_height(t_ui_el *el, t_rect *srect, t_rect *tmp_rect, int height)
 {
-	if (el->rect.y < el->parent->cut_rect.y &&
-			el->rect.y + el->rect.h > el->parent->cut_rect.y + el->parent->cut_rect.h)
+	if (el->rect.y < el->parent->crect.y &&
+			el->rect.y + el->rect.h > el->parent->crect.y + el->parent->crect.h)
 	{
-		srect->y = roundf((float)(el->parent->cut_rect.y - el->rect.y) * ((float)height / (float)el->rect.h));
-		srect->h = roundf((float)el->parent->cut_rect.h * ((float)height / (float)el->rect.h));
-		tmp_rect->y = el->parent->cut_rect.y;
-		tmp_rect->h = el->parent->cut_rect.h;
+		srect->y = roundf((float)(el->parent->crect.y - el->rect.y) * ((float)height / (float)el->rect.h));
+		srect->h = roundf((float)el->parent->crect.h * ((float)height / (float)el->rect.h));
+		tmp_rect->y = el->parent->crect.y;
+		tmp_rect->h = el->parent->crect.h;
 	}
-	else if (el->rect.y < el->parent->cut_rect.y)
+	else if (el->rect.y < el->parent->crect.y)
 	{
-	tmp_rect->y = el->parent->cut_rect.y;
-		tmp_rect->h = el->rect.h - (el->parent->cut_rect.y - el->rect.y);
-		srect->y = roundf((float)(el->parent->cut_rect.y - el->rect.y) * ((float)height / (float)el->rect.h));
+	tmp_rect->y = el->parent->crect.y;
+		tmp_rect->h = el->rect.h - (el->parent->crect.y - el->rect.y);
+		srect->y = roundf((float)(el->parent->crect.y - el->rect.y) * ((float)height / (float)el->rect.h));
 		srect->h = roundf((float)tmp_rect->h * ((float)height / (float)el->rect.h));
 	}
-	else if (el->rect.y + el->rect.h > el->parent->cut_rect.y + el->parent->cut_rect.h)
+	else if (el->rect.y + el->rect.h > el->parent->crect.y + el->parent->crect.h)
 	{
 		srect->y = 0;
-		tmp_rect->h = el->parent->cut_rect.y + el->parent->cut_rect.h - el->rect.y;
+		tmp_rect->h = el->parent->crect.y + el->parent->crect.h - el->rect.y;
 		srect->h = roundf((float)tmp_rect->h * ((float)height / (float)el->rect.h));
 		tmp_rect->y = el->rect.y;
 	}
@@ -97,7 +105,7 @@ static void	cutting_texture_and_draw(t_ui_el *el, SDL_Texture *texture)
 	}
 	get_texture_x_and_width(el, &srect, &tmp_rect, width);
 	get_texture_y_and_height(el, &srect, &tmp_rect, height);
-	el->cut_rect = tmp_rect;
+	el->crect = tmp_rect;
 	SDL_RenderCopy(el->sdl_renderer, texture, &srect, &tmp_rect);
 }
 

@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-int	ui_el_event_scroll_child_menu_down(t_ui_main *m, void *a)
+int		ui_el_event_scroll_child_menu_down(t_ui_main *m, void *a)
 {
 	t_ui_el		*el;
 
@@ -21,7 +21,7 @@ int	ui_el_event_scroll_child_menu_down(t_ui_main *m, void *a)
 	return (1);
 }
 
-int	ui_el_event_scroll_child_menu_up(t_ui_main *m, void *a)
+int		ui_el_event_scroll_child_menu_up(t_ui_main *m, void *a)
 {
 	t_ui_el		*el;
 

@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_log_window_resized.c                            :+:      :+:    :+:   */
+/*   ui_el_remove_texture_by_id.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 00:51:33 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 09:33:52 by sbecker          ###   ########.fr       */
+/*   Created: 2019/05/23 05:38:20 by sbednar           #+#    #+#             */
+/*   Updated: 2019/07/10 04:46:35 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-int	ui_log_window_resized(t_ui_main *m, void *a)
+void	ui_el_remove_texture_by_id(t_ui_el *el, const char *id)
 {
-	t_ui_win	*w;
+	t_list	*p;
+	t_list	*l;
+	t_list	*t;
 
-	(void)m;
-	w = (t_ui_win *)a;
-	if (w != NULL)
+	l = el->sdl_textures;
+	p = NULL;
+	while (l)
 	{
-		SDL_Log("%s%-15s%swindowID = %d\n",
-			KYEL,
-			"WIN RESIZED",
-			KNRM,
-			w->id);
+		if (l->content_size == ft_strhash(id))
+		{
+			t = l;
+			if (p)
+				p->next = l->next;
+			else
+				el->sdl_textures = l->next;
+			SDL_DestroyTexture((SDL_Texture *)t->content);
+			free(t);
+			return ;
+		}
+		p = l;
+		l = l->next;
 	}
-	return (1);
 }

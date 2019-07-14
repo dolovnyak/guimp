@@ -14,10 +14,10 @@
 
 static void	*bfs(t_ui_main *m, const t_list *root, pred_ptr p)
 {
-	QUEUE   *q;
-	void    *tmp;
-	void    *res;
-	t_ui_el *cur_el;
+	t_queue	*q;
+	void	*tmp;
+	void	*res;
+	t_ui_el	*cur_el;
 
 	q = NULL;
 	res = NULL;
@@ -38,8 +38,8 @@ static void	*bfs(t_ui_main *m, const t_list *root, pred_ptr p)
 
 t_ui_el		*bfs_for_raycast(t_ui_main *m, const t_ui_el *root, pred_ptr p)
 {
-	t_list  *lst;
-	t_ui_el *res;
+	t_list	*lst;
+	t_ui_el	*res;
 
 	lst = ft_lstnew(NULL, 0);
 	lst->content = CAST_X_TO_Y(root, void *);

@@ -14,5 +14,6 @@
 
 void	ui_el_setup_default_draggable(t_ui_el *el)
 {
-	ui_event_add_listener(el->events->onPointerLeftButtonHold, ui_el_event_drag);
+	ui_event_add_listener(el->events->onPointerLeftButtonHold,
+			ui_el_event_drag);
 }
