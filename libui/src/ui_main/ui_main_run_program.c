@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_show_window.c                                   :+:      :+:    :+:   */
+/*   ui_main_run_program.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 06:18:39 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/07/14 03:12:38 by sbecker          ###   ########.fr       */
+/*   Created: 2019/07/14 09:15:04 by sbecker           #+#    #+#             */
+/*   Updated: 2019/07/14 16:29:45 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-void ui_show_window(t_ui_win *w)
+void	ui_main_run_program(t_ui_main *m)
 {
-	int check;
-	SDL_RendererInfo *info;
-	
-	info = (SDL_RendererInfo *)malloc(sizeof(SDL_RendererInfo));
-	check = SDL_GetRendererInfo(w->sdl_renderer, info);
-	free(info);
-	if (check != 0)
-	{
-		SDL_Log("error: %s\n", SDL_GetError());
-		return ; //TODO it's huita need use deinit.
-	}
-	if (w && w->sdl_renderer)
-		SDL_RenderPresent(w->sdl_renderer);
+	//TUT POKA CHTO HUITA
+    SDL_SetWindowModalFor(ui_main_find_window_by_id(m, 3)->sdl_window, ui_main_find_window_by_id(m, 0)->sdl_window); //TODO it's just check;
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "AAAAAAAAAAAAA",
+			"CUKA BLYAT NENAVIJUU EBANII SDL AAAAAAAAAAAAAAAAAA",
+			ui_main_find_window_by_id(m, 0)->sdl_window);
+	ui_main_loop(m);
 }

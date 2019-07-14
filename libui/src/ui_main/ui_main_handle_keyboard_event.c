@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 07:49:09 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/11 23:29:41 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 02:31:26 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ void	ui_main_handle_keyboard_event(t_ui_main *m)
 //	else if (m->sdl_event->window.type == SDL_KEYUP)
 //		event = win->events->onKeyUp[m->sdl_event->key.keysym.scancode];
 	if (event != NULL)
+	{
+		SDL_LockMutex(m->mutex);
 		ui_event_invoke(event, m, win);
+		SDL_UnlockMutex(m->mutex);
+	}
 }

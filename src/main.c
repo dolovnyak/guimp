@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:09:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:06:00 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 09:20:35 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -704,6 +704,6 @@ int		main()
 //	 ui_el_add_texture_from_file(cur_el, "/home_sbednar/21school/guimp_json/images/bl.png", "default");
 //	 ui_el_add_texture_from_file_dialog(cur_el);
 
-	ui_main_loop(g_main.ui_main);
+	ui_main_run_program(g_main.ui_main);
 	return (0);
 }

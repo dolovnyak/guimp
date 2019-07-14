@@ -637,7 +637,7 @@
           "modal_win":
           {
             "win_id": 3,
-            "win_type": "MODAL_OK",
+            "type": "OK",
             "title": "INFO",
             "text_area":
             {
@@ -3799,9 +3799,6 @@
         {
           "id": 12061,
           "parent": 1206,
-          "params": [
-            "EL_IGNOR_RAYCAST"
-          ],
           "pos":
           {
             "x": 50,

@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:09:04 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:07:53 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 16:33:03 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@
 # define MAIN_RMB_RELEASED	(1 << 6)
 # define MAIN_RMB_HOLD		(1 << 7)
 # define MAIN_ON_QUIT		(1 << 8)
-# define HUITA				(1 << 9)
 
 //win params
 # define WIN_RESIZABLE		(1 << 0)
+# define WIN_IS_SHOWN		(1 << 1)
+# define WIN_IS_HIDDEN		(1 << 2)
 
 # define IMG_TYPE_PNG		0
 # define IMG_TYPE_JPG		1
@@ -156,23 +157,6 @@ typedef struct		s_ui_text
 	Uint32			params;
 }					t_ui_text;
 
-typedef struct		s_ui_modal_win
-{
-	int				w_id;
-	t_vec2			pos;
-	t_vec2			size;
-	char			*title;
-	TTF_Font		*font;
-	SDL_Color		text_color;
-	SDL_Color		bg_color;
-	size_t			string_len;
-	char			**text;
-	Uint32			render_param;
-	Uint32			params;
-	Uint32			output;
-	char			*output_text;
-}					t_ui_modal_win;
-
 typedef struct		s_ui_el_events
 {
 	t_ui_event		*onPointerEnter;
@@ -190,6 +174,7 @@ typedef struct		s_ui_el_events
 	t_ui_event		*onResize;
 }					t_ui_el_events;
 
+struct				s_ui_win;
 
 typedef struct		s_ui_el
 {
@@ -206,7 +191,7 @@ typedef struct		s_ui_el
 	Uint32			id;
 	Uint32			params;
 	t_ui_text		*text_area;
-	t_ui_modal_win	*modal_win;
+	struct s_ui_win	*modal_win;
 	t_ui_el_events	*events;
 	void			*data;
 }					t_ui_el;
@@ -242,7 +227,6 @@ typedef struct		s_ui_win_events
 	t_ui_event		**onKeyUp;
 }					t_ui_win_events;
 
-
 # pragma endregion
 # pragma region		t_ui_win
 
@@ -265,7 +249,6 @@ typedef struct		s_ui_raycaster
 	t_ui_win		*focused_win;
 	t_ui_el			*selected;
 }					t_ui_raycaster;
-
 
 typedef struct		s_ui_main
 {
@@ -330,6 +313,7 @@ t_ui_el				*ui_raycast(t_ui_main *m, t_ui_win *w);
 #pragma endregion
 
 #pragma region		main functions
+void				ui_main_run_program(t_ui_main *m);
 t_ui_main			*ui_main_init(void);
 void				ui_main_loop(t_ui_main *m);
 
@@ -339,6 +323,8 @@ void				ui_main_handle_window_event(t_ui_main *m);
 void				ui_main_handle_mouse_event(t_ui_main *m);
 void				ui_main_handle_keyboard_event(t_ui_main *m);
 void				ui_main_handle_continious_event(t_ui_main *m, t_ui_el *el);
+
+int					ui_main_try_invoke_modal_windows(t_ui_main *m);
 
 int					ui_main_event_close_window(t_ui_main *m, void *a);
 int					ui_main_event_close_program(t_ui_main *m, void *a);
@@ -467,9 +453,7 @@ int					ui_el_set_current_texture_by_id(t_ui_el *el, const char *texture_id);
 
 int					ui_el_load_surface_from(t_ui_el *el, const char *path);
 
-int					ui_el_set_text(t_ui_main *m, t_ui_el *el, const char *font_id, t_text_params params);
-int					ui_el_set_text_for_modal_window(t_ui_main *m, t_ui_el *el,
-		const char *font_id, t_text_params params);
+int					ui_el_set_text(t_ui_el *el, TTF_Font *font, t_text_params params);
 int					ui_el_update_text(t_ui_el *el, const char *text);
 
 void				ui_el_setup_default_draggable(t_ui_el *el);
@@ -495,13 +479,12 @@ int					ui_el_event_menu_resize(t_ui_main *m, void *a);				//TODO BFS EVENT onRe
 int					ui_el_event_default_resize(t_ui_main *m, void *a);			//TODO BFS EVENT onResize
 int					ui_el_event_children_set_default(t_ui_main *m, void *a);	//EVENT	onPointerLeftButtonPressed
 int					ui_el_event_show_child(t_ui_main *m, void *a);				//EVENT	onPointerLeftButtonPressed
+int					ui_el_event_show_window(t_ui_main *m, void *a);				//EVENT onPointerLeftButtonPressed
 //////////////////////////////////////////////////////////////NOT USED, there is pref in json.
 int					ui_el_event_set_default_texture(t_ui_main *m, void *a);
 int					ui_el_event_set_focused_texture(t_ui_main *m, void *a);
 int					ui_el_event_set_active_texture(t_ui_main *m, void *a);
 ///////////////////////////////////////////////////////////////////////
-
-int					ui_el_create_modal_ok(t_ui_main *m, void *a);				//TODO возможно фул переделать на мейн
 int					ui_el_event_close_window(t_ui_main *m, void *a);
 
 
@@ -510,8 +493,7 @@ int					ui_el_event_close_window(t_ui_main *m, void *a);
 
 #pragma region		win functions
 t_ui_win			*ui_win_init(void);
-void				ui_win_create(t_ui_win *w);
-t_ui_win			*ui_win_create_modal_win(t_ui_modal_win *modal_win);
+void				ui_win_create(t_ui_win *w, int params);
 void				ui_win_setup_default(t_ui_win *w);
 void				ui_win_destroy(t_ui_win *w);
 
@@ -541,6 +523,8 @@ int					ui_jtoc_get_el_param_from_string(const char *str);
 int					ui_jtoc_el_setup_by_type(t_ui_el *e, t_jnode *n);
 int					ui_jtoc_el_pref_text(t_ui_main *m, t_ui_el *e, t_jnode *n);
 int					ui_jtoc_el_pref_modal_win(t_ui_main *m, t_ui_el *e, t_jnode *n);
+void				ui_jtoc_create_modal_ok(t_ui_main *m, t_ui_win *w, t_ui_text *ui_text);
+void				ui_jtoc_create_modal_ok_cancel(t_ui_main *m, t_ui_win *w, t_ui_text *ui_text);
 
 int					ui_jtoc_get_pos_size(const char *str);
 

@@ -6,7 +6,7 @@
 #    By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/13 14:07:36 by sbecker          ###   ########.fr        #
+#    Updated: 2019/07/14 15:18:09 by sbecker          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_create_texture_from_surface.c \
 					ui_el_get_current_texture.c \
 					ui_el_get_texture_by_id.c \
-					ui_el_event_set_texture.c \
 					ui_el_set_text.c \
 					ui_el_update_text.c \
 					ui_el_change_pos.c \
@@ -62,9 +61,9 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_setup_horizontal_draggable.c \
 					ui_el_setup_menu_resizable.c \
 					ui_el_setup_radio.c \
-					ui_el_create_modal_ok.c \
 					ui_el_destroy.c \
 					ui_el_destroy_children.c \
+					ui_el_event_set_texture.c \
 					ui_el_event_children_set_default.c \
 					ui_el_event_show_child.c \
 					ui_el_event_switch_radio.c \
@@ -74,6 +73,8 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_event_scroll_menu.c \
 					ui_el_event_default_pointer_enter.c \
 					ui_el_event_default_pointer_exit.c \
+					ui_el_event_close_window.c \
+					ui_el_event_show_window.c \
 					ui_el_event_drag.c 
 
 SRC_UI_DRAW		=	ui_draw.c \
@@ -111,7 +112,8 @@ SRC_UI_LOG		=	ui_log_mouse_motion.c \
 					ui_log_el_right_button_pressed.c \
 					ui_log_el_right_button_released.c
 
-SRC_UI_MAIN		=	ui_main_loop.c \
+SRC_UI_MAIN		=	ui_main_run_program.c \
+					ui_main_loop.c \
 					ui_main_init.c \
 					ui_main_add_window.c \
 					ui_main_handle_event.c \
@@ -133,6 +135,7 @@ SRC_UI_MAIN		=	ui_main_loop.c \
 					ui_main_merge_layers.c \
 					ui_main_save_texture.c \
 					ui_main_open_texture.c \
+					ui_main_try_invoke_modal_windows.c \
 					ui_main_event_lmb_pressed.c \
 					ui_main_event_lmb_released.c \
 					ui_main_event_rmb_pressed.c \
@@ -140,7 +143,7 @@ SRC_UI_MAIN		=	ui_main_loop.c \
 					ui_main_event_scroll_up.c \
 					ui_main_event_scroll_down.c \
 					ui_main_event_pointer_moved.c \
-					ui_main_event_closing_windows.c
+					ui_main_event_close_window.c
 
 SRC_UI_SDL		=	ui_sdl_init.c \
 					ui_sdl_deinit.c
@@ -148,7 +151,6 @@ SRC_UI_SDL		=	ui_sdl_init.c \
 SRC_UI_WIN		=	ui_win_init.c \
 					ui_win_setup_default.c \
 					ui_win_create.c \
-					ui_win_create_modal_win.c \
 					ui_win_find_el_by_id.c \
 					ui_win_destroy.c \
 					ui_win_event_update_size.c \
@@ -172,6 +174,7 @@ SRC_UI_JTOC		=	ui_jtoc_main_from_json.c \
 					ui_jtoc_el_get_and_setup_json.c \
 					ui_jtoc_el_pref_text.c \
 					ui_jtoc_el_pref_modal_win.c \
+					ui_jtoc_create_modal_ok.c \
 					ui_jtoc_utils.c
 
 SRC_UI_FILE		=	ui_file_open_file_dialog.c \

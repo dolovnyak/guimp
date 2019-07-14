@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_win_from_json.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 06:54:11 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/13 06:12:42 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 15:27:28 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ui_win_from_json_size(t_ui_main *m, t_ui_win *w, t_jnode *n)
 		return (ui_jtoc_sdl_log_error("NODE WINDOW (SIZE.Y)", -1));
 	w->size.y = jtoc_get_int(tmp);
 	ui_win_setup_default(w);
-	ui_win_create(w);
+	ui_win_create(w, SDL_WINDOW_SHOWN);
 	if (!(tmp = jtoc_node_get_by_path(n, "elements")))
 		return (ui_jtoc_sdl_log_error("NODE WINDOW (NO ELEMENTS)", -1));
 	tmp = tmp->down;
@@ -65,7 +65,7 @@ static int	ui_win_from_json_size(t_ui_main *m, t_ui_win *w, t_jnode *n)
 		if (tmp->type != array || ui_win_from_json_events(m, w, tmp))
 			ui_sdl_deinit(228);
 	}
-	free(w->events->onKeyDown[SDL_SCANCODE_ESCAPE]);
+	free(w->events->onKeyDown[SDL_SCANCODE_ESCAPE]); //why it's not chash?
 	w->events->onKeyDown[SDL_SCANCODE_ESCAPE] = w->events->onClose;
 	return (FUNCTION_SUCCESS);
 }

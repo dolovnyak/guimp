@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 02:19:12 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/11 21:39:19 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 16:43:30 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ui_main_handle_window_event(t_ui_main *m)
 	event = NULL;
 	if (m->sdl_event->window.event == SDL_WINDOWEVENT_CLOSE)
 		event = win->events->onClose;
-
 	else if (m->sdl_event->window.event == SDL_WINDOWEVENT_FOCUS_GAINED)
 		event = win->events->onFocusGained;
 	else if (m->sdl_event->window.event == SDL_WINDOWEVENT_FOCUS_LOST)

@@ -6,16 +6,16 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 21:00:14 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/06 19:59:59 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/14 15:25:08 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-void	ui_win_create(t_ui_win *w)
+void	ui_win_create(t_ui_win *w, int params)
 {
 	if ((w->sdl_window = SDL_CreateWindow(w->title, w->pos.x,
-		w->pos.y, w->size.x, w->size.y, 0)) == NULL)
+					w->pos.y, w->size.x, w->size.y, params)) == NULL)
 		// ui_exit_with_msg(w, "libui: unable to create window"); // TODO
 		;
 	w->sdl_renderer = SDL_CreateRenderer(w->sdl_window, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_PRESENTVSYNC);
