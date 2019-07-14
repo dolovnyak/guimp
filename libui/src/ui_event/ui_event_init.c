@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-t_ui_event	*ui_event_init(void)
+t_ui_event		*ui_event_init(void)
 {
 	t_ui_event	*e;
 
@@ -46,10 +46,27 @@ t_ui_el_events	*ui_event_el_events_init(void)
 	return (e);
 }
 
+static void		init_keyboard_events(t_ui_win_events *w)
+{
+	int	i;
+
+	i = KEYS_COUNT;
+	if (!(w->onKeyUp = (t_ui_event **)malloc(KEYS_COUNT *
+			sizeof(t_ui_event *))) ||
+		!(w->onKeyDown = (t_ui_event **)malloc(KEYS_COUNT *
+				sizeof(t_ui_event *))))
+		ui_sdl_deinit(228);
+	while (--i >= 0)
+	{
+		if (!(w->onKeyDown[i] = ui_event_init()) ||
+			!(w->onKeyUp[i] = ui_event_init()))
+			ui_sdl_deinit(228);
+	}
+}
+
 t_ui_win_events	*ui_event_win_events_init(void)
 {
 	t_ui_win_events	*w;
-	int				i;
 
 	if (!(w = (t_ui_win_events *)malloc(sizeof(t_ui_win_events))))
 		ui_sdl_deinit(228);
@@ -69,15 +86,6 @@ t_ui_win_events	*ui_event_win_events_init(void)
 		!(w->onClose = ui_event_init()) ||
 		!(w->onMoved = ui_event_init()))
 		ui_sdl_deinit(228);
-	i = KEYS_COUNT;
-	if (!(w->onKeyUp = (t_ui_event **)malloc(KEYS_COUNT * sizeof(t_ui_event *))) ||
-		!(w->onKeyDown = (t_ui_event **)malloc(KEYS_COUNT * sizeof(t_ui_event *))))
-		ui_sdl_deinit(228);
-	while (--i >= 0)
-	{
-		if (!(w->onKeyDown[i] = ui_event_init()) ||
-			!(w->onKeyUp[i] = ui_event_init()))
-			ui_sdl_deinit(228);
-	}
+	init_keyboard_events(w);
 	return (w);
 }

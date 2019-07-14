@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-int ui_el_set_text(t_ui_el *el, TTF_Font *font, t_text_params text_params)
+int	ui_el_set_text(t_ui_el *el, TTF_Font *font, t_text_params text_params)
 {
 	el->text_area = (t_ui_text *)ft_memalloc(sizeof(t_ui_text));
 	el->text_area->font = font;
@@ -21,7 +21,6 @@ int ui_el_set_text(t_ui_el *el, TTF_Font *font, t_text_params text_params)
 	el->text_area->render_param = text_params.render_param;
 	el->text_area->params = text_params.params;
 	el->text_area->bg_color = text_params.bg_color;
-//	el->text_area->cursor_pos = 0;
 	el->params |= EL_IS_TEXT;
 	ui_el_update_text(el, "");
 	return (FUNCTION_SUCCESS);

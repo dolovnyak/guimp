@@ -80,8 +80,6 @@ int	ui_el_update_text(t_ui_el *el, const char *text)
 			el->text_area->text = ft_strsub(text, 0, el->text_area->string_len);
 		}
 	}
-	//	ft_lstdel(&el->sdl_textures, &free_sdl_texture);
-	//	el->sdl_textures = NULL;
 	if (get_surface_from_text(el))
 		ui_el_add_empty_texture(el, el->rect.w, el->rect.h, "default");
 	else
@@ -89,7 +87,6 @@ int	ui_el_update_text(t_ui_el *el, const char *text)
 		SDL_Rect	rect;
 
 		SDL_GetClipRect(el->sdl_surface, &rect);
-//		SDL_Log("rect: (%d, %d)\n", rect->w, rect->h);
 		if (rect.w > 16384 || rect.h > 4000)
 			return (FUNCTION_SUCCESS);
 		if (!(n = ft_lstnew(NULL, 0)))

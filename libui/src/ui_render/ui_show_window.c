@@ -12,18 +12,18 @@
 
 #include "libui.h"
 
-void ui_show_window(t_ui_win *w)
+void	ui_show_window(t_ui_win *w)
 {
-	int check;
-	SDL_RendererInfo *info;
-	
+	int					check;
+	SDL_RendererInfo	*info;
+
 	info = (SDL_RendererInfo *)malloc(sizeof(SDL_RendererInfo));
 	check = SDL_GetRendererInfo(w->sdl_renderer, info);
 	free(info);
 	if (check != 0)
 	{
 		SDL_Log("error: %s\n", SDL_GetError());
-		return ; //TODO it's huita need use deinit.
+		return ;
 	}
 	if (w && w->sdl_renderer)
 		SDL_RenderPresent(w->sdl_renderer);

@@ -12,10 +12,6 @@
 
 #include "libui.h"
 
-/*
-** OBSOLETE
-*/
-
 int	ui_el_load_surface_from(t_ui_el *el, const char *path)
 {
 	SDL_Surface	*tmp;

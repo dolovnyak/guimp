@@ -5,7 +5,6 @@ cmake_policy(SET CMP0076 NEW)
 target_sources(ui PUBLIC
         ui_el_add_child.c
         ui_el_add_texture.c
-        ui_el_add_texture_from_file_dialog.c
         ui_el_add_texture_from_main_by_id.c
         ui_el_change_pos.c
         ui_el_change_size.c

@@ -23,7 +23,7 @@ void	ui_win_create(t_ui_win *w, int params)
 	w->canvas->id = 0;
 	w->canvas->sdl_renderer = w->sdl_renderer;
 	w->canvas->rect = (t_rect){0, 0, w->size.x, w->size.y};
-	w->canvas->cut_rect = w->canvas->rect;
+	w->canvas->crect = w->canvas->rect;
 	SDL_SetWindowResizable(w->sdl_window, (w->params) & WIN_RESIZABLE ? SDL_TRUE : SDL_FALSE);
 	SDL_RaiseWindow(w->sdl_window);
 }

@@ -190,7 +190,7 @@
               "func_name": "move_draw_canvas_with_zoom"
             },
             {
-              "event_name": "onPointerLeftButtonReleased",
+              "event_name": "onPointerLeftButtonPressed",
               "func_name": "start_draw_with_selected_tool_pointer_up"
             },
             {

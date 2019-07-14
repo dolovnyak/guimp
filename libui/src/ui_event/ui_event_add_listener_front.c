@@ -21,12 +21,8 @@ int	ui_event_add_listener_front(t_ui_event *e, pred_ptr_event f)
 	if ((node = ft_lstnew((void *)&ptr, sizeof(ptr))) == NULL)
 		ui_sdl_deinit(228);
 	if (e->events == NULL)
-	{
 		e->events = node;
-	}
 	else
-	{
 		ft_lstadd(&(e->events), node);
-	}
 	return (FUNCTION_SUCCESS);
 }

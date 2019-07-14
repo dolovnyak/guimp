@@ -12,6 +12,12 @@
 
 #include "libui.h"
 
+static void	set_rect(t_ui_el *el, int x, int y)
+{
+	el->rect.x = x;
+	el->rect.y = y;
+}
+
 void	ui_el_set_pos(t_ui_el *el, int type, t_fvec2 v)
 {
 	t_ui_el	*p;
@@ -20,27 +26,21 @@ void	ui_el_set_pos(t_ui_el *el, int type, t_fvec2 v)
 	while (p->parent)
 		p = p->parent;
 	if ((type & ABS) && (type & PIXEL))
-	{
-		el->rect.x = roundf(v.x);
-		el->rect.y = roundf(v.y);
-	}
+		set_rect(el, (int)roundf(v.x), (int)roundf(v.y));
 	else if ((type & ABS))
-	{
-		el->rect.x = roundf((float)p->rect.w * v.x);
-		el->rect.y = roundf((float)p->rect.h * v.y);
-	}
+		set_rect(el, (int)roundf((float)p->rect.w * v.x),
+				 (int)roundf((float)p->rect.h * v.y));
 	else if ((type & PIXEL))
-	{
-		el->rect.x = roundf((float)el->parent->rect.x + v.x);
-		el->rect.y = roundf((float)el->parent->rect.y + v.y);
-	}
+		set_rect(el, (int)roundf((float)el->parent->rect.x + v.x),
+				 (int)roundf((float)el->parent->rect.y + v.y));
 	else
-	{
-		el->rect.x = roundf((float)el->parent->rect.x + (float)el->parent->rect.w * v.x);
-		el->rect.y = roundf((float)el->parent->rect.y + (float)el->parent->rect.h * v.y);
-	}
-	el->relative_rect.x = (float)(el->rect.x - el->parent->rect.x) / (float)el->parent->rect.w;
-	el->relative_rect.y = (float)(el->rect.y - el->parent->rect.y) / (float)el->parent->rect.h;
-	el->cut_rect.x = el->rect.x;
-	el->cut_rect.y = el->rect.y;
+		set_rect(el, (int)roundf((float)el->parent->rect.x +
+		(float)el->parent->rect.w * v.x), (int)roundf((float)el->parent->rect.y
+		+ (float)el->parent->rect.h * v.y));
+	el->rrect.x = (float)(el->rect.x - el->parent->rect.x) /
+			(float)el->parent->rect.w;
+	el->rrect.y = (float)(el->rect.y - el->parent->rect.y) /
+			(float)el->parent->rect.h;
+	el->crect.x = el->rect.x;
+	el->crect.y = el->rect.y;
 }

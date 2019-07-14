@@ -19,9 +19,7 @@ int	ui_event_add_listener(t_ui_event *e, pred_ptr_event f)
 
 	ptr = (long)f;
 	if ((node = ft_lstnew((void *)&ptr, sizeof(ptr))) == NULL)
-	//if (!(node = ft_lstnew(NULL, 0)))
 		ui_sdl_deinit(228);
-	//node->content = (void *)&ptr;
 	if (e->events == NULL)
 		e->events = node;
 	else
