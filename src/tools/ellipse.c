@@ -29,18 +29,16 @@ static t_vec2	calc_el_dot(t_vec2 *d, float k)
 			lerp(
 					lerp(d[0], d[1], k),
 					lerp(d[1], d[2], k),
-					k
-			),
+					k),
 			lerp(
 					lerp(d[1], d[2], k),
 					lerp(d[2], d[3], k),
-					k
-			),
-			k
-	);
+					k),
+			k);
 	return (res);
 }
-int	choose_ellipse(t_ui_main *main, void *el_v)
+
+int				choose_ellipse(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 
@@ -51,7 +49,7 @@ int	choose_ellipse(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-void	draw_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
+void			draw_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 {
 	t_vec2	d[6];
 	float	k;
@@ -92,7 +90,7 @@ void	draw_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 	}
 }
 
-void	draw_empty_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
+void			draw_empty_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 {
 	t_vec2	d;
 
@@ -109,7 +107,8 @@ void	draw_empty_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 		e.x = d.x;
 	}
 	draw_ellipse(g, s, e);
-	if (g->draw_tool.brush_size >= abs(e.x - s.x) / 2 || g->draw_tool.brush_size >= abs(e.y - s.y) / 2)
+	if (g->draw_tool.brush_size >= abs(e.x - s.x) / 2 ||
+	g->draw_tool.brush_size >= abs(e.y - s.y) / 2)
 		return ;
 	s = (t_vec2){s.x + g->draw_tool.brush_size, s.y + g->draw_tool.brush_size};
 	e = (t_vec2){e.x - g->draw_tool.brush_size, e.y - g->draw_tool.brush_size};

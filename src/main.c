@@ -36,7 +36,6 @@ int move_windows(t_ui_main *m, void *a)
 				pos.x = pos.x + GM_TOOL_WIN_W + 5;
 			else if (cur_w->id == 1)
 				pos.x = pos.x - GM_TOOL_WIN_W - 5;
-			// printf("id: %d, (%d, %d)\n", windowID, pos.x, pos.y);
 			SDL_SetWindowPosition(cur_w->sdl_window, pos.x, pos.y);
 			cur_w->pos.x = pos.x;
 			cur_w->pos.y = pos.y;
@@ -45,18 +44,6 @@ int move_windows(t_ui_main *m, void *a)
 	}
 	return (1);
 }
-//
-//static int	get_value_from_slider(t_ui_el *s, t_ui_el *c)
-//{
-//	int	res;
-//	int	max;
-//
-//	max = (c->id == GM_TOOL_ID_SL_HEAD_SZ) ? GM_BRUSH_MAX_SIZE : 255;
-//	res = s->ptr_rel_pos.x - c->rect.w / 2;
-//	ui_el_set_new_pos(c, 0, PIXEL, (t_fvec2){res, 0});
-//	res = ((float)(s->ptr_rel_pos.x) / (float)s->rect.w) * (float)max;
-//	return (res);
-//}
 
 static int	testOnPtrEnter(t_ui_main *main, void *el_v)
 {
@@ -106,11 +93,6 @@ static int	testOnPtrLBD(t_ui_main *main, void *el_v)
 	}
 	return (1);
 }
-
-/* static void	open_image(void *main, void *el_v)
-{
-
-}*/
 
 static int	clear_layer(t_ui_main *main, void *el_v)
 {
@@ -169,9 +151,6 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 	ui_el_setup_default_scroll_menu_elem(tmp_el);
 	ui_el_add_child(layer_menu, tmp_el);
 	tmp_el->id = gm_generate_surf_id(ID_GENERATOR_ADD);
-	// ui_el_set_pos(tmp_el, 0,
-	// 	(t_fvec2){0.05,
-	// 		((t_ui_el *)layer_menu->children->content)->rrect.y + 0.27f * g->main_win->size.x / 1704 * (float)gm_generator_get_surf_count()});
 	ui_el_set_new_pos(tmp_el, 0, 0,
 		(t_fvec2){0.0,
 			((t_ui_el *)layer_menu->children->content)->rrect.y + 0.25f * (float)gm_generator_get_surf_count()});// * layer_menu->crect.x / g->main_win->size.y * (float)gm_generator_get_surf_count()});
@@ -180,9 +159,6 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x888888, "default");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0xFF5050, "onActive");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x5050FF, "onFocus");
-//	ui_el_add_texture_from_main_by_id(g->ui_main, tmp_el, "layer_place", "default");
-//	ui_el_add_texture_from_main_by_id(g->ui_main, tmp_el, "layer_onPtr", "onFocus");
-//	ui_el_add_texture_from_main_by_id(g->ui_main, tmp_el, "layer_active", "onActive");
 	ui_event_add_listener(tmp_el->events->onPointerLeftButtonPressed, testOnPtrLBD);
 	ui_event_add_listener(tmp_el->events->onPointerEnter, testOnPtrEnter);
 	ui_event_add_listener(tmp_el->events->onPointerLeftButtonPressed, PressedLBD);
@@ -277,8 +253,7 @@ static int	test_del_layer(t_ui_main *main, void *el_v)
 		else if (next_active->id > el->id)
 		{
 			next_active->id--;
-			// ui_el_change_pos(next_active, 0, 0, (t_fvec2){0, -0.27f * g->main_win->size.x / 1704});
-			ui_el_change_pos(next_active, 0, 0, (t_fvec2){0, -0.25f}); // * ui_win_find_el_by_id(g->main_win, GM_LAYER_ID_MENU)->crect.x / g->main_win->size.y});
+			ui_el_change_pos(next_active, 0, 0, (t_fvec2){0, -0.25f});
 		}
 		prev = tmp;
 		tmp = tmp->next;
