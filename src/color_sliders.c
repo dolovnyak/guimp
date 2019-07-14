@@ -72,8 +72,6 @@ int	choose_alpha(t_ui_main *main, void *el_v)
 	t_guimp	*g;
 	t_ui_el	*el;
 	t_ui_el	*chil;
-	int		res;
-	int		max;
 
 	g = (t_guimp *)(main->data);
 	el = (t_ui_el *)el_v;

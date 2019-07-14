@@ -12,7 +12,7 @@
 
 #include "guimp.h"
 
-static void process_draw(t_guimp *g)
+static void	process_draw(t_guimp *g)
 {
 	if (g->draw_tool.tool == GM_TOOL_RECT)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
@@ -21,11 +21,13 @@ static void process_draw(t_guimp *g)
 	else if (g->draw_tool.tool == GM_TOOL_SQUARE)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
 		 draw_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
-		 draw_empty_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+		 draw_empty_square(g, g->draw_tool.prew_point,
+		 		g->draw_tool.cur_point));
 	else if (g->draw_tool.tool == GM_TOOL_ELLIPSE)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
 		 draw_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
-		 draw_empty_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+		 draw_empty_ellipse(g, g->draw_tool.prew_point,
+		 		g->draw_tool.cur_point));
 	else if (g->draw_tool.tool == GM_TOOL_LINE)
 		draw_line(g, g->draw_tool.prew_point, g->draw_tool.cur_point);
 	else if (g->draw_tool.tool == GM_TOOL_TEXT)
@@ -35,20 +37,23 @@ static void process_draw(t_guimp *g)
 
 static void	process_tool_state_draw(t_guimp *g)
 {
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
+	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r,
+			g->draw_tool.g, g->draw_tool.b, 255);
 	process_draw(g);
 }
 
 static void	process_tool_state_end(t_guimp *g)
 {
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
+	SDL_SetRenderDrawColor(g->main_win->sdl_renderer,
+			g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
 	process_draw(g);
 	g->draw_tool.state = GM_TOOL_STATE_NONE;
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, (t_texture *)(g->layers.current_layer->sdl_textures->content));
-	SDL_RenderCopy(g->main_win->sdl_renderer, g->layers.tmp_texture, NULL, NULL);
+	SDL_SetRenderTarget(g->main_win->sdl_renderer,
+			(t_texture *)(g->layers.current_layer->sdl_textures->content));
+	SDL_RenderCopy(g->main_win->sdl_renderer, g->layers.tmp_texture, 0, 0);
 }
 
-void	process_tmp_layer(t_guimp *g)
+void		process_tmp_layer(t_guimp *g)
 {
 	SDL_SetRenderTarget(g->main_win->sdl_renderer, g->layers.tmp_texture);
 	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 0, 0, 0, 0);
