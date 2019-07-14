@@ -204,4 +204,7 @@ int								switch_fill_mode(t_ui_main *main, void *el_v);
 
 int								set_brush_texture_from_el(t_ui_main *main, void *el_v);
 
+int								ui_save_image(t_ui_main *main, void *el_v);
+int								ui_open_image(t_ui_main *main, void *el_v);
+
 #endif

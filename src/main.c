@@ -284,28 +284,6 @@ static int	test_del_layer(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-static int	ui_save_test(t_ui_main *main, void *el_v)
-{
-	t_guimp		*g;
-	t_texture	*t;
-
-	g = (t_guimp *)(main->data);
-	(void)el_v;
-	t = ui_main_merge_layers(g->main_win->sdl_renderer, g->layers.layers);
-	ui_main_save_texture(g->main_win, t, "/Users/sbednar/Desktop/test.jpg", IMG_TYPE_JPG);
-	return (1);
-}
-
-static int	ui_open_test(t_ui_main *main, void *el_v)
-{
-	t_guimp		*g;
-
-	g = (t_guimp *)(((t_ui_main *)main)->data);
-	(void)el_v;
-	ui_main_open_texture(g->main_win->sdl_renderer, g->layers.current_layer, "/Users/sbednar/Desktop/test.png");
-	return (1);
-}
-
 static int	draw_canvas_renderer(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
@@ -570,8 +548,8 @@ int		main()
 	ui_main_add_function_by_id(g_main.ui_main, switch_fill_mode, "switch_fill_mode");
 
 
-	ui_main_add_function_by_id(g_main.ui_main, ui_save_test, "ui_save_test");
-	ui_main_add_function_by_id(g_main.ui_main, ui_open_test, "ui_open_test");
+	ui_main_add_function_by_id(g_main.ui_main, ui_save_image, "ui_save_image");
+	ui_main_add_function_by_id(g_main.ui_main, ui_open_image, "ui_open_image");
 	ui_main_add_function_by_id(g_main.ui_main, start_draw_with_selected_tool_pointer_up, "start_draw_with_selected_tool_pointer_up");
 	ui_main_fill_default_fonts(g_main.ui_main);
 	ui_main_set_font_params(g_main.ui_main, "Neco", (t_font_params){0, 0, 1, 0});
@@ -645,6 +623,14 @@ int		main()
 	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1100);
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
+
+	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
+	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 5);
+	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_save_image);
+
+	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 2);
+	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 5);
+	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_open_image);
 
 //	t_ui_win *w = ui_main_find_window_by_id(g_main.ui_main, 4);
 //	t_ui_el *el = ui_el_init();

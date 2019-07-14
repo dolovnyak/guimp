@@ -47,15 +47,15 @@ static void	clear_el_text(t_ui_el *el)
 	el->text_area->text = NULL;
 }
 
-void	free_sdl_texture(void *v_texture, size_t hash)
-{
-	SDL_Texture *texture;
-
-	texture = (SDL_Texture *)v_texture;
-	hash = 0;
-	if (texture)
-		SDL_DestroyTexture(texture);
-}
+//void	free_sdl_texture(void *v_texture, size_t hash)
+//{
+//	SDL_Texture *texture;
+//
+//	texture = (SDL_Texture *)v_texture;
+//	hash = 0;
+//	if (texture)
+//		SDL_DestroyTexture(texture);
+//}
 
 int	ui_el_update_text(t_ui_el *el, const char *text)
 {

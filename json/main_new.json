@@ -576,14 +576,14 @@
           [
             {
               "event_name": "onPointerLeftButtonPressed",
-              "func_name": "ui_save_test"
+              "func_name": "ui_save_image"
             }
           ],
           "modal_win":
           {
             "win_id": 5,
             "type": "OK",
-            "title": "ENTER THE PATH TO FILE",
+            "title": "SAVE: ENTER THE PATH TO FILE",
             "text_area": {
               "text": "/Users",
               "color": "FFFFFF",
@@ -624,19 +624,19 @@
           [
             {
               "event_name": "onPointerLeftButtonPressed",
-              "func_name": "ui_open_test"
+              "func_name": "ui_open_image"
             }
           ],
           "modal_win":
           {
             "win_id": 4,
             "type": "OK",
-            "title": "OPEN FILE",
+            "title": "OPEN: ENTER THE PATH TO FILE",
             "text_area": {
-              "text": "Enter the path to file:",
+              "text": "/Users",
               "color": "FFFFFF",
               "bg_color": "FF0000",
-              "render_param": "TEXT_IS_SHADED",
+              "render_param": "TEXT_IS_SOLID",
               "params":
               [
                 "TEXT_IS_CENTERED"

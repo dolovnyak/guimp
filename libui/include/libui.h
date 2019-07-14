@@ -31,7 +31,7 @@
 ** 7)
 */
 
-# define DEBUG_STATUS
+# define DEBUG_STATUS 0
 
 # define KNRM				"\x1B[0m"
 # define KRED				"\x1B[31m"
@@ -261,7 +261,8 @@ typedef struct		s_ui_main
 	t_list			*functions;
 	t_ui_el			*modal_el;
 	t_ui_el			*focused_el;
-	unsigned int	cur_keycode;
+	Uint8			cur_keycode;
+	Uint8 			is_upper;
 	void			*data;
 	Uint32			params;
 	t_vec2			ptr_pos;

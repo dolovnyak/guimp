@@ -39,7 +39,6 @@ void		ui_el_setup_default(t_ui_el *el)
 			ui_el_event_default_pointer_enter);
 	ui_event_add_listener(el->events->onPointerExit,
 			ui_el_event_default_pointer_exit);
-# ifdef DEBUG_STATUS
-	ui_el_setup_default_logs(el);
-# endif
+	if (DEBUG_STATUS == 1)
+		ui_el_setup_default_logs(el);
 }

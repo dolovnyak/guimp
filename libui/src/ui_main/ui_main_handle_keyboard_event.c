@@ -22,14 +22,15 @@ void	ui_main_handle_keyboard_event(t_ui_main *m)
 	if ((win = ui_main_find_window_by_sdl_id(m, windowID)) == NULL)
 			return ;
 	event = NULL;
-	//SDL_Log("keycode: %d\n", m->sdl_event->key.keysym.scancode);
 	if (m->sdl_event->window.type == SDL_KEYDOWN)
 	{
 		m->cur_keycode = m->sdl_event->key.keysym.scancode;
+		if (m->cur_keycode == 225)
+			m->is_upper = 1;
 		event = win->events->onKeyDown[m->sdl_event->key.keysym.scancode];
 	}
-//	else if (m->sdl_event->window.type == SDL_KEYUP)
-//		event = win->events->onKeyUp[m->sdl_event->key.keysym.scancode];
+	else if (m->sdl_event->window.type == SDL_KEYUP && m->sdl_event->key.keysym.scancode == 225)
+		m->is_upper = 0;
 	if (event != NULL)
 	{
 		SDL_LockMutex(m->mutex);

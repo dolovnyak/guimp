@@ -24,7 +24,6 @@ void	ui_el_setup_default_scroll_menu(t_ui_el *el)
 	ui_event_add_listener(el->events->onScrollUp, ui_el_event_scroll_menu_up);
 	ui_event_add_listener(el->events->onScrollDown,
 			ui_el_event_scroll_menu_down);
-# ifdef DEBUG_STATUS
-	ui_el_setup_default_scroll_menu_logs(el);
-# endif
+	if (DEBUG_STATUS == 1)
+		ui_el_setup_default_scroll_menu_logs(el);
 }
