@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:09:04 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 16:52:45 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:53:36 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@
 # define BLEND				1
 # define NONE				0
 # define STATIC				0
+
+# define WIN_CENTER			SDL_WINDOWPOS_CENTERED
 
 typedef	void				(*func_ptr)(void *, void *);
 typedef	int					(*pred_ptr)(void *, void *);

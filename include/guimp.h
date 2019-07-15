@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   guimp.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 18:25:19 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:54:41 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define TID_DRAW_TEXTURE		"draw_texture"
 
 # define GM_MAIN_WIN_X			800
-# define GM_MAIN_WIN_Y			SDL_WINDOWPOS_CENTERED //SDL!!!
+# define GM_MAIN_WIN_Y			WIN_CENTER
 # define GM_MAIN_WIN_W			1200
 # define GM_MAIN_WIN_H			800
 # define GM_MAIN_ID_DRAW		3
@@ -27,7 +27,7 @@
 # define GM_TOOL_WIN_W			300
 # define GM_TOOL_WIN_H			800
 # define GM_TOOL_WIN_X			GM_MAIN_WIN_X - GM_TOOL_WIN_W - 5
-# define GM_TOOL_WIN_Y			SDL_WINDOWPOS_CENTERED //SDL!!!
+# define GM_TOOL_WIN_Y			WIN_CENTER
 # define GM_TOOL_ID_BUT_MENU	11
 # define GM_TOOL_ID_BRUSH		12
 # define GM_TOOL_ID_ERASER		13
@@ -89,13 +89,11 @@
 # define GM_TOOL_STATE_DRAW		2
 # define GM_TOOL_STATE_END		3
 
-//id_generator flags
 # define ID_GENERATOR_GET		0
 # define ID_GENERATOR_ADD		1
 # define ID_GENERATOR_DEL		2
 # define ID_GENERATOR_START		63
 
-/* t_layers - struct for elems in layer win */
 typedef struct					s_layers
 {
 	t_ui_el						*current_layer;
@@ -163,11 +161,11 @@ int								move_windows(t_ui_main *m, void *a);
 int								start_zoom_in(t_ui_main *m, void *wid);
 int								start_zoom_out(t_ui_main *m, void *wid);
 
-int	 							choose_fill(t_ui_main *main, void *el_v);
+int								choose_fill(t_ui_main *main, void *el_v);
 void							tool_filler(t_ui_win *w, t_texture *texture,
 									t_cvec2 color, t_vec2 coord);
 
-int	 							choose_eraser(t_ui_main *main, void *el_v);
+int								choose_eraser(t_ui_main *main, void *el_v);
 void							tool_eraser(t_ui_el *el, t_guimp *g, int x,
 									int y);
 
@@ -256,6 +254,6 @@ int								move_draw_canvas_with_zoom(t_ui_main *main,
 int								draw_color_rect(t_ui_main *main, void *el_v);
 void							ft_strjoin_free(char **to, char *what);
 int								text_test(t_ui_main *m, void *a);
-int								start_draw_with_selected_tool_pointer_up(t_ui_main *main,
-									void *el_v);
+int								start_draw_with_selected_tool_pointer_up(
+									t_ui_main *main, void *el_v);
 #endif

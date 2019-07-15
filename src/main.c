@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:09:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 18:24:56 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:45:59 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,38 +173,6 @@ int		main(void)
 	el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_semen");
 
-//	t_ui_win *w = ui_main_find_window_by_id(g_main.ui_main, 4);
-//	t_ui_el *el = ui_el_init();
-//	el->id = 100;
-//	ui_el_add_child(w->canvas, el);
-//	ui_el_set_pos(el, PIXEL, (t_fvec2){10, 10});
-//	ui_el_set_size(el, PIXEL, (t_fvec2){100, 100});
-//	ui_el_setup_default(el);
-//	el->modal_win = w;
-//	ui_event_add_listener(el->events->onPointerLeftButtonPressed, ui_el_event_close_window);
-//	t_ui_text *t = ui_main_get_font_by_id(g_main.ui_main, "SansSerif");
-//	ui_el_set_text(el, t->font,
-//				   (t_text_params){(t_color){0, 0, 0, 0}, (t_color){170, 170, 170, 0},
-//								   0, TEXT_IS_REGULAR | TEXT_IS_INPUTTING | t->params, TEXT_IS_SOLID});
-//	ui_el_update_text(el, "KEEEK");
-
-
-	//SDL_DisplayMode DM;
-	//SDL_GetCurrentDisplayMode(0, &DM);
-	//if (DM.w - g_main.tool_win->size.x < g_main.main_win->size.x)
-	//{
-	//	g_main.tool_win->pos = (t_vec2){0, (DM.h - g_main.tool_win->size.y) / 2};
-	//	SDL_SetWindowPosition(g_main.tool_win->sdl_window, g_main.tool_win->pos.x, g_main.tool_win->pos.y);
-	//	g_main.main_win->pos = (t_vec2){g_main.tool_win->size.x + 10, g_main.tool_win->pos.y};
-	//	SDL_SetWindowPosition(g_main.main_win->sdl_window, g_main.main_win->pos.x, g_main.main_win->pos.y);
-	//	int size_x = DM.w - g_main.tool_win->size.x;
-	//	g_main.main_win->size = (t_vec2){size_x, size_x / 2.13f};
-	//	SDL_SetWindowSize(g_main.main_win->sdl_window, g_main.main_win->size.x, g_main.main_win->size.y);
-	//	g_main.main_win->canvas->rect.w = g_main.main_win->size.x;
-	//	g_main.main_win->canvas->rect.h = g_main.main_win->size.y;
-	//	g_main.main_win->canvas->crect = g_main.main_win->canvas->rect;
-	//	bfs_for_resize(g_main.main_win->canvas, &g_main);
-	//}
 	el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
 	el->data = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5)
 		, 5);

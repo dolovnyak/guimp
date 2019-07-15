@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 05:38:20 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 03:41:23 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:50:35 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	get_image_type(const char *p)
 	return (-1);
 }
 
-int	ui_save_image(t_ui_main *main, void *el_v)
+int			ui_save_image(t_ui_main *main, void *el_v)
 {
-	char 		*p;
+	char		*p;
 	t_guimp		*g;
 	t_texture	*t;
 	t_ui_el		*el;
@@ -42,7 +42,7 @@ int	ui_save_image(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-int	ui_open_image(t_ui_main *main, void *el_v)
+int			ui_open_image(t_ui_main *main, void *el_v)
 {
 	t_guimp		*g;
 	t_ui_el		*el;
