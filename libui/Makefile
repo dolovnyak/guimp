@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 01:15:58 by edraugr-         ###   ########.fr        #
+#    Updated: 2019/07/15 04:43:04 by edraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,8 +145,13 @@ SRC_UI_MAIN		=	ui_main_run_program.c \
 					ui_main_event_pointer_moved.c \
 					ui_main_event_close_window.c
 
-SRC_UI_SDL		=	ui_sdl_init.c \
-					ui_sdl_deinit.c
+SRC_UI_SDL		=	ui_sdl_deinit.c \
+					ui_sdl_init.c \
+					ui_sdl_render.c \
+					ui_sdl_render_draw.c \
+					ui_sdl_set_render.c \
+					ui_sdl_set_texture_mode.c \
+					ui_sdl_texture.c
 
 SRC_UI_WIN		=	ui_win_init.c \
 					ui_win_setup_default.c \

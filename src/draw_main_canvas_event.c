@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 04:59:41 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/06/04 20:43:06 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 04:41:49 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_main_canvas_event(void *el_v, void *arg)
 	{
 		ui_sdl_render_copy(el->sdl_renderer, ui_el_get_current_texture(el),
 				NULL, &el->rect);
-		ui_sdl_render_copy((el->sdl_renderer,
+		ui_sdl_render_copy(el->sdl_renderer,
 				ui_el_get_texture_by_id(el, "draw_texture"), NULL, &el->rect);
 	}
 }
