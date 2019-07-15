@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 15:58:51 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 18:06:19 by edraugr-         ###   ########.fr        #
+#    Updated: 2019/07/15 18:19:43 by edraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRC				=	main.c \
 					process_tmp_layer.c \
 					file_managing.c \
 					main_helper1.c \
-					main_helper2.c
+					main_helper2.c \
+					main_helper3.c
 
 SRC_TOOLS		=	brush.c \
 					ellipse.c \
