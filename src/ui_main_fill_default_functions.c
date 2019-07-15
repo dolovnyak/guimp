@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_main_fill_default_functions.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:44:15 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:05:57 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 00:46:29 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	add_choose_functions(t_ui_main *m)
 	ui_main_add_function_by_id(m, choose_ellipse, "choose_ellipse");
 	ui_main_add_function_by_id(m, choose_line, "choose_line");
 	ui_main_add_function_by_id(m, choose_text, "choose_text");
+	ui_main_add_function_by_id(m, choose_font, "choose_font");
+	ui_main_add_function_by_id(m, update_text_color, "update_text_color");
 	ui_main_add_function_by_id(m, choose_fill_mode, "choose_fill_mode");
 	ui_main_add_function_by_id(m, choose_empty_mode, "choose_empty_mode");
 	ui_main_add_function_by_id(m, choose_red_color, "choose_red_color");

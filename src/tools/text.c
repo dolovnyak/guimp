@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   text.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 17:49:44 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/07/13 13:59:09 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 01:10:55 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,34 @@ int	choose_text(t_ui_main *main, void *el_v)
 	(void)el_v;
 	g->draw_tool.tool = GM_TOOL_TEXT;
 	g->draw_tool.state = GM_TOOL_STATE_NONE;
+	return (1);
+}
+
+int	choose_font(t_ui_main *main, void *el_v)
+{
+	t_guimp	*g;
+	t_ui_el	*el;
+	t_ui_el	*el_target;
+
+	g = (t_guimp *)(main->data);
+	el = (t_ui_el *)el_v;
+	el_target = ui_win_find_el_by_id(g->tool_win, 121210);
+	el = (t_ui_el *)el->children->content;
+	el_target->text_area->font = el->text_area->font;
+	ui_el_update_text(el_target, el_target->text_area->text);
+	return (1);
+}
+
+int	update_text_color(t_ui_main *main, void *el_v)
+{
+	t_guimp	*g;
+	t_ui_el	*el;
+
+	g = (t_guimp *)(main->data);
+	el = (t_ui_el *)el_v;
+	el->text_area->text_color = (t_color){g->draw_tool.r,
+		g->draw_tool.g, g->draw_tool.b, g->draw_tool.a};
+	ui_el_update_text(el, el->text_area->text);
 	return (1);
 }
 

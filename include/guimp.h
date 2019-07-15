@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   guimp.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:01:45 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 00:49:49 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,9 @@ int								choose_pipette(t_ui_main *main, void *el_v);
 void							tool_pipette(t_guimp *g, t_ui_el *el);
 
 int								choose_text(t_ui_main *main, void *el_v);
+int								update_text_color(t_ui_main *main, void *el_v);
 void							draw_text(t_guimp *g, t_vec2 s, t_vec2 e, t_ui_el *el);
+int								choose_font(t_ui_main *main, void *el_v);
 
 int								choose_fill_mode(t_ui_main *main, void *el_v);
 int								choose_empty_mode(t_ui_main *main, void *el_v);
