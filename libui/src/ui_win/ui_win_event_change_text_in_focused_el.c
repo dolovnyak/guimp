@@ -60,9 +60,15 @@ static char	*join_with_other(t_ui_el *el, unsigned int keycode)
 	str_letter = ft_strnew(1);
 	if (keycode == 56)
 		str_letter[0] = '/';
-	if (keycode == 55)
+	else if (keycode == 55)
 		str_letter[0] = '.';
-	if (el->text_area->text == NULL)
+	else if (keycode == SDL_SCANCODE_SPACE)
+		str_letter[0] = ' ';
+	else if (keycode == 45)
+		str_letter[0] = '-';
+	else if (keycode == SDL_SCANCODE_0)
+		str_letter[0] = '0';
+	else if (el->text_area->text == NULL)
 		return (str_letter);
 	str = ft_strjoin(el->text_area->text, str_letter);
 	free(str_letter);
@@ -86,7 +92,7 @@ int	ui_win_event_change_text_in_focused_el(t_ui_main *m, void *a)
 		if (new_text != NULL)
 			free(new_text);
 	}
-	else if ((m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9) || m->cur_keycode == SDL_SCANCODE_0)
+	else if (m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9)
 	{
 		new_text = join_with_number(el, m->cur_keycode);
 		ui_el_update_text(el, new_text);
@@ -100,7 +106,7 @@ int	ui_win_event_change_text_in_focused_el(t_ui_main *m, void *a)
 		if (new_text != NULL)
 			free(new_text);
 	}
-	else if (m->cur_keycode == 55 || m->cur_keycode == 56)
+	else if (m->cur_keycode == 55 || m->cur_keycode == 56 || m->cur_keycode== SDL_SCANCODE_0 || m->cur_keycode == SDL_SCANCODE_SPACE || m->cur_keycode == 45)
 	{
 		new_text = join_with_other(el, m->cur_keycode);
 		ui_el_update_text(el, new_text);

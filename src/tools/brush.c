@@ -29,14 +29,14 @@ int		set_brush_texture_from_el(t_ui_main *main, void *el_v)
 
 	g = (t_guimp *) (((t_ui_main *) main)->data);
 	el = (t_ui_el *) el_v;
-	g->draw_tool.brush = (SDL_Texture *)el->data;
+	g->draw_tool.brush = (t_texture *)el->data;
 	return (1);
 }
 
 void	tool_brush(t_ui_el *el, t_guimp *g, int x, int y)
 {
 	ui_sdl_set_render_target(el->sdl_renderer,
-			(SDL_Texture *)(g->layers.current_layer->sdl_textures->content));
+			(t_texture *)(g->layers.current_layer->sdl_textures->content));
 	ui_sdl_set_texture_color_mode(g->draw_tool.brush, g->draw_tool.r,
 			g->draw_tool.g, g->draw_tool.b);
 	ui_sdl_set_texture_alpha_mode(g->draw_tool.brush, g->draw_tool.a);

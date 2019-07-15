@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_sdl_texture.c                                   :+:      :+:    :+:   */
+/*   ui_sdl_surface.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,12 @@
 
 #include "libui.h"
 
-void		ui_sdl_destroy_texture(SDL_Texture *t)
+void		ui_sdl_free_surface(SDL_Surface *s)
 {
-	SDL_DestroyTexture(t);
+	SDL_FreeSurface(s);
 }
 
-SDL_Texture	*ui_sdl_create_texture(SDL_Renderer *r, Uint32 f, int a, t_vec2 *s)
+SDL_Surface	*ui_sdl_create_rgb_surface(t_vec2 *s)
 {
-	return (SDL_CreateTexture(r, f, a, s->x, s->y));
-}
-
-SDL_Texture	*ui_sdl_create_texture_from_surface(SDL_Renderer *r, SDL_Surface *s)
-{
-	return (SDL_CreateTextureFromSurface(r, s));
+	return (SDL_CreateRGBSurface(0, s->x, s->y, 32, 0, 0, 0, 1));
 }

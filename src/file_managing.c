@@ -19,7 +19,7 @@ static int	get_image_type(const char *p)
 	l = ft_strlen(p);
 	if (l < 4)
 		return (-1);
-	if (l > 4 && !ft_strcmp(&p[l - 5], ".jpeg"))
+	if ((l > 4 && !ft_strcmp(&p[l - 5], ".jpeg")) || !ft_strcmp(&p[l - 4], ".jpg"))
 		return (IMG_TYPE_JPG);
 	if (!ft_strcmp(&p[l - 4], ".png"))
 		return (IMG_TYPE_PNG);

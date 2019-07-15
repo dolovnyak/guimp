@@ -113,6 +113,6 @@ void			draw_empty_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 	s = (t_vec2){s.x + g->draw_tool.brush_size, s.y + g->draw_tool.brush_size};
 	e = (t_vec2){e.x - g->draw_tool.brush_size, e.y - g->draw_tool.brush_size};
 	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){0, 0, 0, 0});
-	ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
+	ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, NONE);
 	draw_ellipse(g, s, e);
 }

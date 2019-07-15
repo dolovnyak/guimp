@@ -23,11 +23,12 @@ static void	ui_win_setup_default_logs(t_ui_win *w)
 
 void		ui_win_setup_default(t_ui_win *w)
 {
-	register int	i;
+	int	i;
 
 	i = -1;
 	while (++i < KEYS_COUNT)
-		ui_event_add_listener(w->events->onKeyDown[i], ui_win_event_change_text_in_focused_el);
+		if (i != SDL_SCANCODE_ESCAPE)
+			ui_event_add_listener(w->events->onKeyDown[i], ui_win_event_change_text_in_focused_el);
 	ui_event_add_listener(w->events->onPointerMoved, ui_main_event_pointer_moved);
 	ui_event_add_listener(w->events->onPointerLeftButtonPressed, ui_main_event_lmb_pressed);
 	ui_event_add_listener(w->events->onPointerLeftButtonReleased, ui_main_event_lmb_released);

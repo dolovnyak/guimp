@@ -45,6 +45,11 @@ static void	add_brushes(t_ui_main *m)
 static void	add_stickers(t_ui_main *m)
 {
 	ui_main_add_surface_by_path(m, "images/sticker_frolov.png", "sticker_frolov");
+	ui_main_add_surface_by_path(m, "images/sticker_max.png", "sticker_max");
+	ui_main_add_surface_by_path(m, "images/sticker_petya.png", "sticker_petya");
+	ui_main_add_surface_by_path(m, "images/sticker_jab.png", "sticker_jab");
+	ui_main_add_surface_by_path(m, "images/sticker_poop.png", "sticker_poop");
+	ui_main_add_surface_by_path(m, "images/sticker_jana.png", "sticker_jana");
 }
 
 void	ui_main_fill_default_surfaces(t_ui_main *m)
