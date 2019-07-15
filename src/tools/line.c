@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 15:52:48 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 10:15:38 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 12:58:21 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static t_fvec2	get_normal(int x1, int y1, int x2, int y2)
 {
 	t_fvec2	res;
 	float	lenth;
-	int		tmp;
 
 	if (y2 == y1)
 	{
@@ -55,10 +54,10 @@ static t_fvec2	get_normal(int x1, int y1, int x2, int y2)
 
 void			draw_line(t_guimp *g, t_vec2 start, t_vec2 end)
 {
-	t_fvec2	norm;
-	int		i;
-	t_vec2	p1;
-	t_vec2	p2;
+	t_fvec2			norm;
+	unsigned int	i;
+	t_vec2			p1;
+	t_vec2			p2;
 
 	i = -g->draw_tool.brush_size / 2 - 1;
 	norm = get_normal(start.x, start.y, end.x, end.y);

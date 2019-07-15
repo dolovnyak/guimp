@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_efj_helper2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:23:40 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/07/15 08:41:12 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:13:47 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,25 @@ t_ui_event	*ui_jtoc_el_from_json_get_event_by_name(t_ui_el *e, const char *n)
 
 	h = ft_strhash(n);
 	r = NULL;
-	r = (h == ft_strhash("onPointerEnter") ? e->events->onPointerEnter : r);
-	r = (h == ft_strhash("onPointerStay") ? e->events->onPointerStay : r);
-	r = (h == ft_strhash("onPointerExit") ? e->events->onPointerExit : r);
+	r = (h == ft_strhash("onPointerEnter") ? e->events->on_pointer_enter : r);
+	r = (h == ft_strhash("onPointerStay") ? e->events->on_pointer_stay : r);
+	r = (h == ft_strhash("onPointerExit") ? e->events->on_pointer_exit : r);
 	r = (h == ft_strhash("onPointerLeftButtonPressed") ?
-		e->events->onPointerLeftButtonPressed : r);
+		e->events->on_pointer_left_button_pressed : r);
 	r = (h == ft_strhash("onPointerLeftButtonHold") ?
-		e->events->onPointerLeftButtonHold : r);
+		e->events->on_pointer_left_button_hold : r);
 	r = (h == ft_strhash("onPointerLeftButtonReleased") ?
-		e->events->onPointerLeftButtonReleased : r);
+		e->events->on_pointer_left_button_released : r);
 	r = (h == ft_strhash("onPointerRightButtonPressed") ?
-		e->events->onPointerRightButtonPressed : r);
+		e->events->on_pointer_right_button_pressed : r);
 	r = (h == ft_strhash("onPointerRightButtonHold") ?
-		e->events->onPointerRightButtonHold : r);
+		e->events->on_pointer_right_button_hold : r);
 	r = (h == ft_strhash("onPointerRightButtonReleased") ?
-		e->events->onPointerRightButtonReleased : r);
-	r = (h == ft_strhash("onScrollUp") ? e->events->onScrollUp : r);
-	r = (h == ft_strhash("onScrollDown") ? e->events->onScrollDown : r);
-	r = (h == ft_strhash("onRender") ? e->events->onRender : r);
-	r = (h == ft_strhash("onResize") ? e->events->onResize : r);
+		e->events->on_pointer_right_button_released : r);
+	r = (h == ft_strhash("onScrollUp") ? e->events->on_scroll_up : r);
+	r = (h == ft_strhash("onScrollDown") ? e->events->on_scroll_down : r);
+	r = (h == ft_strhash("onRender") ? e->events->on_render : r);
+	r = (h == ft_strhash("onResize") ? e->events->on_resize : r);
 	return (r);
 }
 

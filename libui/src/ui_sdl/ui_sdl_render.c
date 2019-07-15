@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_sdl_render.c                               :+:      :+:    :+:   */
+/*   ui_sdl_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 16:12:48 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:01:06 by sbecker          ###   ########.fr       */
+/*   Created: 2019/07/15 12:22:49 by sbecker           #+#    #+#             */
+/*   Updated: 2019/07/15 12:23:23 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,3 @@ void	ui_sdl_renderer_read_pixels(SDL_Renderer *r, Uint32 f, void *p, int ph)
 {
 	SDL_RenderReadPixels(r, NULL, f, p, ph);
 }
-
-

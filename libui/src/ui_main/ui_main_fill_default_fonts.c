@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 05:34:14 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 00:30:05 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 11:54:08 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ui_main_fill_default_fonts(t_ui_main *m)
 	ui_main_add_font_by_path(m, "fonts/BonkOffset.ttf", "BonkOffset");
 	ui_main_add_font_by_path(m, "fonts/BraveOldWorld.ttf", "BraveOldWorld");
 	ui_main_add_font_by_path(m, "fonts/BodoniTwinsCaps.ttf", "BodoniTwinsCaps");
-	ui_main_add_font_by_path(m, "fonts/DemocraticPeaceWarriors.ttf", "PeaceWarriors");
+	ui_main_add_font_by_path(m, "fonts/DemocraticPeaceWarriors.ttf",
+			"PeaceWarriors");
 	ui_main_add_font_by_path(m, "fonts/CavePaintings.ttf", "CavePaintings");
 	ui_main_add_font_by_path(m, "fonts/Crosses.ttf", "Crosses");
 	ui_main_add_font_by_path(m, "fonts/Cosine Katie.ttf", "CosineKatie");

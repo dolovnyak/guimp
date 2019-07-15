@@ -6,13 +6,22 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 15:11:08 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/14 15:49:24 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:34:20 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-int	ui_main_try_invoke_modal_windows(t_ui_main *m)
+static void	show_window(t_ui_main *m, t_ui_win *w)
+{
+	SDL_LockMutex(m->mutex);
+	SDL_ShowWindow(w->sdl_window);
+	SDL_RaiseWindow(w->sdl_window);
+	w->params &= ~WIN_IS_SHOWN;
+	SDL_UnlockMutex(m->mutex);
+}
+
+void		ui_main_try_invoke_modal_windows(t_ui_main *m)
 {
 	t_list		*node;
 	t_ui_win	*w;
@@ -23,12 +32,8 @@ int	ui_main_try_invoke_modal_windows(t_ui_main *m)
 		w = (t_ui_win *)node->content;
 		if (w->params & WIN_IS_SHOWN)
 		{
-			SDL_LockMutex(m->mutex);
-			SDL_ShowWindow(w->sdl_window);
-			SDL_RaiseWindow(w->sdl_window);
-			w->params &= ~WIN_IS_SHOWN;
-			SDL_UnlockMutex(m->mutex);
-			return (0);
+			show_window(m, w);
+			return ;
 		}
 		if (w->params & WIN_IS_HIDDEN)
 		{
@@ -36,9 +41,8 @@ int	ui_main_try_invoke_modal_windows(t_ui_main *m)
 			SDL_HideWindow(w->sdl_window);
 			SDL_UnlockMutex(m->mutex);
 			w->params &= ~WIN_IS_HIDDEN;
-			return (0);
+			return ;
 		}
 		node = node->next;
 	}
-	return (1);
 }

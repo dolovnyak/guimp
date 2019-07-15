@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_efj_helper1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:23:48 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/07/15 07:39:51 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:14:23 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ui_el_from_json_cursor(t_ui_main *m, t_ui_el *e, t_jnode *n)
 				!(c->hot_y = jtoc_get_int(tmp)))
 			ui_sdl_deinit(228);
 		e->data = (void *)c;
-		ui_event_add_listener(e->events->onPointerLeftButtonPressed,
+		ui_event_add_listener(e->events->on_pointer_left_button_pressed,
 			ui_cursor_from_el_data);
 	}
 	return (FUNCTION_SUCCESS);

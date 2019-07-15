@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs_for_draw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 02:54:17 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/13 05:36:31 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 14:46:13 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	bfs_iter_draw(t_ui_main *m, const t_list *root)
 			if ((cur_el->params & EL_IS_DEPENDENT) && (!(check_border(cur_el))))
 				continue ;
 			q_push(&q, CAST_X_TO_Y(tmp, t_ui_el *)->children);
-			ui_event_invoke(((t_ui_el *)tmp)->events->onRender, m, tmp);
+			ui_event_invoke(((t_ui_el *)tmp)->events->on_render, m, tmp);
 		}
 	}
 }

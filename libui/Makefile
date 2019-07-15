@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 08:55:53 by edraugr-         ###   ########.fr        #
+#    Updated: 2019/07/15 13:16:18 by sbecker          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,7 +176,8 @@ SRC_UTILITS		=	ui_util_get_rect_from_frect.c \
 					ui_util_get_pixel_color_from_texture.c \
 					ui_util_get_pixel_color_from_el.c \
 					ui_util_set_pixel_color_to_texture.c \
-					check_texture_id.c
+					ui_util_get_sdl_color.c \
+					ui_util_check_texture_id.c
 
 SRC_UI_JTOC		=	ui_jtoc_main_from_json.c \
 					ui_jtoc_win_from_json.c \
@@ -184,7 +185,9 @@ SRC_UI_JTOC		=	ui_jtoc_main_from_json.c \
 					ui_jtoc_el_get_and_setup_json.c \
 					ui_jtoc_el_pref_text.c \
 					ui_jtoc_el_pref_modal_win.c \
+					ui_jtoc_pref_text_modal_win.c \
 					ui_jtoc_create_modal_ok.c \
+					ui_jtoc_create_modal_ok_cancel.c \
 					ui_jtoc_utils.c \
 					ui_jtoc_efj_helper3.c \
 					ui_jtoc_efj_helper2.c \

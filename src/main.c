@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:09:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/14 09:20:35 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 14:45:29 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 
 	el = (t_ui_el *)el_v;
 	g = (t_guimp *)m->data;
+	if (gm_generator_get_surf_count() > 20)
+		return (1);
 	layer_menu = ui_win_find_el_by_id(g->main_win, GM_LAYER_ID_MENU);
 	if (!(tmp_el = ui_el_init()))
 	{
@@ -159,10 +161,10 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, tmp_el->id % 2 ? 0x88AA88 : 0x669966, "default");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0xFF5050, "onActive");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x5050FF, "onFocus");
-	ui_event_add_listener(tmp_el->events->onPointerLeftButtonPressed, testOnPtrLBD);
-	ui_event_add_listener(tmp_el->events->onPointerEnter, testOnPtrEnter);
-	ui_event_add_listener(tmp_el->events->onPointerLeftButtonPressed, PressedLBD);
-	ui_event_add_listener(tmp_el->events->onPointerExit, testOnPtrExit);
+	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed, testOnPtrLBD);
+	ui_event_add_listener(tmp_el->events->on_pointer_enter, testOnPtrEnter);
+	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed, PressedLBD);
+	ui_event_add_listener(tmp_el->events->on_pointer_exit, testOnPtrExit);
 
 	if (!(el = ui_el_init()))
 	{
@@ -202,7 +204,7 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 				   (t_text_params){(t_color){0, 0, 0, 0}, (t_color){0, 0, 0, 0},
 								   0, TEXT_IS_REGULAR, TEXT_IS_SOLID});
 		ui_el_update_text(el, "CLEAR");
-	ui_event_add_listener(el->events->onPointerLeftButtonPressed, clear_layer);
+	ui_event_add_listener(el->events->on_pointer_left_button_pressed, clear_layer);
 	el->data = ui_el_get_texture_by_id(tmp2, "default");
 	return (1);
 }
@@ -532,7 +534,7 @@ int		main()
 
 	 g_main.main_win = ui_main_find_window_by_id(g_main.ui_main, 0);
 	 g_main.tool_win = ui_main_find_window_by_id(g_main.ui_main, 1);
-	ui_sdl_raise_window(g_main.main_win->sdl_window);   //TODO SDL FUNCTIONS FORBIDDEN
+	ui_sdl_raise_window(g_main.main_win->sdl_window);
 
 
 	t_ui_el	*cur_el;
@@ -553,13 +555,13 @@ int		main()
 
  	cur_el = ui_win_find_el_by_id(g_main.tool_win, 31);
 	cur_el->data = ui_win_find_el_by_id(g_main.main_win, GM_MAIN_ID_DRAW);
-	ui_event_add_listener(cur_el->events->onRender, text_test);
+	ui_event_add_listener(cur_el->events->on_render, text_test);
 
 	cur_el = ui_win_find_el_by_id(g_main.tool_win, 32);
-	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, clear_all_layers);
+	ui_event_add_listener(cur_el->events->on_pointer_left_button_pressed, clear_all_layers);
 
 	cur_el = ui_win_find_el_by_id(g_main.main_win, 63001);
-	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, clear_layer);
+	ui_event_add_listener(cur_el->events->on_pointer_left_button_pressed, clear_layer);
 	cur_el->data = ui_el_get_texture_by_id(ui_win_find_el_by_id(g_main.main_win, 63000), "default");
 
 	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1000);
@@ -608,11 +610,11 @@ int		main()
 
 	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
 	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 5);
-	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_save_image);
+	ui_event_add_listener(cur_el->events->on_pointer_left_button_pressed, ui_save_image);
 
 	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 2);
 	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 5);
-	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_open_image);
+	ui_event_add_listener(cur_el->events->on_pointer_left_button_pressed, ui_open_image);
 
 //	t_ui_win *w = ui_main_find_window_by_id(g_main.ui_main, 4);
 //	t_ui_el *el = ui_el_init();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_win_from_json.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 06:54:11 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 07:11:16 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:08:51 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static int	ui_win_from_json_size(t_ui_main *m, t_ui_win *w, t_jnode *n)
 	if ((tmp = jtoc_node_get_by_path(n, "events")))
 		if (tmp->type != array || ui_win_from_json_events(m, w, tmp))
 			ui_sdl_deinit(228);
-	free(w->events->onKeyDown[SDL_SCANCODE_ESCAPE]);
-	w->events->onKeyDown[SDL_SCANCODE_ESCAPE] = w->events->onClose;
+	free(w->events->on_key_down[SDL_SCANCODE_ESCAPE]);
+	w->events->on_key_down[SDL_SCANCODE_ESCAPE] = w->events->on_close;
 	return (FUNCTION_SUCCESS);
 }
 

@@ -6,22 +6,11 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 05:12:51 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/14 16:49:14 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:55:22 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
-
-/* static void ft_lstdelones_without_cont(t_list **alst)
-{
-	t_list	*tmp;
-
-	if (!alst)
-		return ;
-	tmp = *alst;
-	*alst = NULL;
-	free(tmp);
-}*/
 
 int		ui_main_event_close_window(t_ui_main *m, void *a)
 {

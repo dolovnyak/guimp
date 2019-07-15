@@ -673,7 +673,7 @@
             "title": "INFO",
             "text_area":
             {
-              "text": "Created by: edraugr- sbednar sbecker",
+              "text": "Created by: edraugr- sbednar, sbecker designer: Jannette",
               "color": "FFFFFF",
               "bg_color": "FF0000",
               "render_param": "TEXT_IS_SHADED",
@@ -681,7 +681,7 @@
               [
                 "TEXT_IS_CENTERED"
               ],
-              "string_len": 12,
+              "string_len": 20,
               "font": "SansSerif"
             }
           }

@@ -6,7 +6,7 @@
 /*   By: sbednar <sbednar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:13:52 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 06:11:05 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:55:01 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 pred_ptr_event	ui_main_get_function_by_id(t_ui_main *m, const char *func_id)
 {
 	pred_ptr_event	res;
-	t_list		*tmp;
-	int			hash;
+	t_list			*tmp;
+	int				hash;
 
 	res = NULL;
 	tmp = m->functions;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_el_get_and_setup_json.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 06:44:19 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 04:29:29 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:24:36 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,25 @@ t_ui_event	*ui_jtoc_win_from_json_get_event_by_name(t_ui_win *w,
 
 	hash = ft_strhash(n);
 	res = NULL;
-	res = (hash == ft_strhash("onPointerMoved") ? w->events->onPointerMoved :
+	res = (hash == ft_strhash("onPointerMoved") ? w->events->on_pointer_moved :
 		res);
 	res = (hash == ft_strhash("onPointerLeftButtonPressed") ?
-		w->events->onPointerLeftButtonPressed : res);
+		w->events->on_pointer_left_button_pressed : res);
 	res = (hash == ft_strhash("onPointerLeftButtonReleased") ?
-		w->events->onPointerLeftButtonReleased : res);
+		w->events->on_pointer_left_button_released : res);
 	res = (hash == ft_strhash("onPointerRightButtonPressed") ?
-		w->events->onPointerRightButtonPressed : res);
+		w->events->on_pointer_right_button_pressed : res);
 	res = (hash == ft_strhash("onPointerRightButtonReleased") ?
-		w->events->onPointerRightButtonReleased : res);
-	res = (hash == ft_strhash("onScrollUp") ? w->events->onScrollUp : res);
-	res = (hash == ft_strhash("onScrollDown") ? w->events->onScrollDown : res);
-	res = (hash == ft_strhash("onFocusGained") ? w->events->onFocusGained :
+		w->events->on_pointer_right_button_released : res);
+	res = (hash == ft_strhash("onScrollUp") ? w->events->on_scroll_up : res);
+	res = (hash == ft_strhash("onScrollDown") ?
+			w->events->on_scroll_down : res);
+	res = (hash == ft_strhash("onFocusGained") ? w->events->on_focus_gained :
 		res);
-	res = (hash == ft_strhash("onFocusLost") ? w->events->onFocusLost : res);
-	res = (hash == ft_strhash("onResize") ? w->events->onResize : res);
-	res = (hash == ft_strhash("onClose") ? w->events->onClose : res);
-	res = (hash == ft_strhash("onMoved") ? w->events->onMoved : res);
+	res = (hash == ft_strhash("onFocusLost") ? w->events->on_focus_lost : res);
+	res = (hash == ft_strhash("onResize") ? w->events->on_resize : res);
+	res = (hash == ft_strhash("onClose") ? w->events->on_close : res);
+	res = (hash == ft_strhash("onMoved") ? w->events->on_moved : res);
 	return (res);
 }
 

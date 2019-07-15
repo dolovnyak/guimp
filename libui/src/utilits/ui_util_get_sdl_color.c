@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_sdl_render_draw.c                               :+:      :+:    :+:   */
+/*   ui_util_get_sdl_color.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 12:22:06 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 12:22:17 by sbecker          ###   ########.fr       */
+/*   Created: 2019/07/15 10:06:21 by sbecker           #+#    #+#             */
+/*   Updated: 2019/07/15 10:08:42 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-void	ui_sdl_render_draw_line(SDL_Renderer *r, t_vec2 *v1, t_vec2 *v2)
+SDL_Color	ui_util_get_sdl_color(int color)
 {
-	SDL_RenderDrawLine(r, v1->x, v1->y, v2->x, v2->y);
-}
+	SDL_Color	sdl_color;
 
-void	ui_sdl_render_fill_rect(SDL_Renderer *r, SDL_Rect *rect)
-{
-	SDL_RenderFillRect(r, rect);
+	sdl_color = (SDL_Color){(Uint8)((color & 0xFF0000) >> 16),
+		(Uint8)((color & 0x00FF00) >> 8), (Uint8)(color & 0x0000FF), 255};
+	return (sdl_color);
 }

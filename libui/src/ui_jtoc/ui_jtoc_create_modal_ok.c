@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_create_modal_ok.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 08:43:03 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 04:16:49 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:11:50 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	create_ok_button(t_ui_el *p, t_ui_text *ui_text, t_ui_win *w)
 		ft_atoi_base("AAAAAA", 16), "default");
 	ui_el_setup_default(el);
 	el->modal_win = w;
-	ui_event_add_listener(el->events->onPointerLeftButtonPressed,
+	ui_event_add_listener(el->events->on_pointer_left_button_pressed,
 		ui_el_event_close_window);
 	el_text = ui_el_init();
 	el_text->id = 3;
@@ -80,8 +80,8 @@ void		ui_jtoc_create_modal_ok(t_ui_main *m, t_ui_win *w,
 	w->size.x = 300 + ui_text->string_len * 16;
 	w->size.y = num_strs * 45 + 120;
 	free(ui_text->text);
-	ui_event_add_listener(w->events->onClose, ui_main_event_close_window);
-	ui_event_add_listener(w->events->onKeyDown[SDL_SCANCODE_ESCAPE],
+	ui_event_add_listener(w->events->on_close, ui_main_event_close_window);
+	ui_event_add_listener(w->events->on_key_down[SDL_SCANCODE_ESCAPE],
 		ui_main_event_close_window);
 	ui_win_setup_default(w);
 	ui_win_create(w, SDL_WINDOW_SHOWN);
