@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 15:58:51 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 17:12:47 by sbecker          ###   ########.fr        #
+#    Updated: 2019/07/15 18:19:43 by edraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,10 @@ SRC				=	main.c \
 					color_sliders.c \
 					get_value_from_slider.c \
 					process_tmp_layer.c \
-					file_managing.c
+					file_managing.c \
+					main_helper1.c \
+					main_helper2.c \
+					main_helper3.c
 
 SRC_TOOLS		=	brush.c \
 					ellipse.c \
