@@ -10,4 +10,6 @@ target_sources(ui PUBLIC
         ui_sdl_render.c
         ui_sdl_render_draw.c
         ui_sdl_texture.c
+        ui_sdl_win_position.c
+        ui_sdl_surface.c
         )

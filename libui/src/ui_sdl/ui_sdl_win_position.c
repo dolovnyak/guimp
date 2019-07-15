@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_sdl_texture.c                                   :+:      :+:    :+:   */
+/*   ui_sdl_win_position                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 16:12:48 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 14:01:06 by sbecker          ###   ########.fr       */
+/*   Created: 2019/03/10 19:09:04 by sbednar           #+#    #+#             */
+/*   Updated: 2019/07/14 16:33:03 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-void		ui_sdl_destroy_texture(SDL_Texture *t)
+void	ui_sdl_set_window_position(SDL_Window *w, int x, int y)
 {
-	SDL_DestroyTexture(t);
+	SDL_SetWindowPosition(w, x, y);
 }
 
-SDL_Texture	*ui_sdl_create_texture(SDL_Renderer *r, Uint32 f, int a, t_vec2 *s)
+void	ui_sdl_get_window_position(SDL_Window *w, int *x, int *y)
 {
-	return (SDL_CreateTexture(r, f, a, s->x, s->y));
+	SDL_GetWindowPosition(w, x, y);
 }
 
-SDL_Texture	*ui_sdl_create_texture_from_surface(SDL_Renderer *r, SDL_Surface *s)
+void	ui_sdl_raise_window(SDL_Window *w)
 {
-	return (SDL_CreateTextureFromSurface(r, s));
+	SDL_RaiseWindow(w);
 }

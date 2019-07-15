@@ -22,7 +22,7 @@ static Uint32	getpixel(t_sur *surface, int x, int y)
 	return (*(Uint32 *)p);
 }
 
-static void	putpixel(t_sur *surface, int x, int y, Uint32 pixel)
+static void		putpixel(t_sur *surface, int x, int y, Uint32 pixel)
 {
 	int bpp;
 	Uint8 *p;
@@ -32,7 +32,7 @@ static void	putpixel(t_sur *surface, int x, int y, Uint32 pixel)
 	*(Uint32 *) p = pixel;
 }
 
-void		tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
+void			tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
 {
 	char 	*field;
 	int f = 0;
@@ -45,13 +45,13 @@ void		tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
 	for (int i = 0; i < x; i++)
 		field[i] = 0;
 	queue = (int *)malloc(x * sizeof(int));
-	SDL_SetRenderDrawColor(w->sdl_renderer, 255, 255, 255, 0);
-	SDL_RenderClear(w->sdl_renderer);
-	t_texture *t = SDL_CreateTexture(w->sdl_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, w->size.x, w->size.y);
-	SDL_SetRenderTarget(w->sdl_renderer, t);
-	SDL_RenderCopy(w->sdl_renderer, texture, NULL, NULL);
-	t_sur *s = SDL_CreateRGBSurface(0, w->size.x, w->size.y, 32, 0, 0, 0, 1);
-	SDL_RenderReadPixels(w->sdl_renderer, NULL, s->format->format, s->pixels, s->pitch);
+	ui_sdl_set_render_draw_color(w->sdl_renderer, &(t_color){255, 255, 255, 0});
+	ui_sdl_render_clear(w->sdl_renderer);
+	t_texture *t = ui_sdl_create_texture(w->sdl_renderer, RGBA8888, STATIC, &w->size);
+	ui_sdl_set_render_target(w->sdl_renderer, t);
+	ui_sdl_render_copy(w->sdl_renderer, texture, NULL, NULL);
+	t_sur *s = ui_sdl_create_rgb_surface(&w->size);
+	ui_sdl_renderer_read_pixels(w->sdl_renderer, s->format->format, s->pixels, s->pitch);
 	for (int i = 0; i < x; i++)
 		queue[i] = 0;
 	queue[l++] = coord.x * 10000 + coord.y;
@@ -85,15 +85,15 @@ void		tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
 			field[(y + 1) * w->size.x + x] = '1';
 		}
 	}
-	t_texture *tmp = SDL_CreateTextureFromSurface(w->sdl_renderer, s);
-	SDL_SetRenderTarget(w->sdl_renderer, texture);
-	SDL_RenderCopy(w->sdl_renderer, tmp, NULL, NULL);
-	SDL_SetRenderTarget(w->sdl_renderer, NULL);
+	t_texture *tmp = ui_sdl_create_texture_from_surface(w->sdl_renderer, s);
+	ui_sdl_set_render_target(w->sdl_renderer, texture);
+	ui_sdl_render_copy(w->sdl_renderer, tmp, NULL, NULL);
+	ui_sdl_set_render_target(w->sdl_renderer, NULL);
 	free(field);
 	free(queue);
-	SDL_DestroyTexture(tmp);
-	SDL_DestroyTexture(t);
-	SDL_FreeSurface(s);
+	ui_sdl_destroy_texture(tmp);
+	ui_sdl_destroy_texture(t);
+	ui_sdl_free_surface(s);
 }
 
 int		choose_fill(t_ui_main *main, void *el_v)

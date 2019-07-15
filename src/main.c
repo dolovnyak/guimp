@@ -31,12 +31,12 @@ int move_windows(t_ui_main *m, void *a)
 				list = list->next;
 				continue;
 			}
-			SDL_GetWindowPosition(w->sdl_window, &pos.x, &pos.y);
+			ui_sdl_get_window_position(w->sdl_window, &pos.x, &pos.y);
 			if (cur_w->id == 0)
 				pos.x = pos.x + GM_TOOL_WIN_W + 5;
 			else if (cur_w->id == 1)
 				pos.x = pos.x - GM_TOOL_WIN_W - 5;
-			SDL_SetWindowPosition(cur_w->sdl_window, pos.x, pos.y);
+			ui_sdl_set_window_position(cur_w->sdl_window, pos.x, pos.y);
 			cur_w->pos.x = pos.x;
 			cur_w->pos.y = pos.y;
 			list = list->next;
@@ -96,22 +96,22 @@ static int	testOnPtrLBD(t_ui_main *main, void *el_v)
 
 static int	clear_layer(t_ui_main *main, void *el_v)
 {
-	SDL_Texture	*t;
+	t_texture	*t;
 	t_guimp		*g;
 
 	g = (t_guimp *)(main->data);
 	t = (t_texture *)((t_ui_el *)el_v)->data;
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, t);
-	SDL_SetRenderDrawBlendMode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 255, 255, 255, 0);
-	SDL_RenderFillRect(g->main_win->sdl_renderer, NULL);
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, NULL);
+	ui_sdl_set_render_target(g->main_win->sdl_renderer, t);
+	ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, NONE);
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){255, 255, 255, 0});
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, NULL);
+	ui_sdl_set_render_target(g->main_win->sdl_renderer, NULL);
 	return (1);
 }
 
 static int	clear_all_layers(t_ui_main *main, void *el_v)
 {
-	SDL_Texture	*t;
+	t_texture	*t;
 	t_list		*l;
 	t_guimp		*g;
 
@@ -121,13 +121,13 @@ static int	clear_all_layers(t_ui_main *main, void *el_v)
 	while (l)
 	{
 		t = (t_texture *)l->content;
-		SDL_SetRenderTarget(g->main_win->sdl_renderer, t);
-		SDL_SetRenderDrawBlendMode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
-		SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 255, 255, 255, 0);
-		SDL_RenderFillRect(g->main_win->sdl_renderer, NULL);
+		ui_sdl_set_render_target(g->main_win->sdl_renderer, t);
+		ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, NONE);
+		ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){255, 255, 255, 0});
+		ui_sdl_render_fill_rect(g->main_win->sdl_renderer, NULL);
 		l = l->next;
 	}
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, NULL);
+	ui_sdl_set_render_target(g->main_win->sdl_renderer, NULL);
 	return (1);
 }
 
@@ -252,7 +252,7 @@ static int	test_del_layer(t_ui_main *main, void *el_v)
 	{
 		if ((Uint32)(tmp->content_size) == el->id)
 		{
-			SDL_DestroyTexture(tmp->content);
+			ui_sdl_destroy_texture(tmp->content);
 			tmp2 = tmp;
 			prev->next = tmp->next;
 			tmp = tmp->next;
@@ -285,11 +285,11 @@ static int	draw_canvas_renderer(t_ui_main *main, void *el_v)
 	process_tmp_layer(g);
 	while (layer)
 	{
-		SDL_RenderCopy(el->sdl_renderer, (t_texture *)(layer->content), &g->zoom_rect, &el->rect);
+		ui_sdl_render_copy(el->sdl_renderer, (t_texture *)(layer->content), &g->zoom_rect, &el->rect);
 		if (tmp_flag && layer->content_size == g->layers.current_layer->parent->id)
 		{
 			tmp_flag = 0;
-			SDL_RenderCopy(el->sdl_renderer, g->layers.tmp_texture, &g->zoom_rect, &el->rect);
+			ui_sdl_render_copy(el->sdl_renderer, g->layers.tmp_texture, &g->zoom_rect, &el->rect);
 		}
 		layer = layer->next;
 	}
@@ -340,7 +340,7 @@ void	update_color_rect(t_guimp *gm, int r, int g, int b)
 
 	el = ui_win_find_el_by_id(gm->tool_win, GM_TOOL_ID_COLOR_RECT);
 	t_texture *t = (t_texture *)el->sdl_textures->content;
-	SDL_DestroyTexture(t);
+	ui_sdl_destroy_texture(t);
 	free(el->sdl_textures);
 	el->sdl_textures = NULL;
 	ui_el_add_color_texture(el, (t_vec2){100, 20}, (r << 16) | (g << 8) | b, "default");
@@ -432,11 +432,11 @@ static int	draw_color_rect(t_ui_main *main, void *el_v)
 
 	g = (t_guimp *)(main->data);
 	el = (t_ui_el *)el_v;
-	SDL_SetRenderTarget(el->sdl_renderer, ui_el_get_current_texture(el));
-	SDL_SetRenderDrawColor(el->sdl_renderer, g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
-	SDL_RenderFillRect(el->sdl_renderer, NULL);
-	SDL_SetRenderTarget(el->sdl_renderer, NULL);
-	SDL_RenderCopy(el->sdl_renderer, ui_el_get_current_texture(el), NULL, &el->rect);
+	ui_sdl_set_render_target(el->sdl_renderer, ui_el_get_current_texture(el));
+	ui_sdl_set_render_draw_color(el->sdl_renderer, &(t_color){g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255});
+	ui_sdl_render_fill_rect(el->sdl_renderer, NULL);
+	ui_sdl_set_render_target(el->sdl_renderer, NULL);
+	ui_sdl_render_copy(el->sdl_renderer, ui_el_get_current_texture(el), NULL, &el->rect);
 	return (1);
 }
 
@@ -532,7 +532,7 @@ int		main()
 
 	 g_main.main_win = ui_main_find_window_by_id(g_main.ui_main, 0);
 	 g_main.tool_win = ui_main_find_window_by_id(g_main.ui_main, 1);
-	SDL_RaiseWindow(g_main.main_win->sdl_window);   //TODO SDL FUNCTIONS FORBIDDEN
+	ui_sdl_raise_window(g_main.main_win->sdl_window);   //TODO SDL FUNCTIONS FORBIDDEN
 
 
 	t_ui_el	*cur_el;

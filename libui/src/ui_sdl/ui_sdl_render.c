@@ -23,4 +23,9 @@ void	ui_sdl_render_clear(SDL_Renderer *r)
 	SDL_RenderClear(r);
 }
 
+void	ui_sdl_renderer_read_pixels(SDL_Renderer *r, Uint32 f, void *p, int ph)
+{
+	SDL_RenderReadPixels(r, NULL, f, p, ph);
+}
+
 

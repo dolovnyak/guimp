@@ -102,6 +102,11 @@
 # define ABS			(1 << 0)
 # define PIXEL			(1 << 1)
 
+# define RGBA8888		373694468
+# define BLEND			1
+# define NONE			0
+# define STATIC			0
+
 typedef	void			(*func_ptr)(void *, void *);
 typedef	int				(*pred_ptr)(void *, void *);
 typedef	t_list			t_queue;
@@ -599,7 +604,16 @@ void	ui_sdl_set_render_draw_blend_mode(SDL_Renderer *r, SDL_BlendMode b);
 void	ui_sdl_render_draw_line(SDL_Renderer *r, t_vec2 *v1, t_vec2 *v2);
 void	ui_sdl_render_fill_rect(SDL_Renderer *r, SDL_Rect *rect);
 void		ui_sdl_destroy_texture(SDL_Texture *t);
+SDL_Texture	*ui_sdl_create_texture(SDL_Renderer *r, Uint32 f, int a, t_vec2 *s);
 SDL_Texture	*ui_sdl_create_texture_from_surface(SDL_Renderer *r, SDL_Surface *s);
 void	ui_sdl_render_clear(SDL_Renderer *r);
+
+void	ui_sdl_set_window_position(SDL_Window *w, int x, int y);
+void	ui_sdl_get_window_position(SDL_Window *w, int *x, int *y);
+void	ui_sdl_raise_window(SDL_Window *w);
+
+void	ui_sdl_free_surface(SDL_Surface *s);
+SDL_Surface	*ui_sdl_create_rgb_surface(t_vec2 *s);
+void	ui_sdl_renderer_read_pixels(SDL_Renderer *r, Uint32 f, void *p, int ph);
 
 #endif
