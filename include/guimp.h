@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 15:45:41 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 17:12:15 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,4 +219,14 @@ int								ui_open_image(t_ui_main *main, void *el_v);
 
 t_vec2							lerp(t_vec2 p1, t_vec2 p2, float k);
 t_vec2							calc_el_dot(t_vec2 *d, float k);
+
+int								add_layer(t_ui_main *m, void *el_v);
+int								del_layer(t_ui_main *main, void *el_v);
+int								clear_layer(t_ui_main *main, void *el_v);
+int								clear_all_layers(t_ui_main *main, void *el_v);
+
+int								OnPtrEnter(t_ui_main *main, void *el_v);
+int								OnPtrExit(t_ui_main *main, void *el_v);
+int								PressedLBD(t_ui_main *main, void *el_v);
+int								OnPtrLBD(t_ui_main *main, void *el_v);
 #endif

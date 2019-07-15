@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 15:58:51 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 16:15:45 by sbecker          ###   ########.fr        #
+#    Updated: 2019/07/15 17:12:47 by sbecker          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_DIR			=	./src
 OBJ_DIR			=	./obj
 
 SRC				=	main.c \
+					ptrs.c \
 					draw_main_canvas_event.c \
 					draw_with_selected_tool.c \
 					gm_init.c \
@@ -62,9 +63,13 @@ SRC_TOOLS		=	brush.c \
 					zoom.c \
 					text.c
 
+SRC_LAYERS		=	add_layer.c \
+					del_layer.c \
+					clear_layers.c
 
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o)) \
-					$(addprefix $(OBJ_DIR)/,$(SRC_TOOLS:.c=.o))
+					$(addprefix $(OBJ_DIR)/,$(SRC_TOOLS:.c=.o)) \
+					$(addprefix $(OBJ_DIR)/,$(SRC_LAYERS:.c=.o))
 
 INCS			=	-I$(INC_DIR) \
 					-I$(INC_FT) \
@@ -120,6 +125,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "1" > $(TEMP)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/tools/%.c
+	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
+	@echo "1" > $(TEMP)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/layers/%.c
 	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
 	@echo "1" > $(TEMP)
 
