@@ -19,7 +19,8 @@ static int	get_image_type(const char *p)
 	l = ft_strlen(p);
 	if (l < 4)
 		return (-1);
-	if ((l > 4 && !ft_strcmp(&p[l - 5], ".jpeg")) || !ft_strcmp(&p[l - 4], ".jpg"))
+	if ((l > 4 && !ft_strcmp(&p[l - 5], ".jpeg")) ||
+		!ft_strcmp(&p[l - 4], ".jpg"))
 		return (IMG_TYPE_JPG);
 	if (!ft_strcmp(&p[l - 4], ".png"))
 		return (IMG_TYPE_PNG);
@@ -48,6 +49,7 @@ int	ui_open_image(t_ui_main *main, void *el_v)
 
 	g = (t_guimp *)(((t_ui_main *)main)->data);
 	el = (t_ui_el *)el_v;
-	ui_main_open_texture(g->main_win->sdl_renderer, g->layers.current_layer, ((t_ui_el *)el->data)->text_area->text);
+	ui_main_open_texture(g->main_win->sdl_renderer, g->layers.current_layer,
+			((t_ui_el *)el->data)->text_area->text);
 	return (1);
 }

@@ -32,7 +32,6 @@ int		choose_font(t_ui_main *main, void *el_v)
 
 	g = (t_guimp *)(main->data);
 	el = (t_ui_el *)el_v;
-	text = NULL;
 	el_target = ui_win_find_el_by_id(g->tool_win, 121210);
 	el = (t_ui_el *)el->children->content;
 	el_target->text_area->font = el->text_area->font;

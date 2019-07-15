@@ -196,7 +196,7 @@ typedef struct				s_ui_el
 	struct s_ui_win			*modal_win;
 	t_ui_el_events			*events;
 	void					*data;
-}					t_ui_el;
+}							t_ui_el;
 
 typedef struct				s_cursor
 {
@@ -708,5 +708,9 @@ void						ui_sdl_free_surface(SDL_Surface *s);
 SDL_Surface					*ui_sdl_create_rgb_surface(t_vec2 *s);
 void						ui_sdl_renderer_read_pixels(SDL_Renderer *r,
 		Uint32 f, void *p, int ph);
+
+void						ui_surface_set_pixel(t_sur *surface, int x, int y,
+		Uint32 pixel);
+Uint32						ui_surface_get_pixel(t_sur *surface, int x, int y);
 
 #endif

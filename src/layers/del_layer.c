@@ -12,26 +12,12 @@
 
 #include "guimp.h"
 
-int del_layer(t_ui_main *main, void *el_v)
+static void	process1(t_list *tmp, t_ui_el *next_active, t_ui_el *el)
 {
-	t_guimp	*g;
-	t_ui_el	*el;
-	t_ui_el	*next_active;
-	t_list	*tmp;
 	t_list	*prev;
+	t_list	*tmp2;
 
-	g = (t_guimp *)(main->data);
-	el = g->layers.current_layer->parent;
-	(void)el_v;
-	if (gm_generator_get_surf_count() == 0 || el->id == GM_LAYER_ID_DEF_LAYER)
-		return (1);
-	if (!(next_active = ui_win_find_el_by_id(g->main_win, el->id + 1)))
-		next_active = ui_win_find_el_by_id(g->main_win, el->id - 1);
-	ui_el_set_current_texture_by_id(next_active, "onActive");
-	g->layers.current_layer = (t_ui_el *)(next_active->children->content);
-	tmp = el->parent->children;
 	prev = tmp;
-	t_list *tmp2;
 	while (tmp)
 	{
 		next_active = (t_ui_el *)(tmp->content);
@@ -50,7 +36,13 @@ int del_layer(t_ui_main *main, void *el_v)
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	tmp = g->layers.layers;
+}
+
+static void	process2(t_list *tmp, t_ui_el *el)
+{
+	t_list	*prev;
+	t_list	*tmp2;
+
 	prev = tmp;
 	while (tmp)
 	{
@@ -68,6 +60,29 @@ int del_layer(t_ui_main *main, void *el_v)
 		prev = tmp;
 		tmp = tmp->next;
 	}
+}
+
+int			del_layer(t_ui_main *main, void *el_v)
+{
+	t_guimp	*g;
+	t_ui_el	*el;
+	t_ui_el	*next_active;
+	t_list	*tmp;
+	t_list	*prev;
+
+	g = (t_guimp *)(main->data);
+	el = g->layers.current_layer->parent;
+	(void)el_v;
+	if (gm_generator_get_surf_count() == 0 || el->id == GM_LAYER_ID_DEF_LAYER)
+		return (1);
+	if (!(next_active = ui_win_find_el_by_id(g->main_win, el->id + 1)))
+		next_active = ui_win_find_el_by_id(g->main_win, el->id - 1);
+	ui_el_set_current_texture_by_id(next_active, "onActive");
+	g->layers.current_layer = (t_ui_el *)(next_active->children->content);
+	tmp = el->parent->children;
+	process1(tmp, next_active, el);
+	tmp = g->layers.layers;
+	process2(tmp, el);
 	gm_generate_surf_id(ID_GENERATOR_DEL);
 	return (1);
 }

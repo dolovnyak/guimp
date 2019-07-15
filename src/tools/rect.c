@@ -12,7 +12,7 @@
 
 #include "guimp.h"
 
-int	choose_rect(t_ui_main *main, void *el_v)
+int		choose_rect(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 
@@ -34,10 +34,11 @@ void	draw_rect(t_guimp *g, t_vec2 s, t_vec2 e)
 
 void	draw_empty_rect(t_guimp *g, t_vec2 s, t_vec2 e)
 {
-	int px = ft_min(s.x, e.x);
-	int py = ft_min(s.y, e.y);
-	int cx = s.x + e.x - px;
-	int cy = s.y + e.y - py;
+	t_vec2	p;
+	t_vec2	c;
+
+	p = (t_vec2){ft_min(s.x, e.x), ft_min(s.y, e.y)};
+	c = (t_vec2){s.x + e.x - p.x, s.y + e.y - p.y};
 	if ((Uint32)abs(s.x - e.x) < g->draw_tool.brush_size ||
 		(Uint32)abs(s.y - e.y) < g->draw_tool.brush_size)
 	{
@@ -45,17 +46,13 @@ void	draw_empty_rect(t_guimp *g, t_vec2 s, t_vec2 e)
 		return ;
 	}
 	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
-			px, py, g->draw_tool.brush_size, cy - py
-	});
+			p.x, p.y, g->draw_tool.brush_size, c.y - p.y});
 	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
-			px, py, cx - px, g->draw_tool.brush_size
-	});
+			p.x, p.y, c.x - p.x, g->draw_tool.brush_size});
 	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
-			px, cy - g->draw_tool.brush_size, cx - px,
-			g->draw_tool.brush_size
-	});
+			p.x, c.y - g->draw_tool.brush_size, c.x - p.x,
+			g->draw_tool.brush_size});
 	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
-			cx - g->draw_tool.brush_size, py, g->draw_tool.brush_size,
-			cy - py
-	});
+			c.x - g->draw_tool.brush_size, p.y, g->draw_tool.brush_size,
+			c.y - p.y});
 }

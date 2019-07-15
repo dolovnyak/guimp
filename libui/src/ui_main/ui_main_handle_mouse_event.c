@@ -6,18 +6,22 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 00:47:51 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 15:04:05 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 17:50:57 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libui.h"
 
-static void	check_mousewheel(t_ui_main *m, t_ui_event *event, t_ui_win *win)
+static t_ui_event *check_mousewheel(t_ui_main *m, t_ui_win *win)
 {
+	t_ui_event	*event;
+
+	event = NULL;
 	if (m->sdl_event->wheel.y < 0)
 		event = win->events->on_scroll_up;
 	else if (m->sdl_event->wheel.y > 0)
 		event = win->events->on_scroll_down;
+	return (event);
 }
 
 void		ui_main_handle_mouse_event(t_ui_main *m)
@@ -44,7 +48,7 @@ void		ui_main_handle_mouse_event(t_ui_main *m)
 			m->sdl_event->button.button == SDL_BUTTON_RIGHT)
 		event = win->events->on_pointer_right_button_released;
 	else if (m->sdl_event->type == SDL_MOUSEWHEEL)
-		check_mousewheel(m, event, win);
+		event = check_mousewheel(m, win);
 	if (event != NULL)
 		ui_event_invoke(event, m, win);
 }

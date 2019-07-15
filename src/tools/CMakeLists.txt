@@ -15,4 +15,5 @@ target_sources(guimp_cmake PUBLIC
         modes.c
         brush.c
         text.c
+        utils_for_ellipse.c
         )

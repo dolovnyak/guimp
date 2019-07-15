@@ -125,6 +125,14 @@ typedef struct					s_cvec2
 	Uint32						color2;
 }								t_cvec2;
 
+typedef struct					s_filler
+{
+	t_ui_win					*w;
+	t_sur						*s;
+	int							*q;
+	char						*f;
+	t_cvec2						*c;
+}								t_filler;
 
 typedef struct					s_guimp
 {
