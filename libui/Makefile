@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 04:43:04 by edraugr-         ###   ########.fr        #
+#    Updated: 2019/07/15 07:51:41 by sbecker          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_load_surface_from.c \
 					ui_el_set_current_texture_by_id.c \
 					ui_el_add_texture.c \
+					ui_el_add_texture_from_file.c \
 					ui_el_create_texture.c \
 					ui_el_create_texture_from_surface.c \
 					ui_el_get_current_texture.c \
@@ -67,6 +68,7 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_event_show_child.c \
 					ui_el_event_switch_radio.c \
 					ui_el_event_default_draw.c \
+					ui_el_utils_from_default_draw.c \
 					ui_el_event_default_resize.c \
 					ui_el_event_menu_resize.c \
 					ui_el_event_scroll_menu.c \
@@ -151,7 +153,9 @@ SRC_UI_SDL		=	ui_sdl_deinit.c \
 					ui_sdl_render_draw.c \
 					ui_sdl_set_render.c \
 					ui_sdl_set_texture_mode.c \
-					ui_sdl_texture.c
+					ui_sdl_surface.c \
+					ui_sdl_texture.c \
+					ui_sdl_win_position.c \
 
 SRC_UI_WIN		=	ui_win_init.c \
 					ui_win_setup_default.c \

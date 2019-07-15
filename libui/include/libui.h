@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:09:04 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/14 16:33:03 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 08:20:50 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -487,15 +487,14 @@ int					ui_el_event_default_resize(t_ui_main *m, void *a);			//TODO BFS EVENT on
 int					ui_el_event_children_set_default(t_ui_main *m, void *a);	//EVENT	onPointerLeftButtonPressed
 int					ui_el_event_show_child(t_ui_main *m, void *a);				//EVENT	onPointerLeftButtonPressed
 int					ui_el_event_show_window(t_ui_main *m, void *a);				//EVENT onPointerLeftButtonPressed
-//////////////////////////////////////////////////////////////NOT USED, there is pref in json.
+int					ui_el_event_close_window(t_ui_main *m, void *a);
+
 int					ui_el_event_set_default_texture(t_ui_main *m, void *a);
 int					ui_el_event_set_focused_texture(t_ui_main *m, void *a);
 int					ui_el_event_set_active_texture(t_ui_main *m, void *a);
-///////////////////////////////////////////////////////////////////////
-int					ui_el_event_close_window(t_ui_main *m, void *a);
+void				ui_el_texture_x_w(t_ui_el *e, t_rect *srect, t_rect *tmp_rect, int w);
+void				ui_el_texture_y_h(t_ui_el *e, t_rect *srect, t_rect *tmp_rect, int h);
 
-
-///////////////////////////////////////////////////////////////////////
 #pragma endregion
 
 #pragma region		win functions
