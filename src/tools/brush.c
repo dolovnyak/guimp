@@ -35,14 +35,14 @@ int		set_brush_texture_from_el(t_ui_main *main, void *el_v)
 
 void	tool_brush(t_ui_el *el, t_guimp *g, int x, int y)
 {
-	SDL_SetRenderTarget(el->sdl_renderer,
+	ui_sdl_set_render_target(el->sdl_renderer,
 			(SDL_Texture *)(g->layers.current_layer->sdl_textures->content));
-	SDL_SetTextureColorMod(g->draw_tool.brush, g->draw_tool.r,
+	ui_sdl_set_texture_color_mode(g->draw_tool.brush, g->draw_tool.r,
 			g->draw_tool.g, g->draw_tool.b);
-	SDL_SetTextureAlphaMod(g->draw_tool.brush, g->draw_tool.a);
-	SDL_RenderCopy(el->sdl_renderer, g->draw_tool.brush, NULL,
+	ui_sdl_set_texture_alpha_mode(g->draw_tool.brush, g->draw_tool.a);
+	ui_sdl_render_copy(el->sdl_renderer, g->draw_tool.brush, NULL,
 				   &((t_rect){x - g->draw_tool.brush_size / 2,
 				  y - g->draw_tool.brush_size / 2,
 							g->draw_tool.brush_size, g->draw_tool.brush_size}));
-	SDL_SetRenderTarget(el->sdl_renderer, NULL);
+	ui_sdl_set_render_target(el->sdl_renderer, NULL);
 }

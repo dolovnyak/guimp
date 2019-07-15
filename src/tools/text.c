@@ -65,7 +65,7 @@ void	draw_text(t_guimp *g, t_vec2 s, t_vec2 e, t_ui_el *el)
 {
 	t_texture	*t;
 
-	t = SDL_CreateTextureFromSurface(g->main_win->sdl_renderer, el->sdl_surface);
-	SDL_RenderCopy(g->main_win->sdl_renderer, t, NULL, &(t_rect){s.x, s.y, e.x - s.x, e.y - s.y});
-	SDL_DestroyTexture(t);
+	t = ui_sdl_create_texture_from_surface(g->main_win->sdl_renderer, el->sdl_surface);
+	ui_sdl_render_copy(g->main_win->sdl_renderer, t, NULL, &(t_rect){s.x, s.y, e.x - s.x, e.y - s.y});
+	ui_sdl_destroy_texture(t);
 }

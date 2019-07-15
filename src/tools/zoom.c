@@ -12,34 +12,6 @@
 
 #include "guimp.h"
 
-//void	start_zoom_in(void *m, void *win)
-//{
-//	int			pt;
-//	t_guimp		*g;
-//	t_ui_win	*w;
-//
-//	g = (t_guimp *)(((t_ui_main *)m)->data);
-//	w = (t_ui_win *)win;
-//	pt = g->draw_tool.tool;
-//	g->draw_tool.tool = GM_TOOL_ZOOM;
-//	start_draw_with_selected_tool(m, ui_win_find_el_by_id(w, GM_MAIN_ID_DRAW));
-//	g->draw_tool.tool = pt;
-//}
-//
-//void	start_zoom_out(void *m, void *win)
-//{
-//	int			pt;
-//	t_guimp		*g;
-//	t_ui_win	*w;
-//
-//	g = (t_guimp *)(((t_ui_main *)m)->data);
-//	w = (t_ui_win *)win;
-//	pt = g->draw_tool.tool;
-//	g->draw_tool.tool = GM_TOOL_ZOOM;
-//	start_alt_with_selected_tool(m, ui_win_find_el_by_id(w, GM_MAIN_ID_DRAW));
-//	g->draw_tool.tool = pt;
-//}
-
 int	choose_zoom(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;

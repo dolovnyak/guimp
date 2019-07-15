@@ -68,10 +68,10 @@ void			draw_line(t_guimp *g, t_vec2 start, t_vec2 end)
 		p1.y = start.y + i * norm.y;
 		p2.x = end.x + i * norm.x;
 		p2.y = end.y + i * norm.y;
-		SDL_RenderDrawLine(g->main_win->sdl_renderer, p1.x, p1.y, p2.x, p2.y);
-		SDL_RenderDrawLine(g->main_win->sdl_renderer, p1.x, p1.y + 1, p2.x, p2.y + 1);
-		SDL_RenderDrawLine(g->main_win->sdl_renderer, p1.x + 1, p1.y, p2.x + 1, p2.y);
-		SDL_RenderDrawLine(g->main_win->sdl_renderer, p1.x, p1.y - 1, p2.x, p2.y - 1);
-		SDL_RenderDrawLine(g->main_win->sdl_renderer, p1.x - 1, p1.y, p2.x - 1, p2.y);
+		ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){p1.x, p1.y}, &(t_vec2){p2.x, p2.y});
+		ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){p1.x, p1.y + 1}, &(t_vec2){p2.x, p2.y + 1});
+		ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){p1.x + 1, p1.y}, &(t_vec2){p2.x + 1, p2.y});
+		ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){p1.x, p1.y - 1}, &(t_vec2){p2.x, p2.y - 1});
+		ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){p1.x - 1, p1.y}, &(t_vec2){p2.x - 1, p2.y});
 	}
 }

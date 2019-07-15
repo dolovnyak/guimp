@@ -75,14 +75,14 @@ void			draw_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 		d[5] = calc_el_dot(d, k + step);
 		if (d[4].y == d[5].y)
 		{
-			SDL_RenderDrawLine(g->main_win->sdl_renderer, d[4].x, d[4].y, s.x + e.x - d[4].x, d[4].y);
-			SDL_RenderDrawLine(g->main_win->sdl_renderer, d[4].x, s.y + e.y - d[4].y, s.x + e.x - d[4].x, s.y + e.y - d[4].y);
+			ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){d[4].x, d[4].y}, &(t_vec2){s.x + e.x - d[4].x, d[4].y});
+			ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){d[4].x, s.y + e.y - d[4].y}, &(t_vec2){s.x + e.x - d[4].x, s.y + e.y - d[4].y});
 		}
 		else
 			while (d[4].y != d[5].y)
 			{
-				SDL_RenderDrawLine(g->main_win->sdl_renderer, d[4].x, d[4].y, s.x + e.x - d[4].x, d[4].y);
-				SDL_RenderDrawLine(g->main_win->sdl_renderer, d[4].x, s.y + e.y - d[4].y, s.x + e.x - d[4].x, s.y + e.y - d[4].y);
+				ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){d[4].x, d[4].y}, &(t_vec2){s.x + e.x - d[4].x, d[4].y});
+				ui_sdl_render_draw_line(g->main_win->sdl_renderer, &(t_vec2){d[4].x, s.y + e.y - d[4].y}, &(t_vec2){s.x + e.x - d[4].x, s.y + e.y - d[4].y});
 				d[4].y = d[4].y > d[5].y ? d[4].y - 1 : d[4].y + 1;
 			}
 		k += step;
@@ -112,7 +112,7 @@ void			draw_empty_ellipse(t_guimp *g, t_vec2 s, t_vec2 e)
 		return ;
 	s = (t_vec2){s.x + g->draw_tool.brush_size, s.y + g->draw_tool.brush_size};
 	e = (t_vec2){e.x - g->draw_tool.brush_size, e.y - g->draw_tool.brush_size};
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 0, 0, 0, 0);
-	SDL_SetRenderDrawBlendMode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){0, 0, 0, 0});
+	ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
 	draw_ellipse(g, s, e);
 }

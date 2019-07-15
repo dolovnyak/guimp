@@ -25,7 +25,7 @@ int	choose_rect(t_ui_main *main, void *el_v)
 
 void	draw_rect(t_guimp *g, t_vec2 s, t_vec2 e)
 {
-	SDL_RenderFillRect(g->main_win->sdl_renderer, &(t_rect){
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect){
 			s.x,
 			s.y,
 			e.x - s.x,
@@ -44,21 +44,18 @@ void	draw_empty_rect(t_guimp *g, t_vec2 s, t_vec2 e)
 		draw_rect(g, s, e);
 		return ;
 	}
-	SDL_RenderFillRect(g->main_win->sdl_renderer, &(t_rect) {
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
 			px, py, g->draw_tool.brush_size, cy - py
 	});
-	SDL_RenderFillRect(g->main_win->sdl_renderer, &(t_rect) {
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
 			px, py, cx - px, g->draw_tool.brush_size
 	});
-	SDL_RenderFillRect(g->main_win->sdl_renderer, &(t_rect) {
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
 			px, cy - g->draw_tool.brush_size, cx - px,
 			g->draw_tool.brush_size
 	});
-	SDL_RenderFillRect(g->main_win->sdl_renderer, &(t_rect) {
+	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, &(t_rect) {
 			cx - g->draw_tool.brush_size, py, g->draw_tool.brush_size,
 			cy - py
 	});
-	//SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 0, 0, 0, 0);
-	//SDL_SetRenderDrawBlendMode(g->main_win->sdl_renderer, SDL_BLENDMODE_NONE);
-	//draw_rect(g, s, e);
 }

@@ -31,7 +31,7 @@
 ** 7)
 */
 
-# define DEBUG_STATUS 0
+# define DEBUG_STATUS		0
 
 # define KNRM				"\x1B[0m"
 # define KRED				"\x1B[31m"
@@ -110,6 +110,7 @@ typedef	SDL_Texture		t_texture;
 typedef	t_list			t_list_texture;
 typedef	SDL_Renderer	t_renderer;
 typedef	SDL_Color		t_color;
+typedef	SDL_Surface		t_sur;
 
 /*
 ** Smart things:
@@ -587,5 +588,18 @@ void				ui_prefab_get_pixel_size(t_ui_el *p, t_ui_el *canvas,
 
 int		ctid(t_list_texture *lst, int tid);
 void	ui_el_remove_texture_by_id(t_ui_el *el, const char *id);
+
+void	ui_sdl_set_render_target(SDL_Renderer *r, SDL_Texture *t);
+void	ui_sdl_set_texture_color_mode(SDL_Texture *t, Uint8 r, Uint8 g, Uint8 b);
+void	ui_sdl_set_texture_alpha_mode(SDL_Texture *t, Uint8 a);
+void	ui_sdl_render_copy(SDL_Renderer *r, SDL_Texture *t, SDL_Rect *r1,
+						   SDL_Rect *r2);
+void	ui_sdl_set_render_draw_color(SDL_Renderer *r, SDL_Color *c);
+void	ui_sdl_set_render_draw_blend_mode(SDL_Renderer *r, SDL_BlendMode b);
+void	ui_sdl_render_draw_line(SDL_Renderer *r, t_vec2 *v1, t_vec2 *v2);
+void	ui_sdl_render_fill_rect(SDL_Renderer *r, SDL_Rect *rect);
+void		ui_sdl_destroy_texture(SDL_Texture *t);
+SDL_Texture	*ui_sdl_create_texture_from_surface(SDL_Renderer *r, SDL_Surface *s);
+void	ui_sdl_render_clear(SDL_Renderer *r);
 
 #endif

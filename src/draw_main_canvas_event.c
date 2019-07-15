@@ -20,9 +20,9 @@ void	draw_main_canvas_event(void *el_v, void *arg)
 	arg = NULL;
 	if (arg == NULL)
 	{
-		SDL_RenderCopy(el->sdl_renderer, ui_el_get_current_texture(el),
+		ui_sdl_render_copy(el->sdl_renderer, ui_el_get_current_texture(el),
 				NULL, &el->rect);
-		SDL_RenderCopy(el->sdl_renderer,
+		ui_sdl_render_copy((el->sdl_renderer,
 				ui_el_get_texture_by_id(el, "draw_texture"), NULL, &el->rect);
 	}
 }
