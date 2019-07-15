@@ -15,4 +15,5 @@ target_sources(ui PUBLIC
         ui_jtoc_efj_helper3.c
         ui_jtoc_efj_helper2.c
         ui_jtoc_efj_helper1.c
+        ui_jtoc_pref_text_modal_win.c
         )
