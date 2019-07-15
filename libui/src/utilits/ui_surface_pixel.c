@@ -24,10 +24,10 @@ Uint32	ui_surface_get_pixel(t_sur *surface, int x, int y)
 
 void	ui_surface_set_pixel(t_sur *surface, int x, int y, Uint32 pixel)
 {
-	int bpp;
-	Uint8 *p;
+	int		bpp;
+	Uint8	*p;
 
 	bpp = surface->format->BytesPerPixel;
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x * bpp;
-	*(Uint32 *) p = pixel;
+	p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
+	*(Uint32 *)p = pixel;
 }
