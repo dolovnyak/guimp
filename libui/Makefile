@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 04:43:04 by edraugr-         ###   ########.fr        #
+#    Updated: 2019/07/15 07:30:23 by edraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,7 +181,10 @@ SRC_UI_JTOC		=	ui_jtoc_main_from_json.c \
 					ui_jtoc_el_pref_text.c \
 					ui_jtoc_el_pref_modal_win.c \
 					ui_jtoc_create_modal_ok.c \
-					ui_jtoc_utils.c
+					ui_jtoc_utils.c \
+					ui_jtoc_efj_helper3.c \
+					ui_jtoc_efj_helper2.c \
+					ui_jtoc_efj_helper1.c
 
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC_BFS:.c=.o)) \
 					$(addprefix $(OBJ_DIR)/,$(SRC_UI_CURSOR:.c=.o)) \

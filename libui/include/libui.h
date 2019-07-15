@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libui.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:09:04 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/14 16:33:03 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 08:01:39 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -517,20 +517,43 @@ int					ui_jtoc_main_from_json(t_ui_main *m, const char *p);
 
 int					ui_jtoc_win_from_json(t_ui_main *m, t_jnode *n);
 int					ui_jtoc_get_win_param_from_string(const char *str);
-t_ui_event			*ui_jtoc_win_from_json_get_event_by_name(t_ui_win *w, const char *n);
+t_ui_event			*ui_jtoc_win_from_json_get_event_by_name(t_ui_win *w,
+						const char *n);
 
 int					ui_jtoc_el_from_json(t_ui_main *m, t_ui_win *w, t_jnode *n);
-t_ui_event			*ui_jtoc_el_from_json_get_event_by_name(t_ui_el *e, const char *n);
+t_ui_event			*ui_jtoc_el_from_json_get_event_by_name(t_ui_el *e,
+						const char *n);
 int					ui_jtoc_get_el_param_from_string(const char *str);
 int					ui_jtoc_el_setup_by_type(t_ui_el *e, t_jnode *n);
 int					ui_jtoc_el_pref_text(t_ui_main *m, t_ui_el *e, t_jnode *n);
-int					ui_jtoc_el_pref_modal_win(t_ui_main *m, t_ui_el *e, t_jnode *n);
-void				ui_jtoc_create_modal_ok(t_ui_main *m, t_ui_win *w, t_ui_text *ui_text);
-void				ui_jtoc_create_modal_ok_cancel(t_ui_main *m, t_ui_win *w, t_ui_text *ui_text);
+int					ui_jtoc_el_pref_modal_win(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
+void				ui_jtoc_create_modal_ok(t_ui_main *m, t_ui_win *w,
+						t_ui_text *ui_text);
+void				ui_jtoc_create_modal_ok_cancel(t_ui_main *m, t_ui_win *w,
+						t_ui_text *ui_text);
 
 int					ui_jtoc_get_pos_size(const char *str);
 
 int					ui_jtoc_sdl_log_error(const char *p, const int id);
+
+int					ui_el_from_json_textures(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
+int					ui_parse_canvas(t_ui_main *m, t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_size(t_ui_main *m,
+						t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_texture(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
+int					ui_el_from_json_event(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
+int					ui_el_from_json_events(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
+int					ui_el_from_json_white_texture(t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_empty_texture(t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_color_texture(t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_gradient_texture(t_ui_el *e, t_jnode *n);
+int					ui_el_from_json_cursor(t_ui_main *m, t_ui_el *e,
+						t_jnode *n);
 #pragma endregion
 
 #pragma region		event functions

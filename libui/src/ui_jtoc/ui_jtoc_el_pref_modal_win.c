@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_el_pref_modal_win.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 06:56:23 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/14 16:25:47 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 07:20:59 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	get_modal_text_params(t_ui_text *ui_text, t_jnode *n)
 {
-	int     hash;
+	int		hash;
 	t_jnode *tmp;
 
 	if ((tmp = jtoc_node_get_by_path(n, "text_area.string_len")) && tmp->type == number)
@@ -111,7 +111,7 @@ static int	get_win_params(t_ui_win *w, t_jnode *n)
 		w->title = ft_strdup(jtoc_get_string(tmp));
 	else
 		return (0);
-	w->pos.x = SDL_WINDOWPOS_CENTERED; //maybe make custom, but also maybe nahui
+	w->pos.x = SDL_WINDOWPOS_CENTERED;
 	w->pos.y = SDL_WINDOWPOS_CENTERED;
 	return (type);
 }
@@ -139,7 +139,6 @@ int ui_jtoc_el_pref_modal_win(t_ui_main *m, t_ui_el *e, t_jnode *n)
 		{
 			if (ui_el_pref_text_modal_win(m, tmp, &ui_text) == FUNCTION_FAILURE)
 				return (FUNCTION_FAILURE);
-		//	ui_jtoc_create_modal_ok_cancel(m, w, &ui_text);
 		}
 		e->modal_win = w;
 		ui_event_add_listener(e->events->onPointerLeftButtonPressed, ui_el_event_show_window);
