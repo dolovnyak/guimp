@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:09:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 14:45:29 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 17:12:25 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,233 +45,6 @@ int move_windows(t_ui_main *m, void *a)
 	return (1);
 }
 
-static int	testOnPtrEnter(t_ui_main *main, void *el_v)
-{
-	(void)main;
-	t_ui_el *el = (t_ui_el *)el_v;
-	if (el->current_texture != (size_t)ft_strhash("onActive"))
-		ui_el_set_current_texture_by_id(el, "onFocus");
-	return (1);
-}
-
-static int	testOnPtrExit(t_ui_main *main, void *el_v)
-{
-	(void)main;
-	t_ui_el *el = (t_ui_el *)el_v;
-	if (el->current_texture != (size_t)ft_strhash("onActive"))
-		ui_el_set_current_texture_by_id(el, "default");
-	return (1);
-}
-
-static int	PressedLBD(t_ui_main *main, void *el_v)
-{
-	(void)main;
-	t_ui_el *el = (t_ui_el *)el_v;
-	if (el->current_texture != (size_t)ft_strhash("onActive"))
-		ui_el_set_current_texture_by_id(el, "onPressedLBM");
-	return (1);
-}
-
-static int	testOnPtrLBD(t_ui_main *main, void *el_v)
-{
-	t_list	*layer_elems;
-	t_guimp	*g;
-
-	g = (t_guimp *)(main->data);
-	t_ui_el *el = (t_ui_el *)el_v;
-	layer_elems = el->parent->children;
-	if (el->current_texture != (size_t)ft_strhash("onActive"))
-	{
-		while (layer_elems)
-		{
-			if (((t_ui_el *)layer_elems->content)->current_texture == (size_t)ft_strhash("onActive"))
-				ui_el_set_current_texture_by_id(((t_ui_el *)layer_elems->content), "default");
-			layer_elems = layer_elems->next;
-		}
-		ui_el_set_current_texture_by_id(el, "onActive");
-		g->layers.current_layer = (t_ui_el *)(el->children->content);
-	}
-	return (1);
-}
-
-static int	clear_layer(t_ui_main *main, void *el_v)
-{
-	t_texture	*t;
-	t_guimp		*g;
-
-	g = (t_guimp *)(main->data);
-	t = (t_texture *)((t_ui_el *)el_v)->data;
-	ui_sdl_set_render_target(g->main_win->sdl_renderer, t);
-	ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, NONE);
-	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){255, 255, 255, 0});
-	ui_sdl_render_fill_rect(g->main_win->sdl_renderer, NULL);
-	ui_sdl_set_render_target(g->main_win->sdl_renderer, NULL);
-	return (1);
-}
-
-static int	clear_all_layers(t_ui_main *main, void *el_v)
-{
-	t_texture	*t;
-	t_list		*l;
-	t_guimp		*g;
-
-	g = (t_guimp *)(main->data);
-	(void)el_v;
-	l = g->layers.layers;
-	while (l)
-	{
-		t = (t_texture *)l->content;
-		ui_sdl_set_render_target(g->main_win->sdl_renderer, t);
-		ui_sdl_set_render_draw_blend_mode(g->main_win->sdl_renderer, NONE);
-		ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){255, 255, 255, 0});
-		ui_sdl_render_fill_rect(g->main_win->sdl_renderer, NULL);
-		l = l->next;
-	}
-	ui_sdl_set_render_target(g->main_win->sdl_renderer, NULL);
-	return (1);
-}
-
-static int	test_add_layer(t_ui_main *m, void *el_v)
-{
-	t_ui_el		*el;
-	t_ui_el		*tmp2;
-	t_ui_el		*layer_menu;
-	t_ui_el		*tmp_el;
-	t_guimp		*g;
-
-	el = (t_ui_el *)el_v;
-	g = (t_guimp *)m->data;
-	if (gm_generator_get_surf_count() > 20)
-		return (1);
-	layer_menu = ui_win_find_el_by_id(g->main_win, GM_LAYER_ID_MENU);
-	if (!(tmp_el = ui_el_init()))
-	{
-		printf("layer malloc error in scrollable menu in layer_win\n");
-		return (1);
-	}
-	ui_el_setup_default(tmp_el);
-	ui_el_setup_default_scroll_menu_elem(tmp_el);
-	ui_el_add_child(layer_menu, tmp_el);
-	tmp_el->id = gm_generate_surf_id(ID_GENERATOR_ADD);
-	ui_el_set_new_pos(tmp_el, 0, 0,
-		(t_fvec2){0.0,
-			((t_ui_el *)layer_menu->children->content)->rrect.y + 0.25f * (float)gm_generator_get_surf_count()});// * layer_menu->crect.x / g->main_win->size.y * (float)gm_generator_get_surf_count()});
-	ui_el_set_size(tmp_el, 0, (t_fvec2){1, 0.25});
-	tmp_el->sdl_renderer = g->main_win->sdl_renderer;
-	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, tmp_el->id % 2 ? 0x88AA88 : 0x669966, "default");
-	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0xFF5050, "onActive");
-	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x5050FF, "onFocus");
-	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed, testOnPtrLBD);
-	ui_event_add_listener(tmp_el->events->on_pointer_enter, testOnPtrEnter);
-	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed, PressedLBD);
-	ui_event_add_listener(tmp_el->events->on_pointer_exit, testOnPtrExit);
-
-	if (!(el = ui_el_init()))
-	{
-		printf("layer texture malloc error in scrollable menu in layer_win\n");
-		return (1);
-	}
-	ui_el_setup_default(el);
-	ui_el_add_child(tmp_el, el);
-	ui_el_set_pos(el, 0, (t_fvec2){0.04, 0.05});
-	ui_el_set_size(el, 0, (t_fvec2){0.92, 0.782});
-	el->id = tmp_el->id * 1000;
-	el->params |= EL_IGNOR_RAYCAST | EL_IS_DEPENDENT;
-	el->sdl_renderer = g->main_win->sdl_renderer;
-	ui_el_add_empty_texture(el, GM_IMAGE_SIZE_X, GM_IMAGE_SIZE_Y, "default");
-
-	t_list	*tmp;
-	tmp = ft_lstnew(NULL, 0);
-	tmp->content = el->sdl_textures->content;
-	tmp->content_size = tmp_el->id;
-	ft_lstadd_back(&(g->layers.layers), tmp);
-
-	tmp2 = el;
-
-	if (!(el = ui_el_init()))
-	{
-		printf("layer texture malloc error in scrollable menu in layer_win\n");
-		return (1);
-	}
-
-	ui_el_setup_default(el);
-	el->params |= EL_IS_DEPENDENT;
-	ui_el_add_child(tmp_el, el);
-	ui_el_set_pos(el, 0, (t_fvec2){0.04, 0.85});
-	ui_el_set_size(el, 0, (t_fvec2){0.45, 0.1});
-	el->id = tmp_el->id * 1000 + 1;
-		ui_el_set_text(el, ui_main_get_font_by_id(m, "SansSerif"),
-				   (t_text_params){(t_color){0, 0, 0, 0}, (t_color){0, 0, 0, 0},
-								   0, TEXT_IS_REGULAR, TEXT_IS_SOLID});
-		ui_el_update_text(el, "CLEAR");
-	ui_event_add_listener(el->events->on_pointer_left_button_pressed, clear_layer);
-	el->data = ui_el_get_texture_by_id(tmp2, "default");
-	return (1);
-}
-
-static int	test_del_layer(t_ui_main *main, void *el_v)
-{
-	t_guimp	*g;
-	t_ui_el	*el;
-	t_ui_el	*next_active;
-	t_list	*tmp;
-	t_list	*prev;
-
-	g = (t_guimp *)(main->data);
-	el = g->layers.current_layer->parent;
-	(void)el_v;
-	if (gm_generator_get_surf_count() == 0 || el->id == GM_LAYER_ID_DEF_LAYER)
-		return (1);
-	if (!(next_active = ui_win_find_el_by_id(g->main_win, el->id + 1)))
-		next_active = ui_win_find_el_by_id(g->main_win, el->id - 1);
-	ui_el_set_current_texture_by_id(next_active, "onActive");
-	g->layers.current_layer = (t_ui_el *)(next_active->children->content);
-	tmp = el->parent->children;
-	prev = tmp;
-	t_list *tmp2;
-	while (tmp)
-	{
-		next_active = (t_ui_el *)(tmp->content);
-		if (next_active->id == el->id)
-		{
-			ui_el_destroy(next_active);
-			tmp2 = tmp;
-			prev->next = tmp->next;
-			free(tmp2);
-		}
-		else if (next_active->id > el->id)
-		{
-			next_active->id--;
-			ui_el_change_pos(next_active, 0, 0, (t_fvec2){0, -0.25f});
-		}
-		prev = tmp;
-		tmp = tmp->next;
-	}
-
-	tmp = g->layers.layers;
-	prev = tmp;
-	while (tmp)
-	{
-		if ((Uint32)(tmp->content_size) == el->id)
-		{
-			ui_sdl_destroy_texture(tmp->content);
-			tmp2 = tmp;
-			prev->next = tmp->next;
-			tmp = tmp->next;
-			free(tmp2);
-			continue ;
-		}
-		else if ((Uint32)(tmp->content_size) > el->id)
-			tmp->content_size--;
-		prev = tmp;
-		tmp = tmp->next;
-	}
-
-	//del el
-	//del texture
-	gm_generate_surf_id(ID_GENERATOR_DEL);
-	return (1);
-}
 
 static int	draw_canvas_renderer(t_ui_main *main, void *el_v)
 {
@@ -495,16 +268,16 @@ int		main()
 	ui_main_add_function_by_id(g_main.ui_main, start_draw_with_selected_tool, "start_draw_with_selected_tool");
 	ui_main_add_function_by_id(g_main.ui_main, start_alt_with_selected_tool, "start_alt_with_selected_tool");
 	ui_main_add_function_by_id(g_main.ui_main, move_draw_canvas_with_zoom, "move_draw_canvas_with_zoom");
-	ui_main_add_function_by_id(g_main.ui_main, testOnPtrLBD, "testOnPtrLBD");
+	ui_main_add_function_by_id(g_main.ui_main, OnPtrLBD, "testOnPtrLBD");
 	ui_main_add_function_by_id(g_main.ui_main, PressedLBD, "PressedLBD");
-	ui_main_add_function_by_id(g_main.ui_main, testOnPtrEnter, "testOnPtrEnter");
-	ui_main_add_function_by_id(g_main.ui_main, testOnPtrExit, "testOnPtrExit");
+	ui_main_add_function_by_id(g_main.ui_main, OnPtrEnter, "testOnPtrEnter");
+	ui_main_add_function_by_id(g_main.ui_main, OnPtrExit, "testOnPtrExit");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_default_texture, "ui_el_event_set_default_texture");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_focused_texture, "ui_el_event_set_focused_texture");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_active_texture, "ui_el_event_set_active_texture");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_children_set_default, "ui_el_event_children_set_default");
-	ui_main_add_function_by_id(g_main.ui_main, test_add_layer, "test_add_layer");
-	ui_main_add_function_by_id(g_main.ui_main, test_del_layer, "test_del_layer");
+	ui_main_add_function_by_id(g_main.ui_main, add_layer, "test_add_layer");
+	ui_main_add_function_by_id(g_main.ui_main, del_layer, "test_del_layer");
 	ui_main_add_function_by_id(g_main.ui_main, draw_color_rect, "draw_color_rect");
 	ui_main_add_function_by_id(g_main.ui_main, scan_tool_position, "scan_tool_position");
 
