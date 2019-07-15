@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:09:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 17:12:25 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:10:04 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,10 +268,10 @@ int		main()
 	ui_main_add_function_by_id(g_main.ui_main, start_draw_with_selected_tool, "start_draw_with_selected_tool");
 	ui_main_add_function_by_id(g_main.ui_main, start_alt_with_selected_tool, "start_alt_with_selected_tool");
 	ui_main_add_function_by_id(g_main.ui_main, move_draw_canvas_with_zoom, "move_draw_canvas_with_zoom");
-	ui_main_add_function_by_id(g_main.ui_main, OnPtrLBD, "testOnPtrLBD");
-	ui_main_add_function_by_id(g_main.ui_main, PressedLBD, "PressedLBD");
-	ui_main_add_function_by_id(g_main.ui_main, OnPtrEnter, "testOnPtrEnter");
-	ui_main_add_function_by_id(g_main.ui_main, OnPtrExit, "testOnPtrExit");
+	ui_main_add_function_by_id(g_main.ui_main, on_ptr_lbd, "testOnPtrLBD");
+	ui_main_add_function_by_id(g_main.ui_main, pressed_lbd, "PressedLBD");
+	ui_main_add_function_by_id(g_main.ui_main, on_ptr_enter, "testOnPtrEnter");
+	ui_main_add_function_by_id(g_main.ui_main, on_ptr_exit, "testOnPtrExit");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_default_texture, "ui_el_event_set_default_texture");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_focused_texture, "ui_el_event_set_focused_texture");
 	ui_main_add_function_by_id(g_main.ui_main, ui_el_event_set_active_texture, "ui_el_event_set_active_texture");

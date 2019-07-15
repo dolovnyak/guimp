@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:58:19 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 17:33:24 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:08:14 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static t_ui_el	*create_tmp_el(t_guimp *g, t_ui_el *layer_menu)
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0xFF5050, "onActive");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x5050FF, "onFocus");
 	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed,
-			OnPtrLBD);
+			on_ptr_lbd);
 	ui_event_add_listener(tmp_el->events->on_pointer_enter,
-			OnPtrEnter);
+			on_ptr_enter);
 	ui_event_add_listener(tmp_el->events->on_pointer_left_button_pressed,
-			PressedLBD);
-	ui_event_add_listener(tmp_el->events->on_pointer_exit, OnPtrExit);
+			pressed_lbd);
+	ui_event_add_listener(tmp_el->events->on_pointer_exit, on_ptr_exit);
 	return (tmp_el);
 }
 

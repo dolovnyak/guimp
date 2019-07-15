@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 17:00:42 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/15 17:01:54 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:10:52 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int			del_layer(t_ui_main *main, void *el_v)
 	t_ui_el	*el;
 	t_ui_el	*next_active;
 	t_list	*tmp;
-	t_list	*prev;
 
 	g = (t_guimp *)(main->data);
 	el = g->layers.current_layer->parent;

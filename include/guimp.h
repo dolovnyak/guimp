@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 17:12:15 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:09:24 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,8 +225,8 @@ int								del_layer(t_ui_main *main, void *el_v);
 int								clear_layer(t_ui_main *main, void *el_v);
 int								clear_all_layers(t_ui_main *main, void *el_v);
 
-int								OnPtrEnter(t_ui_main *main, void *el_v);
-int								OnPtrExit(t_ui_main *main, void *el_v);
-int								PressedLBD(t_ui_main *main, void *el_v);
-int								OnPtrLBD(t_ui_main *main, void *el_v);
+int								on_ptr_enter(t_ui_main *main, void *el_v);
+int								on_ptr_exit(t_ui_main *main, void *el_v);
+int								pressed_lbd(t_ui_main *main, void *el_v);
+int								on_ptr_lbd(t_ui_main *main, void *el_v);
 #endif
