@@ -14,6 +14,9 @@ target_sources(guimp_cmake PUBLIC
         process_tmp_layer.c
         file_managing.c
         ptrs.c
+        main_helper1.c
+        main_helper2.c
+        main_helper3.c
         )
 
 add_subdirectory(tools)
