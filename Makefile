@@ -45,7 +45,8 @@ SRC				=	main.c \
 					gm_generate_surfaces_id.c \
 					color_sliders.c \
 					get_value_from_slider.c \
-					process_tmp_layer.c
+					process_tmp_layer.c \
+					file_managing.c
 
 SRC_TOOLS		=	brush.c \
 					ellipse.c \

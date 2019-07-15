@@ -12,15 +12,22 @@
 
 #include "libui.h"
 
-void	ui_win_setup_default(t_ui_win *w)
+static void	ui_win_setup_default_logs(t_ui_win *w)
+{
+	ui_event_add_listener(w->events->onFocusLost, ui_log_window_focus_lost);
+	ui_event_add_listener(w->events->onFocusGained, ui_log_window_focus_gained);
+	ui_event_add_listener(w->events->onResize, ui_log_window_resized);
+	ui_event_add_listener(w->events->onClose, ui_log_window_closed);
+	ui_event_add_listener(w->events->onMoved, ui_log_window_moved);
+}
+
+void		ui_win_setup_default(t_ui_win *w)
 {
 	register int	i;
 
-	i = SDL_SCANCODE_A - 1;
-	while (++i <= SDL_SCANCODE_0)
+	i = -1;
+	while (++i < KEYS_COUNT)
 		ui_event_add_listener(w->events->onKeyDown[i], ui_win_event_change_text_in_focused_el);
-	ui_event_add_listener(w->events->onKeyDown[SDL_SCANCODE_SPACE], ui_win_event_change_text_in_focused_el);
-	ui_event_add_listener(w->events->onKeyDown[SDL_SCANCODE_BACKSPACE], ui_win_event_change_text_in_focused_el);
 	ui_event_add_listener(w->events->onPointerMoved, ui_main_event_pointer_moved);
 	ui_event_add_listener(w->events->onPointerLeftButtonPressed, ui_main_event_lmb_pressed);
 	ui_event_add_listener(w->events->onPointerLeftButtonReleased, ui_main_event_lmb_released);
@@ -32,12 +39,6 @@ void	ui_win_setup_default(t_ui_win *w)
 	ui_event_add_listener(w->events->onFocusLost, ui_win_event_focus_lost);
 	ui_event_add_listener(w->events->onFocusLost, ui_main_event_lmb_released);
 	ui_event_add_listener(w->events->onFocusLost, ui_main_event_rmb_released);
-
-#ifdef DEBUG_STATUS
-	ui_event_add_listener(w->events->onFocusLost, ui_log_window_focus_lost);
-	ui_event_add_listener(w->events->onFocusGained, ui_log_window_focus_gained);
-	ui_event_add_listener(w->events->onResize, ui_log_window_resized);
-	ui_event_add_listener(w->events->onClose, ui_log_window_closed);
-	ui_event_add_listener(w->events->onMoved, ui_log_window_moved);
-#endif
+	if (DEBUG_STATUS == 1)
+		ui_win_setup_default_logs(w);
 }

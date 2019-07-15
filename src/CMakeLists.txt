@@ -12,6 +12,7 @@ target_sources(guimp_cmake PUBLIC
         color_sliders.c
         get_value_from_slider.c
         process_tmp_layer.c
+        file_managing.c
         )
 
 add_subdirectory(tools)

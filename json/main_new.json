@@ -247,7 +247,7 @@
           [
             {
               "type": "color",
-              "color": "888888",
+              "color": "88AA88",
               "el_id": "default"
             },
             {
@@ -324,43 +324,19 @@
             "x": 0.45,
             "y": 0.1
           },
-          "textures":
-          [
-            {
-              "type": "color",
-              "color": "00BB00",
-              "el_id": "default"
-            }
-          ],
-          "current_texture": "default"
-        },
-        {
-          "id": 63002,
-          "parent": 63,
-          "params":
-          [
-            "EL_IS_DEPENDENT"
-          ],
-          "pos":
+          "text_area":
           {
-            "x": 0.51,
-            "y": 0.85
-          },
-          "size":
-          {
-            "x": 0.45,
-            "y": 0.1
-          },
-          "textures":
-          [
-            {
-              "type": "white",
-              "width": 1920,
-              "height": 1080,
-              "el_id": "default"
-            }
-          ],
-          "current_texture": "default"
+            "text": "CLEAR",
+            "color": "000000",
+            "bg_color": "00BB00",
+            "render_param": "TEXT_IS_BLENDED",
+            "params": [
+              "TEXT_IS_REGULAR",
+              "TEXT_IS_INPUTTING"
+            ],
+            "string_len": 5,
+            "font": "SansSerif"
+          }
         },
         {
           "id": 5,
@@ -576,14 +552,14 @@
           [
             {
               "event_name": "onPointerLeftButtonPressed",
-              "func_name": "ui_save_test"
+              "func_name": "ui_save_image"
             }
           ],
           "modal_win":
           {
             "win_id": 5,
             "type": "OK",
-            "title": "ENTER THE PATH TO FILE",
+            "title": "SAVE: ENTER THE PATH TO FILE",
             "text_area": {
               "text": "/Users",
               "color": "FFFFFF",
@@ -624,19 +600,19 @@
           [
             {
               "event_name": "onPointerLeftButtonPressed",
-              "func_name": "ui_open_test"
+              "func_name": "ui_open_image"
             }
           ],
           "modal_win":
           {
             "win_id": 4,
             "type": "OK",
-            "title": "OPEN FILE",
+            "title": "OPEN: ENTER THE PATH TO FILE",
             "text_area": {
-              "text": "Enter the path to file:",
+              "text": "/Users",
               "color": "FFFFFF",
               "bg_color": "FF0000",
-              "render_param": "TEXT_IS_SHADED",
+              "render_param": "TEXT_IS_SOLID",
               "params":
               [
                 "TEXT_IS_CENTERED"
@@ -4672,7 +4648,7 @@
               "TEXT_IS_REGULAR",
               "TEXT_IS_INPUTTING"
             ],
-            "string_len": 0,
+            "string_len": 15,
             "font": "SansSerif"
           },
           "events":

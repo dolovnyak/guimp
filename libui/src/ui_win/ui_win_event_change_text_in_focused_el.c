@@ -22,16 +22,15 @@ static char	*circumcision(t_ui_el *el)
 	return (str);
 }
 
-static char	*join_with_letter(t_ui_el *el, unsigned int keycode)
+static char	*join_with_letter(t_ui_el *el, unsigned int keycode, Uint8 is_upper)
 {
 	char	*str;
 	char	*str_letter;
 
 	str_letter = ft_strnew(1);
-//	if (el->text_area->params & TEXT_IS_BIG)
-//		str_letter[0] = (char)(keycode + 64);
-//	else
 	str_letter[0] = (char)(keycode + 93);
+	if (is_upper)
+		str_letter[0] = ft_toupper(str_letter[0]);
 	if (el->text_area->text == NULL)
 		return (str_letter);
 	str = ft_strjoin(el->text_area->text, str_letter);
@@ -59,8 +58,10 @@ static char	*join_with_other(t_ui_el *el, unsigned int keycode)
 	char	*str;
 
 	str_letter = ft_strnew(1);
-	if (keycode == SDL_SCANCODE_SLASH)
+	if (keycode == 56)
 		str_letter[0] = '/';
+	if (keycode == 55)
+		str_letter[0] = '.';
 	if (el->text_area->text == NULL)
 		return (str_letter);
 	str = ft_strjoin(el->text_area->text, str_letter);
@@ -80,19 +81,17 @@ int	ui_win_event_change_text_in_focused_el(t_ui_main *m, void *a)
 		return (1);
 	if (m->cur_keycode >= SDL_SCANCODE_A && m->cur_keycode <= SDL_SCANCODE_Z)
 	{
-		new_text = join_with_letter(el, m->cur_keycode);
+		new_text = join_with_letter(el, m->cur_keycode, m->is_upper);
 		ui_el_update_text(el, new_text);
 		if (new_text != NULL)
 			free(new_text);
-		new_text = NULL;
 	}
-	else if (m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9)
+	else if (m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9 || m->cur_keycode == SDL_SCANCODE_0)
 	{
 		new_text = join_with_number(el, m->cur_keycode);
 		ui_el_update_text(el, new_text);
 		if (new_text != NULL)
 			free(new_text);
-		new_text = NULL;
 	}
 	else if (m->cur_keycode == SDL_SCANCODE_BACKSPACE)
 	{
@@ -100,16 +99,13 @@ int	ui_win_event_change_text_in_focused_el(t_ui_main *m, void *a)
 		ui_el_update_text(el, new_text);
 		if (new_text != NULL)
 			free(new_text);
-		new_text = NULL;
 	}
-	else if (m->cur_keycode == SDL_SCANCODE_SLASH)
+	else if (m->cur_keycode == 55 || m->cur_keycode == 56)
 	{
 		new_text = join_with_other(el, m->cur_keycode);
 		ui_el_update_text(el, new_text);
 		if (new_text != NULL)
 			free(new_text);
-		new_text = NULL;
 	}
-	SDL_Log("%s\n", el->text_area->text);
 	return (1);
 }

@@ -156,7 +156,7 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 			((t_ui_el *)layer_menu->children->content)->rrect.y + 0.25f * (float)gm_generator_get_surf_count()});// * layer_menu->crect.x / g->main_win->size.y * (float)gm_generator_get_surf_count()});
 	ui_el_set_size(tmp_el, 0, (t_fvec2){1, 0.25});
 	tmp_el->sdl_renderer = g->main_win->sdl_renderer;
-	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x888888, "default");
+	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, tmp_el->id % 2 ? 0x88AA88 : 0x669966, "default");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0xFF5050, "onActive");
 	ui_el_add_color_texture(tmp_el, (t_vec2){1704, 800}, 0x5050FF, "onFocus");
 	ui_event_add_listener(tmp_el->events->onPointerLeftButtonPressed, testOnPtrLBD);
@@ -198,25 +198,12 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 	ui_el_set_pos(el, 0, (t_fvec2){0.04, 0.85});
 	ui_el_set_size(el, 0, (t_fvec2){0.45, 0.1});
 	el->id = tmp_el->id * 1000 + 1;
-	ui_el_add_color_texture(el, (t_vec2){GM_IMAGE_SIZE_X, GM_IMAGE_SIZE_Y}, 0x00FF00, "default");
+		ui_el_set_text(el, ui_main_get_font_by_id(m, "SansSerif"),
+				   (t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){0, 0, 0, 0},
+								   0, TEXT_IS_REGULAR, TEXT_IS_SOLID});
+		ui_el_update_text(el, "CLEAR");
 	ui_event_add_listener(el->events->onPointerLeftButtonPressed, clear_layer);
 	el->data = ui_el_get_texture_by_id(tmp2, "default");
-
-	if (!(el = ui_el_init()))
-	{
-		printf("layer texture malloc error in scrollable menu in layer_win\n");
-		return (1);
-	}
-
-	ui_el_setup_default(el);
-	el->params |= EL_IS_DEPENDENT;
-	ui_el_add_child(tmp_el, el);
-	ui_el_set_pos(el, 0, (t_fvec2){0.51, 0.85});
-	ui_el_set_size(el, 0, (t_fvec2){0.45, 0.1});
-	el->id = tmp_el->id * 1000 + 2;
-	ui_el_add_white_texture(el, GM_IMAGE_SIZE_X, GM_IMAGE_SIZE_Y, "default");
-	el->data = ui_el_get_texture_by_id(tmp2, "default");
-	ui_event_add_listener(el->events->onPointerLeftButtonPressed, clear_layer);
 	return (1);
 }
 
@@ -281,28 +268,6 @@ static int	test_del_layer(t_ui_main *main, void *el_v)
 	//del el
 	//del texture
 	gm_generate_surf_id(ID_GENERATOR_DEL);
-	return (1);
-}
-
-static int	ui_save_test(t_ui_main *main, void *el_v)
-{
-	t_guimp		*g;
-	t_texture	*t;
-
-	g = (t_guimp *)(main->data);
-	(void)el_v;
-	t = ui_main_merge_layers(g->main_win->sdl_renderer, g->layers.layers);
-	ui_main_save_texture(g->main_win, t, "/Users/sbednar/Desktop/test.jpg", IMG_TYPE_JPG);
-	return (1);
-}
-
-static int	ui_open_test(t_ui_main *main, void *el_v)
-{
-	t_guimp		*g;
-
-	g = (t_guimp *)(((t_ui_main *)main)->data);
-	(void)el_v;
-	ui_main_open_texture(g->main_win->sdl_renderer, g->layers.current_layer, "/Users/sbednar/Desktop/test.png");
 	return (1);
 }
 
@@ -429,31 +394,6 @@ static int	start_alt_with_selected_tool(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-//static void	choose_color(void *main, void *el_v)
-//{
-//	t_guimp	*g;
-//	t_ui_el	*el;
-//	t_ui_el	*chil;
-//	int		res;
-//	int		max;
-//
-//	g = (t_guimp *)(((t_ui_main *)main)->data);
-//	el = (t_ui_el *)el_v;
-//	chil = ((t_ui_el *)el->children->content);
-//	max = (el->id == GM_TOOL_ID_SL_HEAD_SZ) ? GM_BRUSH_MAX_SIZE : 255;
-//	res = el->ptr_rel_pos.x - chil->rect.w / 2;
-//	ui_el_set_new_pos(chil, 0, PIXEL, (t_fvec2){res, 0});
-//	res = ((float)(el->ptr_rel_pos.x) / (float)el->rect.w) * (float)max;
-//	if (chil->id == GM_TOOL_ID_SL_HEAD_RED)
-//		g->draw_tool.r = res;
-//	else if (chil->id == GM_TOOL_ID_SL_HEAD_GR)
-//		g->draw_tool.g = res;
-//	else if (chil->id == GM_TOOL_ID_SL_HEAD_BL)
-//		g->draw_tool.b = res;
-//	else if (chil->id == GM_TOOL_ID_SL_HEAD_SZ)
-//		g->draw_tool.brush_size = res;
-//}
-
 static int	move_draw_canvas_with_zoom(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
@@ -570,8 +510,8 @@ int		main()
 	ui_main_add_function_by_id(g_main.ui_main, switch_fill_mode, "switch_fill_mode");
 
 
-	ui_main_add_function_by_id(g_main.ui_main, ui_save_test, "ui_save_test");
-	ui_main_add_function_by_id(g_main.ui_main, ui_open_test, "ui_open_test");
+	ui_main_add_function_by_id(g_main.ui_main, ui_save_image, "ui_save_image");
+	ui_main_add_function_by_id(g_main.ui_main, ui_open_image, "ui_open_image");
 	ui_main_add_function_by_id(g_main.ui_main, start_draw_with_selected_tool_pointer_up, "start_draw_with_selected_tool_pointer_up");
 	ui_main_fill_default_fonts(g_main.ui_main);
 	ui_main_set_font_params(g_main.ui_main, "Neco", (t_font_params){0, 0, 1, 0});
@@ -645,6 +585,14 @@ int		main()
 	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1100);
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
+
+	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
+	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 5);
+	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_save_image);
+
+	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 2);
+	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 4), 5);
+	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_open_image);
 
 //	t_ui_win *w = ui_main_find_window_by_id(g_main.ui_main, 4);
 //	t_ui_el *el = ui_el_init();

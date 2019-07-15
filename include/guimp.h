@@ -61,7 +61,7 @@
 # define GM_IMAGE_SIZE_X		1920
 # define GM_IMAGE_SIZE_Y		1080
 
-# define GM_BRUSH_MAX_SIZE		300
+# define GM_BRUSH_MAX_SIZE		400
 # define GM_BRUSH_DEF_SIZE		10
 # define GM_ZOOM_MAX_SIZE		32
 # define GM_ZOOM_MOVE_ZONE		0.3
@@ -110,7 +110,7 @@ typedef struct					s_draw_tool
 	Uint8						tool;
 	SDL_Texture					*brush;
 	Uint8						tool_mode;
-	Uint8						brush_size;
+	Uint32						brush_size;
 	Uint8						r;
 	Uint8						g;
 	Uint8						b;
@@ -205,5 +205,8 @@ void							process_tmp_layer(t_guimp *g);
 int								switch_fill_mode(t_ui_main *main, void *el_v);
 
 int								set_brush_texture_from_el(t_ui_main *main, void *el_v);
+
+int								ui_save_image(t_ui_main *main, void *el_v);
+int								ui_open_image(t_ui_main *main, void *el_v);
 
 #endif
