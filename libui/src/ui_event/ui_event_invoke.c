@@ -14,15 +14,15 @@
 
 void	ui_event_invoke(t_ui_event *e, t_ui_main *m, void *a)
 {
-	t_list			*node;
-	pred_ptr_event	f;
+	t_list				*node;
+	t_pred_ptr_event	f;
 
 	if (!e)
 		return ;
 	node = e->events;
 	while (node)
 	{
-		f = (pred_ptr_event)(*((long *)node->content));
+		f = (t_pred_ptr_event)(*((long *)node->content));
 		if (!((*f)(m, a)))
 			return ;
 		node = node->next;

@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-static t_ui_event *check_mousewheel(t_ui_main *m, t_ui_win *win)
+static t_ui_event	*check_mousewheel(t_ui_main *m, t_ui_win *win)
 {
 	t_ui_event	*event;
 
@@ -24,7 +24,7 @@ static t_ui_event *check_mousewheel(t_ui_main *m, t_ui_win *win)
 	return (event);
 }
 
-void		ui_main_handle_mouse_event(t_ui_main *m)
+void				ui_main_handle_mouse_event(t_ui_main *m)
 {
 	t_ui_win	*win;
 	t_ui_event	*event;

@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-int	ui_event_add_listener(t_ui_event *e, pred_ptr_event f)
+int	ui_event_add_listener(t_ui_event *e, t_pred_ptr_event f)
 {
 	t_list	*node;
 	long	ptr;

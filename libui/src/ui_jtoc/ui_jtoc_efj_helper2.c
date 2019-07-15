@@ -80,11 +80,11 @@ t_ui_event	*ui_jtoc_el_from_json_get_event_by_name(t_ui_el *e, const char *n)
 
 int			ui_el_from_json_event(t_ui_main *m, t_ui_el *e, t_jnode *n)
 {
-	char			*event_name;
-	char			*f_n;
-	t_ui_event		*ev;
-	pred_ptr_event	f;
-	t_jnode			*tmp;
+	char				*event_name;
+	char				*f_n;
+	t_ui_event			*ev;
+	t_pred_ptr_event	f;
+	t_jnode				*tmp;
 
 	if (n->type != object ||
 		!(tmp = jtoc_node_get_by_path(n, "event_name")) ||

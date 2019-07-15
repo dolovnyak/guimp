@@ -12,7 +12,7 @@
 
 #include "libui.h"
 
-static void	*bfs(t_ui_main *m, const t_list *root, pred_ptr p)
+static void	*bfs(t_ui_main *m, const t_list *root, t_pred_ptr p)
 {
 	t_queue	*q;
 	void	*tmp;
@@ -36,7 +36,7 @@ static void	*bfs(t_ui_main *m, const t_list *root, pred_ptr p)
 	return (res);
 }
 
-t_ui_el		*bfs_for_raycast(t_ui_main *m, const t_ui_el *root, pred_ptr p)
+t_ui_el		*bfs_for_raycast(t_ui_main *m, const t_ui_el *root, t_pred_ptr p)
 {
 	t_list	*lst;
 	t_ui_el	*res;

@@ -13,7 +13,7 @@
 #include "libui.h"
 
 int	ui_main_add_function_by_id(t_ui_main *m,
-		pred_ptr_event f, const char *func_id)
+		t_pred_ptr_event f, const char *func_id)
 {
 	long		ptr;
 	t_list		*node;

@@ -73,6 +73,7 @@ static void		process(t_ui_el *el, t_ui_main *m, t_ui_el *tmp_el)
 	tmp2 = el;
 	el = ui_el_init();
 	ui_el_setup_default(el);
+	ui_el_setup_default_scroll_menu_elem(el);
 	el->params |= EL_IS_DEPENDENT;
 	ui_el_add_child(tmp_el, el);
 	ui_el_set_pos(el, 0, (t_fvec2){0.04, 0.85});

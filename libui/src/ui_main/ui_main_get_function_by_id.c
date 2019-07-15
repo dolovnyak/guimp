@@ -12,11 +12,12 @@
 
 #include "libui.h"
 
-pred_ptr_event	ui_main_get_function_by_id(t_ui_main *m, const char *func_id)
+t_pred_ptr_event	ui_main_get_function_by_id(t_ui_main *m,
+		const char *func_id)
 {
-	pred_ptr_event	res;
-	t_list			*tmp;
-	int				hash;
+	t_pred_ptr_event	res;
+	t_list				*tmp;
+	int					hash;
 
 	res = NULL;
 	tmp = m->functions;
@@ -24,7 +25,7 @@ pred_ptr_event	ui_main_get_function_by_id(t_ui_main *m, const char *func_id)
 	while (tmp && !res)
 	{
 		if (tmp->content_size == (size_t)hash)
-			res = (pred_ptr_event)(*((long *)tmp->content));
+			res = (t_pred_ptr_event)(*((long *)tmp->content));
 		tmp = tmp->next;
 	}
 	return (res);

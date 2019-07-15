@@ -56,7 +56,7 @@ int			ui_jtoc_el_pref_modal_win(t_ui_main *m, t_ui_el *e, t_jnode *n)
 		if (type == 1)
 			ui_jtoc_create_modal_ok(m, w, &ui_text);
 		else if (type == 2)
-			ui_jtoc_create_modal_ok_cancel(m, w, &ui_text);  //TODO NO WINDOW
+			ui_jtoc_create_modal_ok_cancel(m, w, &ui_text);
 		e->modal_win = w;
 		ui_event_add_listener(e->events->on_pointer_left_button_pressed,
 				ui_el_event_show_window);

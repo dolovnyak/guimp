@@ -14,11 +14,11 @@
 
 static int	ui_win_from_json_events(t_ui_main *m, t_ui_win *w, t_jnode *n)
 {
-	char			*event_name;
-	char			*func_name;
-	t_ui_event		*e;
-	pred_ptr_event	f;
-	t_jnode			*tmp;
+	char				*event_name;
+	char				*func_name;
+	t_ui_event			*e;
+	t_pred_ptr_event	f;
+	t_jnode				*tmp;
 
 	n = n->down;
 	while (n)

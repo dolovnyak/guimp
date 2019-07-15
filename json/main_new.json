@@ -342,6 +342,10 @@
         {
           "id": 63001,
           "parent": 63,
+          "type":
+          [
+            "SCROLL_MENU_ELEM"
+          ],
           "params":
           [
             "EL_IS_DEPENDENT"

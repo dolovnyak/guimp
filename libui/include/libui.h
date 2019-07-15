@@ -106,8 +106,8 @@
 
 # define WIN_CENTER			SDL_WINDOWPOS_CENTERED
 
-typedef	void				(*func_ptr)(void *, void *);
-typedef	int					(*pred_ptr)(void *, void *);
+typedef	void				(*t_func_ptr)(void *, void *);
+typedef	int					(*t_pred_ptr)(void *, void *);
 typedef	t_list				t_queue;
 typedef	SDL_Rect			t_rect;
 typedef	SDL_Texture			t_texture;
@@ -122,11 +122,6 @@ typedef	SDL_Surface			t_sur;
 ** ...To be continued...
 */
 
-# pragma GCC diagnostic push
-# pragma GCC diagnostic ignored "-Wunknown-pragmas"
-
-# pragma region		t_frect
-
 typedef struct				s_frect
 {
 	float					x;
@@ -135,19 +130,10 @@ typedef struct				s_frect
 	float					h;
 }							t_frect;
 
-# pragma endregion
-# pragma region		t_ui_event
-
 typedef struct				s_ui_event
 {
 	t_list					*events;
 }							t_ui_event;
-
-# pragma endregion
-# pragma region		t_ui_el_events
-
-# pragma endregion
-# pragma region		t_ui_el
 
 typedef struct				s_ui_text
 {
@@ -207,9 +193,6 @@ typedef struct				s_cursor
 	int						hot_y;
 }							t_cursor;
 
-# pragma endregion
-# pragma region		t_ui_win_events
-
 typedef struct				s_ui_win_events
 {
 	t_ui_event				*on_pointer_moved;
@@ -229,9 +212,6 @@ typedef struct				s_ui_win_events
 	t_ui_event				**on_key_down;
 	t_ui_event				**on_key_up;
 }							t_ui_win_events;
-
-# pragma endregion
-# pragma region		t_ui_win
 
 typedef struct				s_ui_win
 {
@@ -271,8 +251,6 @@ typedef struct				s_ui_main
 	t_vec2					ptr_pos;
 }							t_ui_main;
 
-# pragma endregion
-
 typedef struct				s_scroll_m_pref
 {
 	int						type_pos;
@@ -311,13 +289,10 @@ typedef struct				s_text_params
 	int						render_param;
 }							t_text_params;
 
-typedef	int					(*pred_ptr_event)(t_ui_main *, void *);
+typedef	int					(*t_pred_ptr_event)(t_ui_main *, void *);
 
-# pragma region		raycast functions
 t_ui_el						*ui_raycast(t_ui_main *m, t_ui_win *w);
-# pragma endregion
 
-# pragma region		main functions
 void						ui_main_run_program(t_ui_main *m);
 t_ui_main					*ui_main_init(void);
 void						ui_main_loop(t_ui_main *m);
@@ -348,7 +323,7 @@ int							ui_main_add_surface_by_path(t_ui_main *m,
 		const char *path, const char *sur_id);
 int							ui_main_add_window(t_ui_main *m, t_ui_win *w);
 int							ui_main_add_function_by_id(t_ui_main *m,
-		pred_ptr_event f, const char *func_id);
+		t_pred_ptr_event f, const char *func_id);
 
 t_ui_win					*ui_main_find_window_by_sdl_id(t_ui_main *m,
 		Uint32 window_id);
@@ -359,7 +334,7 @@ TTF_Font					*ui_main_get_font_by_id(t_ui_main *m,
 		const char *font_id);
 SDL_Surface					*ui_main_get_surface_by_id(t_ui_main *m,
 		const char *sur_id);
-pred_ptr_event				ui_main_get_function_by_id(t_ui_main *m,
+t_pred_ptr_event			ui_main_get_function_by_id(t_ui_main *m,
 		const char *func_id);
 
 void						ui_main_fill_default_surfaces(t_ui_main *m);
@@ -374,9 +349,7 @@ int							ui_main_set_font_params(t_ui_main *m,
 		const char *font_id, t_font_params params);
 
 SDL_Texture					*ui_main_merge_layers(SDL_Renderer *r, t_list *l);
-# pragma endregion
 
-# pragma region		log functions
 int							ui_log_mouse_motion(t_ui_main *m, void *a);
 int							ui_log_mouse_button_up(t_ui_main *m, void *a);
 int							ui_log_mouse_button_down(t_ui_main *m, void *a);
@@ -408,35 +381,29 @@ int							ui_log_el_right_button_hold(t_ui_main *m, void *a);
 
 int							ui_log_key_pressed(t_ui_main *m, void *a);
 int							ui_log_key_released(t_ui_main *m, void *a);
-# pragma endregion
 
-# pragma region		bfs functions
 void						q_push(t_queue **q, t_list *el);
 void						*q_pop(t_queue **q);
 
-void						bfs_iter(const t_list *root, const func_ptr f,
+void						bfs_iter(const t_list *root, const t_func_ptr f,
 		const void *arg);
-void						bfs_iter_root(const t_ui_el *root, const func_ptr f,
-		const void *arg);
+void						bfs_iter_root(const t_ui_el *root,
+		const t_func_ptr f, const void *arg);
 
 void						bfs_for_resize(const t_ui_el *root, t_ui_main *m);
 void						bfs_for_draw(t_ui_main *m, const t_ui_el *root);
 t_ui_el						*bfs_for_raycast(t_ui_main *m, const t_ui_el *root,
-		pred_ptr p);
+		t_pred_ptr p);
 t_ui_el						*bfs_for_find_el_by_id(const t_ui_el *root,
 		Uint32 id);
-# pragma endregion
 
-# pragma region		draw functions
 void						ui_draw(t_ui_main *m);
 void						ui_draw_window(t_ui_main *m, t_ui_win *w);
 void						ui_draw_windows(t_ui_main *m);
 void						ui_clear_windows(t_ui_main *m);
 void						ui_show_window(t_ui_win *w);
 void						ui_show_windows(t_ui_main *m);
-# pragma endregion
 
-# pragma region		elem functions
 t_ui_el						*ui_el_init(void);
 int							ui_el_add_child(t_ui_el *el, t_ui_el *child);
 
@@ -532,9 +499,6 @@ void						ui_el_texture_x_w(t_ui_el *e, t_rect *srect,
 void						ui_el_texture_y_h(t_ui_el *e, t_rect *srect,
 		t_rect *tmp_rect, int h);
 
-# pragma endregion
-
-# pragma region		win functions
 t_ui_win					*ui_win_init(void);
 void						ui_win_create(t_ui_win *w, int params);
 void						ui_win_setup_default(t_ui_win *w);
@@ -547,14 +511,10 @@ int							ui_win_event_change_text_in_focused_el(t_ui_main *m,
 		void *a);
 int							ui_win_event_focus_lost(t_ui_main *m, void *a);
 int							ui_win_event_focus_gained(t_ui_main *m, void *a);
-# pragma endregion
 
-# pragma region		sdl functions
 int							ui_sdl_init(void);
 void						ui_sdl_deinit(int exit_status);
-# pragma endregion
 
-# pragma region		json functions
 int							ui_jtoc_main_from_json(t_ui_main *m, const char *p);
 
 int							ui_jtoc_win_from_json(t_ui_main *m, t_jnode *n);
@@ -608,17 +568,15 @@ int							ui_el_from_json_gradient_texture(t_ui_el *e,
 		t_jnode *n);
 int							ui_el_from_json_cursor(t_ui_main *m, t_ui_el *e,
 						t_jnode *n);
-# pragma endregion
 
-# pragma region		event functions
 t_ui_event					*ui_event_init(void);
 t_ui_el_events				*ui_event_el_events_init(void);
 t_ui_win_events				*ui_event_win_events_init(void);
 
 int							ui_event_add_listener(t_ui_event *e,
-		pred_ptr_event f);
+		t_pred_ptr_event f);
 int							ui_event_add_listener_front(t_ui_event *e,
-		pred_ptr_event f);
+		t_pred_ptr_event f);
 
 void						ui_event_invoke(t_ui_event *e, t_ui_main *m,
 		void *a);
@@ -627,9 +585,7 @@ void						ui_event_clear(t_ui_event *e);
 void						ui_event_destroy(t_ui_event *e);
 void						ui_event_win_events_destroy(t_ui_win_events *we);
 void						ui_event_el_events_destroy(t_ui_el_events *ee);
-# pragma endregion
 
-# pragma region		utilits functions
 t_rect						ui_util_get_rect_from_frect(t_frect frect);
 SDL_Color					ui_util_get_sdl_color(int color);
 Uint32						ui_util_get_pixel_color_from_texture(
@@ -639,27 +595,21 @@ Uint32						ui_util_get_pixel_color_from_el(
 void						ui_util_set_pixel_color_to_texture_replace(
 		SDL_Renderer *renderer, SDL_Texture *texture,
 		t_vec2 coord, SDL_Color color);
-# pragma endregion
 
-# pragma region		curcos functions
 t_cursor					*ui_cursor_init(void);
 
 void						ui_cursor_to_default(t_ui_main *m, void *a);
 
 int							ui_cursor_from_el_data(t_ui_main *m, void *a);
 void						ui_cursor_from(t_cursor *c);
-# pragma endregion
 
-# pragma region		file functions
 int							ui_file_parse_path(char **res);
 int							ui_file_find_last_slash(const char *str);
 int							ui_file_open_file_dialog(char **res);
 int							ui_file_save_file_dialog(char **res);
-# pragma endregion
 
-# pragma region		prefabs
 /*
-** IT'S HUITA, BUT NOT DEL, COULD BE USEFUL FOR CREATE JSON PREFAB
+** IT'S PUITA, BUT NOT DEL, COULD BE USEFUL FOR CREATE JSON PREFAB
 */
 void						ui_prefab_scroll_menu(t_ui_main *m, t_ui_el *canvas,
 		t_ui_el *scroll_menu, t_scroll_m_pref *scroll_data);
@@ -667,7 +617,6 @@ void						ui_prefab_get_pixel_pos(t_ui_el *p, t_ui_el *canvas,
 		int type, t_fvec2 *pos);
 void						ui_prefab_get_pixel_size(t_ui_el *p,
 		t_ui_el *canvas, int type, t_fvec2 *size);
-# pragma endregion
 
 /*
 ** TODO normal names, pack on groups
