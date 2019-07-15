@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_el_set_new_pos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 21:13:32 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/13 05:54:42 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 04:06:13 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void		ui_el_set_new_pos(t_ui_el *el, t_ui_el *canvas, int type, t_fvec2 v)
 				(int)roundf((float)canvas->rect.h * v.y));
 	else if ((type & PIXEL))
 		set_rect(el, (int)roundf((float)el->parent->rect.x + v.x),
-				 (int)roundf((float)el->parent->rect.y + v.y));
+				(int)roundf((float)el->parent->rect.y + v.y));
 	else
 		set_rect(el, (int)roundf((float)el->parent->rect.x +
 		(float)el->parent->rect.w * v.x),
-				 (int)roundf((float)el->parent->rect.y +
-				 (float)el->parent->rect.h * v.y));
+				(int)roundf((float)el->parent->rect.y +
+				(float)el->parent->rect.h * v.y));
 	el->rrect.x = (float)(el->rect.x - el->parent->rect.x) /
 			(float)el->parent->rect.w;
 	el->rrect.y = (float)(el->rect.y - el->parent->rect.y) /

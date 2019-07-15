@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_el_update_text.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 05:38:20 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/10 04:46:35 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 04:06:56 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ static int	get_surface_from_text(t_ui_el *el)
 						el->text_area->text, el->text_area->text_color)))
 			return (FUNCTION_FAILURE);
 	}
-	else if ((el->text_area->render_param & TEXT_IS_BLENDED) || el->text_area->render_param == 0)
+	else if ((el->text_area->render_param & TEXT_IS_BLENDED)
+		|| el->text_area->render_param == 0)
 	{
 		if (!(el->sdl_surface = TTF_RenderText_Blended(el->text_area->font,
 						el->text_area->text, el->text_area->text_color)))
 			return (FUNCTION_FAILURE);
 	}
-	else
-	{
-		if (!(el->sdl_surface = TTF_RenderText_Shaded(el->text_area->font,
-			el->text_area->text, el->text_area->text_color, el->text_area->bg_color)))
-			return (FUNCTION_FAILURE);
-	}
+	else if (!(el->sdl_surface = TTF_RenderText_Shaded(el->text_area->font,
+		el->text_area->text, el->text_area->text_color, el->text_area->bg_color)))
+		return (FUNCTION_FAILURE);
 	return (FUNCTION_SUCCESS);
 }
 
@@ -46,16 +44,6 @@ static void	clear_el_text(t_ui_el *el)
 		free(el->text_area->text);
 	el->text_area->text = NULL;
 }
-
-//void	free_sdl_texture(void *v_texture, size_t hash)
-//{
-//	SDL_Texture *texture;
-//
-//	texture = (SDL_Texture *)v_texture;
-//	hash = 0;
-//	if (texture)
-//		SDL_DestroyTexture(texture);
-//}
 
 int	ui_el_update_text(t_ui_el *el, const char *text)
 {

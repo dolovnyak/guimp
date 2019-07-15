@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_el_event_default_draw.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 04:32:52 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/13 09:29:05 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 04:08:28 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	get_texture_x_and_width(t_ui_el *el, t_rect *srect,
 	}
 }
 
-static void	get_texture_y_and_height(t_ui_el *el, t_rect *srect, t_rect *tmp_rect, int height)
+static void	get_texture_y_and_height(t_ui_el *el, t_rect *srect,
+				t_rect *tmp_rect, int height)
 {
 	if (el->rect.y < el->parent->crect.y &&
 			el->rect.y + el->rect.h > el->parent->crect.y + el->parent->crect.h)

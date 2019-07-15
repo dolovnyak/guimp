@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_el_setup_default_scroll_menu.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbednar <sbednar@student.fr.42>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 01:15:33 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/12 10:46:21 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 04:02:51 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ui_el_setup_default_scroll_menu_logs(t_ui_el *el)
 	ui_event_add_listener(el->events->onScrollUp, ui_log_el_scroll_up);
 }
 
-void	ui_el_setup_default_scroll_menu(t_ui_el *el)
+void		ui_el_setup_default_scroll_menu(t_ui_el *el)
 {
 	el->params |= EL_IS_SCROLLABLE;
 	ui_event_add_listener(el->events->onScrollUp, ui_el_event_scroll_menu_up);

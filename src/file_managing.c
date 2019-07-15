@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_managing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 05:38:20 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/10 04:46:35 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 03:41:23 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	get_image_type(const char *p)
 		return (IMG_TYPE_JPG);
 	if (!ft_strcmp(&p[l - 4], ".png"))
 		return (IMG_TYPE_PNG);
+	return (-1);
 }
 
 int	ui_save_image(t_ui_main *main, void *el_v)

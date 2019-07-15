@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_jtoc_el_pref_text.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 06:55:50 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/12 06:56:13 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 04:39:04 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 static int	get_font_color(t_ui_main *m, t_ui_el *e, t_jnode *n)
 {
-	t_jnode	*tmp;
-	int		color;
+	t_jnode	*t;
+	int		c;
 
-	if ((tmp = jtoc_node_get_by_path(n, "text_area.font")) && tmp->type == string)
+	if ((t = jtoc_node_get_by_path(n, "text_area.font")) && t->type == string)
 	{
-		if (!(e->text_area->font = ui_main_get_font_by_id(m, jtoc_get_string(tmp))))
+		if (!(e->text_area->font = ui_main_get_font_by_id(m, jtoc_get_string(t))))
 			ui_sdl_deinit(228);
 	}
 	else
 		ui_sdl_deinit(228);
-	if ((tmp = jtoc_node_get_by_path(n, "text_area.color")) && tmp->type == string)
+	if ((t = jtoc_node_get_by_path(n, "text_area.color")) && t->type == string)
 	{
-		color = ft_atoi_base(jtoc_get_string(tmp), 16);
-		e->text_area->text_color = (SDL_Color){(Uint8)((color & 0xFF0000) >> 16),
-			(Uint8)((color & 0x00FF00) >> 8), (Uint8)(color & 0x0000FF), 255};
+		c = ft_atoi_base(jtoc_get_string(t), 16);
+		e->text_area->text_color = (SDL_Color){(Uint8)((c & 0xFF0000) >> 16),
+			(Uint8)((c & 0x00FF00) >> 8), (Uint8)(c & 0x0000FF), 255};
 	}
 	else
 		ui_sdl_deinit(228);
-	if ((tmp = jtoc_node_get_by_path(n, "text_area.bg_color")) && tmp->type == string)
+	if ((t = jtoc_node_get_by_path(n, "text_area.bg_color")) && t->type == string)
 	{
-		color = ft_atoi_base(jtoc_get_string(tmp), 16);
-		e->text_area->bg_color = (SDL_Color){(Uint8)((color & 0xFF0000) >> 16),
-			(Uint8)((color & 0x00FF00) >> 8), (Uint8)(color & 0x0000FF), 255};
+		c = ft_atoi_base(jtoc_get_string(t), 16);
+		e->text_area->bg_color = (SDL_Color){(Uint8)((c & 0xFF0000) >> 16),
+			(Uint8)((c & 0x00FF00) >> 8), (Uint8)(c & 0x0000FF), 255};
 	}
 	return (FUNCTION_SUCCESS);
 }
@@ -74,7 +74,7 @@ static int	get_text_params(t_ui_el *e, t_jnode *n)
 	return (FUNCTION_SUCCESS);
 }
 
-int ui_jtoc_el_pref_text(t_ui_main *m, t_ui_el *e, t_jnode *n)
+int			ui_jtoc_el_pref_text(t_ui_main *m, t_ui_el *e, t_jnode *n)
 {
 	char	*tmp_text;
 	t_jnode	*tmp;
@@ -94,13 +94,6 @@ int ui_jtoc_el_pref_text(t_ui_main *m, t_ui_el *e, t_jnode *n)
 		e->params |= EL_IS_TEXT;
 		ui_el_update_text(e, tmp_text);
 		free(tmp_text);
-		/*
-		   SDL_Log("str: %s\n", e->text_area->text);
-		   SDL_Log("str color: (%d, %d, %d)\n", e->text_area->text_color.r,
-		   e->text_area->text_color.g, e->text_area->text_color.b);
-		   SDL_Log("bg color: (%d, %d, %d)\n", e->text_area->bg_color.r,
-		   e->text_area->bg_color.g, e->text_area->bg_color.b);
-		   */
 	}
 	return (FUNCTION_SUCCESS);
 }

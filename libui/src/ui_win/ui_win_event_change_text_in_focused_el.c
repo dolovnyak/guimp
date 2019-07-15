@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_win_change_text_in_focused_el.c                 :+:      :+:    :+:   */
+/*   ui_win_event_change_text_in_focused_el.c           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 19:18:31 by sbecker           #+#    #+#             */
-/*   Updated: 2019/07/13 09:35:54 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 03:40:50 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ui_win_event_change_text_in_focused_el(t_ui_main *m, void *a)
 		if (new_text != NULL)
 			free(new_text);
 	}
-	else if (m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9 || m->cur_keycode == SDL_SCANCODE_0)
+	else if ((m->cur_keycode >= SDL_SCANCODE_1 && m->cur_keycode <= SDL_SCANCODE_9) || m->cur_keycode == SDL_SCANCODE_0)
 	{
 		new_text = join_with_number(el, m->cur_keycode);
 		ui_el_update_text(el, new_text);
