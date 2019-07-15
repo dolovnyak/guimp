@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:09:45 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 00:25:04 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:49:33 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ static void	process_draw(t_guimp *g)
 {
 	if (g->draw_tool.tool == GM_TOOL_RECT)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
-		 draw_empty_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
+		draw_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		draw_empty_rect(g, g->draw_tool.prew_point, g->draw_tool.cur_point));
 	else if (g->draw_tool.tool == GM_TOOL_SQUARE)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
-		 draw_empty_square(g, g->draw_tool.prew_point,
-		 		g->draw_tool.cur_point));
+		draw_square(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		draw_empty_square(g, g->draw_tool.prew_point,
+				g->draw_tool.cur_point));
 	else if (g->draw_tool.tool == GM_TOOL_ELLIPSE)
 		(g->draw_tool.tool_mode == GM_TOOL_MODE_FILL ?
-		 draw_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
-		 draw_empty_ellipse(g, g->draw_tool.prew_point,
-		 		g->draw_tool.cur_point));
+		draw_ellipse(g, g->draw_tool.prew_point, g->draw_tool.cur_point) :
+		draw_empty_ellipse(g, g->draw_tool.prew_point,
+				g->draw_tool.cur_point));
 	else if (g->draw_tool.tool == GM_TOOL_LINE)
 		draw_line(g, g->draw_tool.prew_point, g->draw_tool.cur_point);
 	else if (g->draw_tool.tool == GM_TOOL_TEXT)
 		draw_text(g, g->draw_tool.prew_point, g->draw_tool.cur_point,
-				  ui_win_find_el_by_id(g->tool_win, 121210));
+				ui_win_find_el_by_id(g->tool_win, 121210));
 }
 
 static void	process_tool_state_draw(t_guimp *g)
@@ -56,7 +56,8 @@ static void	process_tool_state_end(t_guimp *g)
 void		process_tmp_layer(t_guimp *g)
 {
 	ui_sdl_set_render_target(g->main_win->sdl_renderer, g->layers.tmp_texture);
-	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){0, 0, 0, 0});
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){0, 0, 0,
+		0});
 	ui_sdl_render_clear(g->main_win->sdl_renderer);
 	if (g->draw_tool.state == GM_TOOL_STATE_DRAW)
 		process_tool_state_draw(g);
