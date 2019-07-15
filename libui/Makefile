@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+         #
+#    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 16:14:32 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/14 15:18:09 by sbecker          ###   ########.fr        #
+#    Updated: 2019/07/15 01:15:58 by edraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ SRC_UI_EL		=	ui_el_add_child.c \
 					ui_el_set_size.c \
 					ui_el_set_new_pos.c \
 					ui_el_set_new_size.c \
-					ui_el_add_texture_from_file_dialog.c \
 					ui_el_setup_default_draggable.c \
 					ui_el_setup_default_resizable.c \
 					ui_el_setup_default_scroll_menu_elem.c \
