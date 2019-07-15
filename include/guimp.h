@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 17:57:01 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 18:15:24 by edraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,4 +248,14 @@ int								start_draw_with_selected_tool(t_ui_main *main,
 									void *el_v);
 void							update_color_rect(t_guimp *gm, int r,
 									int g, int b);
+int								scan_tool_position(t_ui_main *main, void *el_v);
+int								start_alt_with_selected_tool(t_ui_main *main,
+									void *el_v);
+int								move_draw_canvas_with_zoom(t_ui_main *main,
+									void *el_v);
+int								draw_color_rect(t_ui_main *main, void *el_v);
+void							ft_strjoin_free(char **to, char *what);
+int								text_test(t_ui_main *m, void *a);
+int								start_draw_with_selected_tool_pointer_up(t_ui_main *main,
+									void *el_v);
 #endif
