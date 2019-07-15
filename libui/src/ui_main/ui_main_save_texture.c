@@ -26,4 +26,5 @@ void	ui_main_save_texture(t_ui_win *win, SDL_Texture *t, const char *path, int t
 	else if (type == IMG_TYPE_JPG)
 		IMG_SaveJPG(s, path, 100);
 	SDL_SetRenderTarget(win->sdl_renderer, p);
+	SDL_FreeSurface(s);
 }
