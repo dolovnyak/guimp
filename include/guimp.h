@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   guimp.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 19:04:10 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 00:49:49 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:45:41 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,4 +209,6 @@ int								set_brush_texture_from_el(t_ui_main *main, void *el_v);
 int								ui_save_image(t_ui_main *main, void *el_v);
 int								ui_open_image(t_ui_main *main, void *el_v);
 
+t_vec2							lerp(t_vec2 p1, t_vec2 p2, float k);
+t_vec2							calc_el_dot(t_vec2 *d, float k);
 #endif

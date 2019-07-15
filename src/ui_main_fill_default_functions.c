@@ -6,7 +6,7 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:44:15 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/15 00:46:29 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:35:38 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	add_choose_functions(t_ui_main *m)
 	ui_main_add_function_by_id(m, choose_blue_color, "choose_blue_color");
 }
 
-void	ui_main_fill_default_functions(t_ui_main *m)
+void		ui_main_fill_default_functions(t_ui_main *m)
 {
 	ui_main_add_function_by_id(m, move_windows, "move_windows");
 	ui_main_add_function_by_id(m, ui_win_event_update_size,

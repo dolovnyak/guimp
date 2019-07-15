@@ -6,13 +6,13 @@
 /*   By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 17:49:44 by edraugr-          #+#    #+#             */
-/*   Updated: 2019/07/15 03:32:58 by edraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/15 15:36:39 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "guimp.h"
 
-int	choose_text(t_ui_main *main, void *el_v)
+int		choose_text(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 
@@ -23,7 +23,7 @@ int	choose_text(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-int	choose_font(t_ui_main *main, void *el_v)
+int		choose_font(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 	t_ui_el	*el;
@@ -43,7 +43,7 @@ int	choose_font(t_ui_main *main, void *el_v)
 	return (1);
 }
 
-int	update_text_color(t_ui_main *main, void *el_v)
+int		update_text_color(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 	t_ui_el	*el;
@@ -65,7 +65,9 @@ void	draw_text(t_guimp *g, t_vec2 s, t_vec2 e, t_ui_el *el)
 {
 	t_texture	*t;
 
-	t = ui_sdl_create_texture_from_surface(g->main_win->sdl_renderer, el->sdl_surface);
-	ui_sdl_render_copy(g->main_win->sdl_renderer, t, NULL, &(t_rect){s.x, s.y, e.x - s.x, e.y - s.y});
+	t = ui_sdl_create_texture_from_surface(g->main_win->sdl_renderer,
+			el->sdl_surface);
+	ui_sdl_render_copy(g->main_win->sdl_renderer, t, NULL,
+			&(t_rect){s.x, s.y, e.x - s.x, e.y - s.y});
 	ui_sdl_destroy_texture(t);
 }

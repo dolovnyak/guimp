@@ -6,7 +6,7 @@
 #    By: edraugr- <edraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 15:58:51 by sbednar           #+#    #+#              #
-#    Updated: 2019/07/15 12:53:53 by sbecker          ###   ########.fr        #
+#    Updated: 2019/07/15 16:15:45 by sbecker          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC				=	main.c \
 
 SRC_TOOLS		=	brush.c \
 					ellipse.c \
+					utils_for_ellipse.c \
 					eraser.c \
 					filler.c \
 					hand.c \

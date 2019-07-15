@@ -6,13 +6,13 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 15:53:21 by sbednar           #+#    #+#             */
-/*   Updated: 2019/07/13 10:09:13 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/07/15 15:39:42 by sbecker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "guimp.h"
 
-int	choose_square(t_ui_main *main, void *el_v)
+int		choose_square(t_ui_main *main, void *el_v)
 {
 	t_guimp	*g;
 
