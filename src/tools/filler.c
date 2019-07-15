@@ -13,7 +13,7 @@
 #include "guimp.h"
 
 static t_sur	*get_surface_and_fill(t_ui_win *w, t_texture *t, int **q,
-		int **f)
+		char **f)
 {
 	t_texture	*tt;
 	t_sur		*r;
