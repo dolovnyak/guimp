@@ -50,7 +50,9 @@ SRC				=	main.c \
 					file_managing.c \
 					main_helper1.c \
 					main_helper2.c \
-					main_helper3.c
+					main_helper3.c \
+					main_helper4.c \
+					gm_main_fill_default_surfaces.c
 
 SRC_TOOLS		=	brush.c \
 					ellipse.c \

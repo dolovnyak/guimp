@@ -258,4 +258,9 @@ void							ft_strjoin_free(char **to, char *what);
 int								text_test(t_ui_main *m, void *a);
 int								start_draw_with_selected_tool_pointer_up(t_ui_main *main,
 									void *el_v);
+
+void							gm_main_fill_default_functions(t_ui_main *m);
+void							gm_setup_default(t_guimp *g_main);
+void							gm_fill(t_guimp *g);
+
 #endif
