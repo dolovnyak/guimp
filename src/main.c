@@ -199,7 +199,7 @@ static int	test_add_layer(t_ui_main *m, void *el_v)
 	ui_el_set_size(el, 0, (t_fvec2){0.45, 0.1});
 	el->id = tmp_el->id * 1000 + 1;
 		ui_el_set_text(el, ui_main_get_font_by_id(m, "SansSerif"),
-				   (t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){0, 0, 0, 0},
+				   (t_text_params){(t_color){0, 0, 0, 0}, (t_color){0, 0, 0, 0},
 								   0, TEXT_IS_REGULAR, TEXT_IS_SOLID});
 		ui_el_update_text(el, "CLEAR");
 	ui_event_add_listener(el->events->onPointerLeftButtonPressed, clear_layer);
@@ -605,7 +605,7 @@ int		main()
 //	ui_event_add_listener(el->events->onPointerLeftButtonPressed, ui_el_event_close_window);
 //	t_ui_text *t = ui_main_get_font_by_id(g_main.ui_main, "SansSerif");
 //	ui_el_set_text(el, t->font,
-//				   (t_text_params){(SDL_Color){0, 0, 0, 0}, (SDL_Color){170, 170, 170, 0},
+//				   (t_text_params){(t_color){0, 0, 0, 0}, (t_color){170, 170, 170, 0},
 //								   0, TEXT_IS_REGULAR | TEXT_IS_INPUTTING | t->params, TEXT_IS_SOLID});
 //	ui_el_update_text(el, "KEEEK");
 
@@ -630,7 +630,7 @@ int		main()
 	// ui_set_pixel_color_to_texture(
 	// 		g_main.main_win->sdl_renderer,
 	// 		(t_texture *)g_main.layers.current_layer->sdl_textures->content,
-	// 		(t_vec2){10, 10}, (SDL_Color){0, 0, 255, 155});
+	// 		(t_vec2){10, 10}, (t_color){0, 0, 255, 155});
 
 //	 cur_el = ui_win_find_el_by_id(g_main.tool_win, 12);
 //	 cur_el->sdl_renderer = g_main.tool_win->sdl_renderer;

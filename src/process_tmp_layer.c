@@ -37,30 +37,30 @@ static void	process_draw(t_guimp *g)
 
 static void	process_tool_state_draw(t_guimp *g)
 {
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, g->draw_tool.r,
-			g->draw_tool.g, g->draw_tool.b, 255);
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){
+		g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255});
 	process_draw(g);
 }
 
 static void	process_tool_state_end(t_guimp *g)
 {
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer,
-			g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255);
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer,
+			&(t_color){g->draw_tool.r, g->draw_tool.g, g->draw_tool.b, 255});
 	process_draw(g);
 	g->draw_tool.state = GM_TOOL_STATE_NONE;
-	SDL_SetRenderTarget(g->main_win->sdl_renderer,
+	ui_sdl_set_render_target(g->main_win->sdl_renderer,
 			(t_texture *)(g->layers.current_layer->sdl_textures->content));
-	SDL_RenderCopy(g->main_win->sdl_renderer, g->layers.tmp_texture, 0, 0);
+	ui_sdl_render_copy(g->main_win->sdl_renderer, g->layers.tmp_texture, 0, 0);
 }
 
 void		process_tmp_layer(t_guimp *g)
 {
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, g->layers.tmp_texture);
-	SDL_SetRenderDrawColor(g->main_win->sdl_renderer, 0, 0, 0, 0);
-	SDL_RenderClear(g->main_win->sdl_renderer);
+	ui_sdl_set_render_target(g->main_win->sdl_renderer, g->layers.tmp_texture);
+	ui_sdl_set_render_draw_color(g->main_win->sdl_renderer, &(t_color){0, 0, 0, 0});
+	ui_sdl_render_clear(g->main_win->sdl_renderer);
 	if (g->draw_tool.state == GM_TOOL_STATE_DRAW)
 		process_tool_state_draw(g);
 	if (g->draw_tool.state == GM_TOOL_STATE_END)
 		process_tool_state_end(g);
-	SDL_SetRenderTarget(g->main_win->sdl_renderer, NULL);
+	ui_sdl_set_render_target(g->main_win->sdl_renderer, NULL);
 }

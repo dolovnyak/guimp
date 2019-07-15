@@ -2463,14 +2463,14 @@
               "PIXEL"
             ]
           },
-          "textures":
-          [
-            {
-              "type": "color",
-              "color": "FF0000",
-              "el_id": "default"
-            }
-          ]
+          "text_area":
+          {
+            "text": "CLEAR ALL",
+            "color": "000000",
+            "render_param": "TEXT_IS_BLENDED",
+            "string_len": 0,
+            "font": "SansSerif"
+          }
         },
         {
           "id": 10089,
