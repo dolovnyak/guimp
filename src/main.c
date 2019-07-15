@@ -381,6 +381,18 @@ int		main()
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_jana");
 
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1106);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_saley");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1107);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_dasha");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1108);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_semen");
+
 	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
 	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 5);
 	ui_event_add_listener(cur_el->events->on_pointer_left_button_pressed, ui_save_image);
