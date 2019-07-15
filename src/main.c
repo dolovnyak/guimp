@@ -586,6 +586,26 @@ int		main()
 	cur_el->data = ui_el_get_texture_by_id(
 			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_frolov");
 
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1101);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_max");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1102);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_petya");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1103);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_jab");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1104);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_poop");
+
+	cur_el = ui_win_find_el_by_id(g_main.tool_win, 1105);
+	cur_el->data = ui_el_get_texture_by_id(
+			ui_win_find_el_by_id(g_main.main_win, 3), "sticker_jana");
+
 	cur_el = ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 2);
 	cur_el->data =  ui_win_find_el_by_id(ui_main_find_window_by_id(g_main.ui_main, 5), 5);
 	ui_event_add_listener(cur_el->events->onPointerLeftButtonPressed, ui_save_image);
