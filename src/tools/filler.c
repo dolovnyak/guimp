@@ -12,7 +12,7 @@
 
 #include "guimp.h"
 
-static Uint32	getpixel(SDL_Surface *surface, int x, int y)
+static Uint32	getpixel(t_sur *surface, int x, int y)
 {
 	int		bpp;
 	Uint8	*p;
@@ -22,7 +22,7 @@ static Uint32	getpixel(SDL_Surface *surface, int x, int y)
 	return (*(Uint32 *)p);
 }
 
-static void	putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
+static void	putpixel(t_sur *surface, int x, int y, Uint32 pixel)
 {
 	int bpp;
 	Uint8 *p;
@@ -47,10 +47,10 @@ void		tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
 	queue = (int *)malloc(x * sizeof(int));
 	SDL_SetRenderDrawColor(w->sdl_renderer, 255, 255, 255, 0);
 	SDL_RenderClear(w->sdl_renderer);
-	SDL_Texture *t = SDL_CreateTexture(w->sdl_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, w->size.x, w->size.y);
+	t_texture *t = SDL_CreateTexture(w->sdl_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, w->size.x, w->size.y);
 	SDL_SetRenderTarget(w->sdl_renderer, t);
 	SDL_RenderCopy(w->sdl_renderer, texture, NULL, NULL);
-	SDL_Surface *s = SDL_CreateRGBSurface(0, w->size.x, w->size.y, 32, 0, 0, 0, 1);
+	t_sur *s = SDL_CreateRGBSurface(0, w->size.x, w->size.y, 32, 0, 0, 0, 1);
 	SDL_RenderReadPixels(w->sdl_renderer, NULL, s->format->format, s->pixels, s->pitch);
 	for (int i = 0; i < x; i++)
 		queue[i] = 0;
@@ -85,7 +85,7 @@ void		tool_filler(t_ui_win *w, t_texture *texture, t_cvec2 color, t_vec2 coord)
 			field[(y + 1) * w->size.x + x] = '1';
 		}
 	}
-	SDL_Texture *tmp = SDL_CreateTextureFromSurface(w->sdl_renderer, s);
+	t_texture *tmp = SDL_CreateTextureFromSurface(w->sdl_renderer, s);
 	SDL_SetRenderTarget(w->sdl_renderer, texture);
 	SDL_RenderCopy(w->sdl_renderer, tmp, NULL, NULL);
 	SDL_SetRenderTarget(w->sdl_renderer, NULL);

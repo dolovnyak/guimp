@@ -339,7 +339,7 @@ void	update_color_rect(t_guimp *gm, int r, int g, int b)
 	t_ui_el	*el;
 
 	el = ui_win_find_el_by_id(gm->tool_win, GM_TOOL_ID_COLOR_RECT);
-	SDL_Texture *t = (SDL_Texture *)el->sdl_textures->content;
+	t_texture *t = (t_texture *)el->sdl_textures->content;
 	SDL_DestroyTexture(t);
 	free(el->sdl_textures);
 	el->sdl_textures = NULL;
