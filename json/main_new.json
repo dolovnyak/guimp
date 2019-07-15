@@ -770,7 +770,6 @@
               "el_id": "onActive"
             }
           ],
-          "current_texture": "onActive",
           "events":
           [
             {
@@ -894,12 +893,12 @@
             },
             {
               "type": "color",
-              "color": "FF0000",
+              "color": "00BB00",
               "el_id": "onFocus"
             },
             {
               "type": "color",
-              "color": "EE0000",
+              "color": "00DD00",
               "el_id": "onActive"
             }
           ],
@@ -963,12 +962,12 @@
             },
             {
               "type": "color",
-              "color": "00DD00",
+              "color": "00BB00",
               "el_id": "onFocus"
             },
             {
               "type": "color",
-              "color": "00BB00",
+              "color": "00DD00",
               "el_id": "onActive"
             }
           ],
@@ -1703,6 +1702,10 @@
         {
           "id": 100,
           "parent": 10,
+          "params": [
+            "EL_IGNOR_RAYCAST",
+            "EL_IS_HIDDEN"
+          ],
           "pos":
           {
             "x": 0,
@@ -4648,7 +4651,7 @@
               "TEXT_IS_REGULAR",
               "TEXT_IS_INPUTTING"
             ],
-            "string_len": 0,
+            "string_len": 20,
             "font": "SansSerif"
           },
           "events":
