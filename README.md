@@ -1,19 +1,21 @@
 # guimp
 
-Мини GIMP, созданный для того, чтобы показать возможности LIBUI
+Part of functionality GIMP, written with our own ui library (libui)
 --------
 [Demo Video](https://youtu.be/U8Oa-Rer3aY)
 ###
 
-## Как работать с libui:
-В json-e пользователь создает сколько угодно окон, в ручную присваивая им id, позицию, размер и ивенты.
+## How work with libui:
+In json, the user creates as many windows as he wants, manually assigning them id, position, size and events.
 
-Для каждого окна, пользователь создает элементы интерфейса в виде дерева: изначальный элемент (канвас) присваивается как родитель новым элементам, в свою очередь элементы, чей родитель канвас, также могут быть заданы как родители для других элементов, и т.д., таким образом строится дерево элементов интерфейса, и отрисовывая это дерево, обходя его в ширину (bfs) получается так, что дочерние элементы перекрывают родительские и таким образом пользователь выбирает, что и как должно перекрываться (то есть так реализованы слои).
+For each window, the user creates interface elements in the form of a tree: the basic element (canvas) is assigned as a parent to new elements, in turn, elements whose parent is canvas can also be set as parents for other elements, etc., after that we have a tree of interface elements.
 
-Для каждого элемента пользователь задает его id, позицию, размер, ивенты, текстуры, параметры и, естественно, родителя (если это не канвас).
+This tree is rendered using bfs and each child layer overlaps parent layer (and user can controll overlap) 
 
-Что такое ивенты - ивенты, это функции, либо стандартные, либо написанные пользователем в ручную, которые вешаются на определенное действие (может быть повешено несколько функций сразу, тогда они будут выполняться по очереди), например на клик левой кнопки мыши.
+For each element, the user sets its id, position, size, events, textures, parameters and the parent (if it's not a canvas).
 
-Что такое параметры элементов - это их функционал, элемент может быть невидимым, может не отлавливать мышь, может быть не зависимым от родителя и т.д.
+User can hang functions (either standard or manually written by the user) on the element event (for example by pressing the left mouse button).
 
-С помощью ивентов и параметров элементов можно добиться абсолютно любых префабов интерфейса, например, выпадающее меню, если задать одному элементу ивент, который будет прятать/показывать другой элемент при нажатии.
+Element has parametrs - for example hidden, ignoring mouse, etc.
+
+With the help of events and element parameters, you can achieve absolutely any prefabs of the interface, for example, a drop-down menu, if you set an event to one element, which will hide / show another element when clicked.
